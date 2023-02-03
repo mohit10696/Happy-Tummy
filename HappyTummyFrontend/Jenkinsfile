@@ -24,8 +24,8 @@ pipeline {
                 dir('HappyTummyFrontend') {
                     sh "npm cache clean --force"
                     sh "npm install"
-                    sh "npm install -g @angular/cli"
-                    sh "ng build --prod"
+                    sh "npm install @angular/cli"
+                    sh "npm run build"
                 }
             }
         }
@@ -38,24 +38,11 @@ pipeline {
                     if (env.BRANCH_NAME == "${branchName2}")
                     {
                         echo "Deleting the old build.  "
-                        sh "rm -r /var/empty2/* || ls"
+                        sh "rm -r /var/www/html || ls"
                         echo "Old build deleted, Deploying new build"
-                        sh "cp -a dist/BMS/. /var/empty2/"
+                        sh "cp -a /home/csci5308vm6/group06/HappyTummyFrontend/dist/happy-tummy-frontend/. /var/www/html"
                         echo "Build Deployed. "
-                    }else if (env.BRANCH_NAME == "${branchName1}")
-                    {   
-                        sshagent ( ["${agentName}"]) {
-                            sh "cd  /root/dcompose/${dirName} && ls" 
-                            sh "apt-get update && apt-get install zip"
-                            sh "cd  /root/dcompose/${dirName} && zip -r latest.zip ."
-
-                            sh "scp -o StrictHostKeyChecking=no /root/dcompose/${dirName}/latest.zip ${osUser}@${ipAddr}:/home/ubuntu/"
-                            sh "ssh -o StrictHostKeyChecking=no ${osUser}@${ipAddr} ls -la /home/ubuntu"
-                            sh "ssh -o StrictHostKeyChecking=no ${osUser}@${ipAddr} sudo unzip  -o /home/ubuntu/latest.zip -d /usr/share/nginx/html/"
-
-                        }
                     }
-
                 }
             }
         }
