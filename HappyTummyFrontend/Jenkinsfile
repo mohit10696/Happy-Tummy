@@ -18,6 +18,7 @@ pipeline {
         {
             steps
             {
+                sh "ls"
                 sh "cd HappyTummyFrontend"
                 sh "npm install"
                 script {
