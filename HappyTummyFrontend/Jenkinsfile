@@ -24,14 +24,7 @@ pipeline {
                 dir('HappyTummyFrontend') {
                     sh "npm cache clean --force"
                     sh "npm install"
-                    script {
-                        sh "ng build --prod"
-                        if (env.BRANCH_NAME == "${branchName1}")
-                        {
-                            sh "ng build --prod"
-                            sh "cp -a dist/BMS/. /var/empty/"
-                        }
-                    }
+                    sh "ng build --prod"
                 }
             }
         }
