@@ -10,7 +10,9 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: "7"))
     }
-    agent none
+    agent {
+        docker { image 'node:latest' }
+    }
     stages {
         stage("Build")
         {
