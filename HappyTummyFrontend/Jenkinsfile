@@ -20,6 +20,7 @@ pipeline {
             {
                 sh "ls"
                 sh "cd HappyTummyFrontend"
+                sh "ls"
                 sh "npm install"
                 script {
                     if (env.BRANCH_NAME == "${branchName2}")
