@@ -34,12 +34,14 @@ pipeline {
         {
             steps
             {
-                dir('HappyTummyFrontend') {
-                    echo "Deleting the old build.  "
-                    sh "rm -r /var/www/html || ls"
-                    echo "Old build deleted, Deploying new build"
-                    sh "cp -a dist/happy-tummy-frontend/. /var/www/html"
-                    echo "Build Deployed. "
+                script {
+                    dir('HappyTummyFrontend') {
+                        echo "Deleting the old build.  "
+                        sh "rm -r /var/www/html || ls"
+                        echo "Old build deleted, Deploying new build"
+                        sh "cp -a dist/happy-tummy-frontend/. /var/www/html"
+                        echo "Build Deployed. "
+                    }
                 }
             }
         }
