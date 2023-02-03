@@ -25,15 +25,12 @@ pipeline {
                     sh "npm cache clean --force"
                     sh "npm install"
                     script {
-                        if (env.BRANCH_NAME == "${branchName2}")
-                        {
-                            sh "ng build --prod"
-                        }else if (env.BRANCH_NAME == "${branchName1}")
+                        sh "ng build --prod"
+                        if (env.BRANCH_NAME == "${branchName1}")
                         {
                             sh "ng build --prod"
                             sh "cp -a dist/BMS/. /var/empty/"
                         }
-
                     }
                 }
             }
