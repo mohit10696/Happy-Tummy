@@ -20,6 +20,7 @@ pipeline {
             {
                 dir('HappyTummyFrontend') {
                     sh "npm install"
+                    sh "npm cache clean --force"
                     script {
                         if (env.BRANCH_NAME == "${branchName2}")
                         {
