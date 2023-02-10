@@ -22,6 +22,7 @@ pipeline {
                 sh "cd /"
                 sh "ls"
                 dir('happy-tummy-backend') {
+                    sh "sdk help"
                     sh "mvn compile"
                     sh "mvn package"
                 }
