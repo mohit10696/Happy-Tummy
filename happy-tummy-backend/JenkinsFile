@@ -22,6 +22,11 @@ pipeline {
                 sh "cd /"
                 sh "ls"
                 dir('happy-tummy-backend') {
+                    sh "sudo apt install unzip zip"
+                    sh "curl -s https://get.sdkman.io | bash"
+                    sh `source "/home/userdir/.sdkman/bin/sdkman-init.sh"`
+                    sh "sdk install springboot"
+                    sh "sdk maven"
                     sh "sdk help"
                     sh "mvn compile"
                     sh "mvn package"
