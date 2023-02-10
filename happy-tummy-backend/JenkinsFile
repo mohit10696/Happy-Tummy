@@ -22,13 +22,14 @@ pipeline {
                 sh "cd /"
                 sh "ls"
                 dir('happy-tummy-backend') {
-                     '''curl -s https://get.sdkman.io | bash
-                     source "/home/csci5308vm6/.sdkman/bin/sdkman-init.sh"
-                     sdk install springboot
-                     sdk maven
-                     sdk help
-                     mvn compile
-                     mvn package'''
+                     sh '''#!/bin/bash
+                        curl -s https://get.sdkman.io | bash
+                        source "/home/csci5308vm6/.sdkman/bin/sdkman-init.sh"
+                        sdk install springboot
+                        sdk maven
+                        sdk help
+                        mvn compile
+                        mvn package'''
                 }
             }
         }
