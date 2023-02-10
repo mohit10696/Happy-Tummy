@@ -60,7 +60,7 @@ pipeline {
                 script {
                     dir('happy-tummy-backend') {
                         echo "Deploying the application",
-                        echo "Copying the guided version"
+                        echo "Copying the guided version",
                         sh "cp target/happy-tummy-backend-0.0.1-SNAPSHOT.jar /home/csci5308vm6/",
                     }
                 }
