@@ -1,0 +1,64 @@
+def projectName = ""
+def branchName1 = "asdasd"
+def branchName2 = "master"
+def dirName = "${projectName}"
+def osUser = "ubuntu"
+def ipAddr = ""
+def agentName = ""
+
+pipeline {
+    options {
+        buildDiscarder(logRotator(numToKeepStr: "7"))
+    }
+    agent any
+    environment {
+        HOME = '.'
+    }
+    stages {
+        stage("Build")
+        {
+            steps
+            {
+                sh "cd /"
+                sh "ls"
+                dir('happy-tummy-backend') {
+                    sh "mvn compile"
+                    sh "mvn package"
+                }
+            }
+        }
+
+        stage("Test")
+        {
+            steps
+            {
+                script {
+                    sh "cd /"
+                    sh "ls"
+                    dir('happy-tummy-backend') {
+                        echo "Testing the test cases "
+                        sh "mvn test"
+                    }
+                }
+            }
+        }
+
+        stage("Deploy")
+        {
+            steps
+            {
+                script {
+                    dir('happy-tummy-backend') {
+                        echo "Deploying the application"
+                        sh "java -jar target/happy-tummy-backend-0.0.1-SNAPSHOT.jar"
+                    }
+                }
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
