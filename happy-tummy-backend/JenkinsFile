@@ -60,7 +60,7 @@ pipeline {
                 script {
                     dir('happy-tummy-backend') {
                         echo "Deploying the application"
-                        sh "java -jar target/happy-tummy-backend-0.0.1-SNAPSHOT.jar"
+                        sh "nohup java -jar happy-tummy-backend-0.0.1-SNAPSHOT.jar &"
                     }
                 }
             }
