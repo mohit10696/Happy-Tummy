@@ -61,7 +61,7 @@ pipeline {
                     dir('happy-tummy-backend') {
                         echo "Deploying the application"
                         echo "Copying the guided version"
-                        sh "cp -a target/. /var/www/spring"
+                        sh "cp target/happy-tummy-backend-0.0.1-SNAPSHOT.jar /var/www/spring/"
                     }
                 }
             }
