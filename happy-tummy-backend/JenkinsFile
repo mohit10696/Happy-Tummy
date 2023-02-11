@@ -64,6 +64,7 @@ pipeline {
                         sh "cp target/happy-tummy-backend-0.0.1-SNAPSHOT.jar /var/www/spring/"
                         echo "Restarting the server"
                         def processId = sh(script: "lsof -t -i:8081", returnStdout: true).trim();
+                        echo "Process ID: ${processId}"
                         if (processId != "") {
                             sh "kill ${processId}"
                         }
