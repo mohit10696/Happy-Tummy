@@ -63,8 +63,11 @@ pipeline {
                         echo "Copying the guided version"
                         sh "cp target/happy-tummy-backend-0.0.1-SNAPSHOT.jar /var/www/spring/"
                         sh "cp pm2-script.sh /var/www/spring/"
-                        echo "Restarting the application"
-                        sh "pm2 start /var/www/spring/pm2-script.sh --name=backendserver --watch"
+                        sh '''#!/bin/sh
+                              echo "RESTARTING ALL"
+                              sudo pm2 restart all
+                              echo "ALL RESTARTED"
+                        '''
                     }
                 }
             }
