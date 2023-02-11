@@ -63,7 +63,10 @@ pipeline {
                         echo "Copying the guided version"
                         sh "cp target/happy-tummy-backend-0.0.1-SNAPSHOT.jar /var/www/spring/"
                         echo "Restarting the server"
-                        sh '''kill $(lsof -t -i:8081)'''
+                        def processId = sh(script: "lsof -t -i:8081", returnStdout: true).trim();
+                        if (processId != "") {
+                            sh "kill ${processId}"
+                        }
                         sh "nohup java -jar /var/www/spring/happy-tummy-backend-0.0.1-SNAPSHOT.jar &"
                     }
                 }
