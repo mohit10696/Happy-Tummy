@@ -64,7 +64,7 @@ pipeline {
                         sh "cp target/happy-tummy-backend-0.0.1-SNAPSHOT.jar /var/www/spring/"
                         sh "cp pm2-script.sh /var/www/spring/"
                         echo "Restarting the application"
-                        sh "PM2_HOME=/root/.pm2 pm2 restart all"
+                        sh "pm2 start /var/www/spring/pm2-script.sh --name=backendserver --watch"
                     }
                 }
             }
