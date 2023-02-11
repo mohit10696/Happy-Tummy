@@ -1,0 +1,16 @@
+@import 'src/styles';
+
+
+.carousel-item{
+  img{
+    height: 600px;
+  }
+}
+
+.yellow-underline{
+  border-bottom: 3px solid $primary-color;
+}
+
+.bg-secondary-light{
+  background-color: $secondary-light;
+}

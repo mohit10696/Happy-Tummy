@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+//variables
+$primary-color: #ffc035 ;
+$primary-color-dark: #ff9f00;
+$secondary-light: #dce8e8;
+$secondary-dark: #2c3e50;
+$secondary-color: #2c3e50;
+
+.bg-primary{
+  background-color: $primary-color !important;
+}
+.btn-primary{
+  background-color: $primary-color;
+  border-color: $primary-color-dark;
+}
