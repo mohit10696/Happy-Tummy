@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="79dcfb4f-34aa-491e-b6ce-d306cfbe113a" name="Changes" comment="Final Jenkins release">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HappyTummyFrontend/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/HappyTummyFrontend/Jenkinsfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/happy-tummy-backend/JenkinsFile" beforeDir="false" afterPath="$PROJECT_DIR$/happy-tummy-backend/JenkinsFile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,7 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="#2-UI-HEADER-FOOTER" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

@@ -20,7 +20,7 @@ pipeline {
             steps
             {
                 sh "cd /"
-                sh "ls"
+                sh 'printenv'
                 dir('HappyTummyFrontend') {
                     sh "npm cache clean --force"
                     sh "npm install"
@@ -48,8 +48,8 @@ pipeline {
             }
         }
     }
-    post { 
-        always { 
+    post {
+        always {
             cleanWs()
         }
     }

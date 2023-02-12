@@ -45,8 +45,6 @@ pipeline {
                     sh '''#!/bin/bash
                         curl -s https://get.sdkman.io | bash
                         source "/home/csci5308vm6/.sdkman/bin/sdkman-init.sh"
-                        sdk install springboot
-                        sdk install maven
                         mvn test'''
                     }
                 }
