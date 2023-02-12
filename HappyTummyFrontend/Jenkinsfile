@@ -24,9 +24,9 @@ pipeline {
                 sh 'printenv'
                 if (env.BRANCH_NAME == 'main') {
                             echo 'Hello from main branch'
-                        } else {
+                     } else {
                             sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
-                        }
+                     }
                 dir('HappyTummyFrontend') {
                     sh "npm cache clean --force"
                     sh "npm install"
