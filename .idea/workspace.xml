@@ -1,37 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="79dcfb4f-34aa-491e-b6ce-d306cfbe113a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/group06.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/.vscode/extensions.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/.vscode/launch.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/.vscode/tasks.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/angular.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/app-routing.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/app.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/app.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/app.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/app.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/app.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/assets/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/main.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/styles.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/tsconfig.app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/tsconfig.spec.json" afterDir="false" />
+    <list default="true" id="79dcfb4f-34aa-491e-b6ce-d306cfbe113a" name="Changes" comment="Final Jenkins release">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HappyTummyFrontend/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/HappyTummyFrontend/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/happy-tummy-backend/JenkinsFile" beforeDir="false" afterPath="$PROJECT_DIR$/happy-tummy-backend/JenkinsFile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,23 +15,35 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="#2-UI-HEADER-FOOTER" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2LC9nFe1hRmC3UagoT2fTEFpT1N" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/lib-user/Desktop/ASD Project/group06",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/lib-user/Desktop/ASDC/group06&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="npm.Angular CLI Server">
     <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
@@ -81,10 +69,77 @@
       <updated>1675364363331</updated>
       <workItem from="1675364364895" duration="43000" />
       <workItem from="1675364413492" duration="151000" />
+      <workItem from="1676055738201" duration="331000" />
     </task>
+    <task id="LOCAL-00001" summary="Jenkins fixed">
+      <created>1676055785294</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1676055785294</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Final Jenkins release">
+      <created>1676138491205</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1676138491205</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Final Jenkins release">
+      <created>1676138617395</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1676138617395</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Final Jenkins release">
+      <created>1676138892753</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1676138892753</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Final Jenkins release">
+      <created>1676139116296</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1676139116296</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Final Jenkins release">
+      <created>1676139349232</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1676139349232</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Final Jenkins release">
+      <created>1676139482581</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1676139482581</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Jenkins fixed" />
+    <MESSAGE value="Final Jenkins release" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final Jenkins release" />
   </component>
 </project>
