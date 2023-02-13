@@ -12,12 +12,6 @@ pipeline {
             steps
             {
                 script {
-                    if ("${env.GIT_BRANCH}" == 'origin/master') {
-                        echo "hello1"
-                    }
-                    else if ("${env.GIT_BRANCH}" == 'origin/staging') {
-                        echo "hello2"
-                    }
                     echo "${env.GIT_BRANCH}"
                     sh 'printenv'
                     dir('HappyTummyFrontend') {
