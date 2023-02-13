@@ -44,7 +44,7 @@ pipeline {
                             echo 'Deleting the old build.  '
                             sh 'rm -r /var/www/html/staging || ls'
                             echo 'Old build deleted, Deploying new build'
-                            sh 'cp -a dist/happy-tummy-frontend/. /var/www/html/staging'
+                            sh 'cp -a dist/happy-tummy-frontend/. /var/www/staging'
                             echo 'Build Deployed. '
                         }
                     }
