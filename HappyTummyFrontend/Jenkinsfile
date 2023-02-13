@@ -1,58 +1,53 @@
-def projectName = ""
 def branchName1 = env.BRANCH_NAME
-def branchName2 = "master"
-def dirName = "${projectName}"
-def osUser = "ubuntu"
-def ipAddr = ""
-def agentName = ""
 
 pipeline {
     options {
-        buildDiscarder(logRotator(numToKeepStr: "7"))
+        buildDiscarder(logRotator(numToKeepStr: '7'))
     }
     agent any
     environment {
         HOME = '.'
     }
     stages {
-        stage("Build")
+        stage('Build')
         {
             steps
             {
-                sh "cd /"
-                sh 'printenv'
-                dir('HappyTummyFrontend') {
-                    sh "npm cache clean --force"
-                    sh "npm install"
-                    sh "npm install @angular/cli"
-//                     if(branchName1 == "master"){
-//                         sh "npm run build -- --prod --base-href /"
-//                     }
-//                     else{
-//                         sh "npm run build -- --prod --base-href /${branchName1}/"
-//                     }
+                script {
+                    sh 'cd /'
+                    sh 'printenv'
+                    dir('HappyTummyFrontend') {
+                        sh 'npm cache clean --force'
+                        sh 'npm install'
+                        sh 'npm install @angular/cli'
+                        if (branchName1 == 'master') {
+                            sh 'npm run build -- --prod --base-href /'
+                        }
+                        else {
+                            sh "npm run build -- --prod --base-href /${branchName1}/"
+                        }
+                    }
                 }
             }
         }
-
-        stage("Deploy")
+        stage('Deploy')
         {
             steps
             {
                 script {
                     dir('HappyTummyFrontend') {
-                        if(branchName1 == "master"){
-                           echo "Deleting the old build.  "
-                           sh "rm -r /var/www/html || ls"
-                           echo "Old build deleted, Deploying new build"
-                           sh "cp -a dist/happy-tummy-frontend/. /var/www/html"
-                           echo "Build Deployed. "
-                        }else{
-                          echo "Deleting the old build.  "
-                          sh "rm -r /var/www/html/${branchName1} || ls"
-                          echo "Old build deleted, Deploying new build"
-                          sh "cp -a dist/happy-tummy-frontend/. /var/www/html/${branchName1}"
-                          echo "Build Deployed. "
+                        if (branchName1 == 'master') {
+                            echo 'Deleting the old build.  '
+                            sh 'rm -r /var/www/html || ls'
+                            echo 'Old build deleted, Deploying new build'
+                            sh 'cp -a dist/happy-tummy-frontend/. /var/www/html'
+                            echo 'Build Deployed. '
+                        }else {
+                            echo 'Deleting the old build.  '
+                            sh "rm -r /var/www/html/${branchName1} || ls"
+                            echo 'Old build deleted, Deploying new build'
+                            sh "cp -a dist/happy-tummy-frontend/. /var/www/html/${branchName1}"
+                            echo 'Build Deployed. '
                         }
                     }
                 }
