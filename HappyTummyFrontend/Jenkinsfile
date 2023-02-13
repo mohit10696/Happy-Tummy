@@ -1,4 +1,4 @@
-def branchName1 = env.BRANCH_NAME
+def branchName1 = env.GIT_BRANCH
 
 pipeline {
     options {
