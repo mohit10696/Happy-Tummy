@@ -41,19 +41,19 @@ pipeline {
             {
                 script {
                     dir('HappyTummyFrontend') {
-                        if(branchName1 == "master"){
+                        // if(branchName1 == "master"){
                            echo "Deleting the old build.  "
                            sh "rm -r /var/www/html || ls"
                            echo "Old build deleted, Deploying new build"
                            sh "cp -a dist/happy-tummy-frontend/. /var/www/html"
                            echo "Build Deployed. "
-                        }else{
-                          echo "Deleting the old build.  "
-                          sh "rm -r /var/www/html/${branchName1} || ls"
-                          echo "Old build deleted, Deploying new build"
-                          sh "cp -a dist/happy-tummy-frontend/. /var/www/html/${branchName1}"
-                          echo "Build Deployed. "
-                        }
+                        // }else{
+                        //   echo "Deleting the old build.  "
+                        //   sh "rm -r /var/www/html/${branchName1} || ls"
+                        //   echo "Old build deleted, Deploying new build"
+                        //   sh "cp -a dist/happy-tummy-frontend/. /var/www/html/${branchName1}"
+                        //   echo "Build Deployed. "
+                        // }
                     }
                 }
             }
