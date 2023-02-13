@@ -1,5 +1,5 @@
 def projectName = ""
-def branchName1 = ${env.BRANCH_NAME}
+def branchName1 = env.BRANCH_NAME
 def branchName2 = "master"
 def dirName = "${projectName}"
 def osUser = "ubuntu"
