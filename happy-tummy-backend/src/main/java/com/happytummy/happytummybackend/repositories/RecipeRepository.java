@@ -1,9 +1,8 @@
 package com.happytummy.happytummybackend.repositories;
 
 import com.happytummy.happytummybackend.models.Recipe;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
+
+public interface RecipeRepository extends JpaRepository<Recipe, Integer>,RecipeRepositoryCustom{
 }

@@ -6,27 +6,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "recipes")
+@Table(name = "recipe")
 public class Recipe {
 
     @Id
     private int id;
+    private String intro;
     private String name;
-    private String description;
-    private String method;
-    private int cookTime;
-    private int serve;
-    private int tips;
-
-    private String review;
-
-    public String getReview() {
-        return review;
-    }
-
-    public void setReview(String review) {
-        this.review = review;
-    }
+    private String serve;
+    private String cookTime;
+    private String prepTime;
 
     public int getId() {
         return id;
@@ -34,6 +23,14 @@ public class Recipe {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
     }
 
     public String getName() {
@@ -44,43 +41,64 @@ public class Recipe {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getMethod() {
-        return method;
-    }
-
-    public void setMethod(String method) {
-        this.method = method;
-    }
-
-    public int getCookTime() {
-        return cookTime;
-    }
-
-    public void setCookTime(int cookTime) {
-        this.cookTime = cookTime;
-    }
-
-    public int getServe() {
+    public String getServe() {
         return serve;
     }
 
-    public void setServe(int serve) {
+    public void setServe(String serve) {
         this.serve = serve;
     }
 
-    public int getTips() {
-        return tips;
+    public String getCookTime() {
+        return cookTime;
     }
 
-    public void setTips(int tips) {
-        this.tips = tips;
+    public void setCookTime(String cookTime) {
+        this.cookTime = cookTime;
     }
+
+    public String getPrepTime() {
+        return prepTime;
+    }
+
+    public void setPrepTime(String prepTime) {
+        this.prepTime = prepTime;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public String getImgURL() {
+        return imgURL;
+    }
+
+    public void setImgURL(String imgURL) {
+        this.imgURL = imgURL;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public String getTip() {
+        return tip;
+    }
+
+    public void setTip(String tip) {
+        this.tip = tip;
+    }
+
+    private String difficulty;
+    private String imgURL;
+    private String ingredients;
+    private String tip;
 }
