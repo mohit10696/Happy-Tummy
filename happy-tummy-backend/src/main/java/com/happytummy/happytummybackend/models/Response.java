@@ -1,20 +1,20 @@
 package com.happytummy.happytummybackend.models;
 
 public class Response {
-    private String message;
+    private String status;
     private Object data;
 
-    public Response(String message, Object data) {
-        this.message = message;
+    public String getStatus() {
+        return status;
+    }
+
+    public Response(String status, Object data) {
+        this.status = status;
         this.data = data;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Object getData() {

@@ -16,6 +16,10 @@ public class Recipe {
     private String serve;
     private String cookTime;
     private String prepTime;
+    private String difficulty;
+    private String imgURL;
+    private String ingredients;
+    private String tip;
 
     public int getId() {
         return id;
@@ -97,8 +101,5 @@ public class Recipe {
         this.tip = tip;
     }
 
-    private String difficulty;
-    private String imgURL;
-    private String ingredients;
-    private String tip;
+
 }

@@ -22,13 +22,13 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom {
     @Override
     public List<Recipe> findByTagName(String tagName, int limit) {
         return entityManager.createQuery("SELECT p FROM Recipe p WHERE p.id IN (SELECT t.recipeId FROM Tag t WHERE t.tag = :tagName)",
-                Recipe.class).setMaxResults(limit).getResultList();
+                Recipe.class).setParameter("tagName", tagName).setMaxResults(limit).getResultList();
     }
 
     @Override
     public List<Recipe> findByIngredientName(String[] ingredientNames, int limit) {
         return entityManager.createQuery("SELECT p FROM Recipe p WHERE p.id IN (SELECT i.recipeId FROM Ingredient i WHERE i.plain_ingredient IN :ingredientNames)",
-                Recipe.class).setMaxResults(limit).getResultList();
+                Recipe.class).setParameter("ingredientNames", ingredientNames).setMaxResults(limit).getResultList();
     }
 
 }

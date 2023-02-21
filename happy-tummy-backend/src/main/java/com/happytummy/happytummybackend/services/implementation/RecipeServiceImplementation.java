@@ -35,7 +35,14 @@ public class RecipeServiceImplementation implements RecipeService {
 
     @Override
     public List<Recipe> getRecipes(RecipeQueryParam queryParam) {
-        return recipeRepository.findByLimit(queryParam.getLength());
+        int length = queryParam.getLength() != null ? queryParam.getLength() : 10;
+        if(queryParam.getTag() != null){
+            return recipeRepository.findByTagName(queryParam.getTag(),length);
+        }
+        else{
+            return recipeRepository.findByLimit(length);
+        }
+
     }
 
 
