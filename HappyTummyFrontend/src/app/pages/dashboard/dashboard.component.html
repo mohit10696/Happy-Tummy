@@ -29,48 +29,18 @@
     <div class="row mt-3">
       <div class="col-md-12">
         <div class="h2 yellow-underline">
-          Dinner For Two
+          Today's Pick
         </div>
         <h6>Recipes the test kitchen can't stop talking about.</h6>
       </div>
       <div class="row mt-2">
-      <div class="col-md-3">
+      <div class="col-md-3 card-container" *ngFor="let item of this.todaysPick">
         <div class="card">
-          <img src="assets/images/test/img.png" class="card-img-top" alt="...">
+          <img src="{{item.imgURL}}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Make Yours !!!</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <img src="assets/images/test/img.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Make Yours !!!</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <img src="assets/images/test/img.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Make Yours !!!</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <img src="assets/images/test/img.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Make Yours !!!</a>
+            <h5 class="card-title">{{item.name}}</h5>
+            <p class="card-text">{{item.intro}}</p>
+            <a [routerLink]="['/recipe',item.id]" routerLinkActive="router-link-active"  class="btn btn-primary">Make Yours !!!</a>
           </div>
         </div>
       </div>
@@ -84,55 +54,15 @@
     <div class="col-md-12 bg-secondary-light py-2">
       <div class="container">
         <div class="h2">
-          What's for Dinner
+          Top Chickens Items !!!
         </div>
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-md-2" *ngFor="let item of topChickenItems">
             <div class="w-100 p-2 border bg-white">
-              <img class="w-100" src="assets/images/test/img.png" alt="">
+              <img class="w-100" src="{{item.imgURL}}" alt="">
             </div>
             <div>
-                <h6 class="text-center">Chocolate Brownie</h6>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="w-100 p-2 border bg-white">
-              <img class="w-100" src="assets/images/test/img.png" alt="">
-            </div>
-            <div>
-              <h6 class="text-center">Chocolate Brownie</h6>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="w-100 p-2 border bg-white">
-              <img class="w-100" src="assets/images/test/img.png" alt="">
-            </div>
-            <div>
-              <h6 class="text-center">Chocolate Brownie</h6>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="w-100 p-2 border bg-white">
-              <img class="w-100" src="assets/images/test/img.png" alt="">
-            </div>
-            <div>
-              <h6 class="text-center">Chocolate Brownie</h6>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="w-100 p-2 border bg-white">
-              <img class="w-100" src="assets/images/test/img.png" alt="">
-            </div>
-            <div>
-              <h6 class="text-center">Chocolate Brownie</h6>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="w-100 p-2 border bg-white">
-              <img class="w-100" src="assets/images/test/img.png" alt="">
-            </div>
-            <div>
-              <h6 class="text-center">Chocolate Brownie</h6>
+                <h6 class="text-center">{{item.name}}</h6>
             </div>
           </div>
         </div>
