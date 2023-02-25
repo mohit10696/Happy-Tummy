@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    API_URL: 'https://iondash.io/api/v1',
+    API_URL: 'http://csci5308vm6.research.cs.dal.ca:8081',
   };
