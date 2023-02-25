@@ -1,0 +1,36 @@
+@import 'src/styles';
+
+
+.carousel-item{
+  img{
+    height: 600px;
+  }
+}
+
+.yellow-underline{
+  border-bottom: 3px solid $primary-color;
+}
+
+.bg-secondary-light{
+  background-color: $secondary-light;
+}
+
+.card-container{
+  margin-top: 5px;
+  .card{
+    height: 100%;
+    .card-img-top{
+      object-fit: cover;
+    }
+    
+    .card-text{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+  }
+}
+

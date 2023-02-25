@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79dcfb4f-34aa-491e-b6ce-d306cfbe113a" name="Changes" comment="Final Jenkins release">
+    <list default="true" id="e3e33911-83ba-40d3-a0e0-8e6e8190f0d6" name="Changes" comment="Merged Staging branch in UI dev branch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HappyTummyFrontend/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/HappyTummyFrontend/Jenkinsfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/happy-tummy-backend/JenkinsFile" beforeDir="false" afterPath="$PROJECT_DIR$/happy-tummy-backend/JenkinsFile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/happy-tummy-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/happy-tummy-backend/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,20 +29,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/lib-user/Desktop/ASDC/group06&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Mohit/Desktop/SEM 1/CSCI5408-Advance topic of software development/Project/web-scrapping",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="npm.Angular CLI Server">
     <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
@@ -62,7 +61,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="79dcfb4f-34aa-491e-b6ce-d306cfbe113a" name="Changes" comment="" />
+      <changelist id="e3e33911-83ba-40d3-a0e0-8e6e8190f0d6" name="Changes" comment="Merged Staging branch in UI dev branch" />
       <created>1675364363331</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -70,6 +69,7 @@
       <workItem from="1675364364895" duration="43000" />
       <workItem from="1675364413492" duration="151000" />
       <workItem from="1676055738201" duration="331000" />
+      <workItem from="1676521670973" duration="2053000" />
     </task>
     <task id="LOCAL-00001" summary="Jenkins fixed">
       <created>1676055785294</created>
@@ -120,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676139482581</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Merged Staging branch in UI dev branch">
+      <created>1676340179388</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1676340179388</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,6 +147,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Jenkins fixed" />
     <MESSAGE value="Final Jenkins release" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final Jenkins release" />
+    <MESSAGE value="Merged Staging branch in UI dev branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merged Staging branch in UI dev branch" />
   </component>
 </project>
