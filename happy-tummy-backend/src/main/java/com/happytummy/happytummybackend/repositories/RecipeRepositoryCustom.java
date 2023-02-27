@@ -9,4 +9,6 @@ public interface RecipeRepositoryCustom {
     List<Recipe> findByTagName(String tagName,int limit);
     List<Recipe> findByIngredientName(String[] ingredientNames,int limit);
 
+    List<Recipe> findBySearch(String search,int limit);
+
 }
