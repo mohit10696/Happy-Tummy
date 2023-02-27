@@ -5,13 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3e33911-83ba-40d3-a0e0-8e6e8190f0d6" name="Changes" comment="Merged Staging branch in UI dev branch">
+      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/pages/recipe-recommendation/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/pages/recipe-recommendation/filter-by-ingredients.pipe.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/pages/recipe-recommendation/filter-by-search.pipe.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/pages/recipe-recommendation/recipe-recommendation-routing.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/pages/recipe-recommendation/recipe-recommendation.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/pages/recipe-recommendation/recipe-recommendation.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/pages/recipe-recommendation/recipe-recommendation.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/pages/recipe-recommendation/recipe-recommendation.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/happy-tummy-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/happy-tummy-backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HappyTummyFrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/HappyTummyFrontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HappyTummyFrontend/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/app-routing.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -25,24 +43,36 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2LC9nFe1hRmC3UagoT2fTEFpT1N" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Mohit/Desktop/SEM 1/CSCI5408-Advance topic of software development/Project/web-scrapping",
+    "last_opened_file_path": "C:/Users/navya/IdeaProjects/group06/happy-tummy-backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Users\\navya\\IdeaProjects\\group06\\HappyTummyFrontend\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\navya\IdeaProjects\group06\HappyTummyFrontend\src\app\pages\recipe-recommendation" />
+    </key>
+  </component>
   <component name="RunManager" selected="npm.Angular CLI Server">
     <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
@@ -70,6 +100,8 @@
       <workItem from="1675364413492" duration="151000" />
       <workItem from="1676055738201" duration="331000" />
       <workItem from="1676521670973" duration="2053000" />
+      <workItem from="1677368620710" duration="7833000" />
+      <workItem from="1677454345555" duration="1639000" />
     </task>
     <task id="LOCAL-00001" summary="Jenkins fixed">
       <created>1676055785294</created>
@@ -145,6 +177,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Jenkins fixed" />
     <MESSAGE value="Final Jenkins release" />
     <MESSAGE value="Merged Staging branch in UI dev branch" />
