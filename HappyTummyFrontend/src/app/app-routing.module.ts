@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/recipe-detail/recipe-detail.module').then(m => m.RecipeDetailModule)
   },
   {
+    path: 'authentication',
+    loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
+  },
+  {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full'
