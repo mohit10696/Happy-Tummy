@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Repository
@@ -28,7 +29,14 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom {
     @Override
     public List<Recipe> findByIngredientName(String[] ingredientNames, int limit) {
         return entityManager.createQuery("SELECT p FROM Recipe p WHERE p.id IN (SELECT i.recipeId FROM Ingredient i WHERE i.plain_ingredient IN :ingredientNames)",
-                Recipe.class).setParameter("ingredientNames", ingredientNames).setMaxResults(limit).getResultList();
+                Recipe.class).setParameter("ingredientNames", Arrays.asList(ingredientNames)).setMaxResults(limit).getResultList();
     }
+
+    @Override
+    public List<Recipe> findBySearch(String search, int limit) {
+        return entityManager.createQuery("SELECT p FROM Recipe p WHERE p.name LIKE :search OR p.intro LIKE :search",
+                Recipe.class).setParameter("search", "%" + search + "%").setMaxResults(limit).getResultList();
+    }
+
 
 }

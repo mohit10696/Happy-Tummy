@@ -39,6 +39,12 @@ public class RecipeServiceImplementation implements RecipeService {
         if(queryParam.getTag() != null){
             return recipeRepository.findByTagName(queryParam.getTag(),length);
         }
+        else if(queryParam.getIngredients() != null){
+            return recipeRepository.findByIngredientName(queryParam.getIngredients().split(","),length);
+        }
+        else if(queryParam.getSearch() != null){
+            return recipeRepository.findBySearch(queryParam.getSearch(),length);
+        }
         else{
             return recipeRepository.findByLimit(length);
         }
@@ -62,7 +68,6 @@ public class RecipeServiceImplementation implements RecipeService {
             return "Recipe not found";
         }
     }
-
 
 }
 

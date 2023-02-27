@@ -70,3 +70,49 @@
     </div>
   </div>
 </div>
+<div class="container">
+  <section>
+    <div class="row mt-3">
+      <div class="col-md-12">
+        <div class="h2 yellow-underline">
+          Indian
+        </div>
+        <h6>Spice up your life with the flavors of India!</h6>
+      </div>
+      <div class="row mt-2">
+      <div class="col-md-3 card-container" *ngFor="let item of this.veggiesItems">
+        <div class="card">
+          <img src="{{item.imgURL}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <p class="card-text">{{item.intro}}</p>
+            <a [routerLink]="['/recipe',item.id]" routerLinkActive="router-link-active"  class="btn btn-primary">Make Yours !!!</a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="row mt-3">
+      <div class="col-md-12">
+        <div class="h2 yellow-underline">
+          Pizza Delight
+        </div>
+        <h6>Hot, fresh, and always satisfying - that's the power of pizza!</h6>
+      </div>
+      <div class="row mt-2">
+      <div class="col-md-3 card-container" *ngFor="let item of this.pizzaItems">
+        <div class="card">
+          <img src="{{item.imgURL}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <p class="card-text">{{item.intro}}</p>
+            <a [routerLink]="['/recipe',item.id]" routerLinkActive="router-link-active"  class="btn btn-primary">Make Yours !!!</a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+</div>
