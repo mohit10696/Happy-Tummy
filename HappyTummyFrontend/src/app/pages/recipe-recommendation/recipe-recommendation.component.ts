@@ -33,7 +33,7 @@ export class RecipeRecommendationComponent implements OnInit{
 
   fetchRecipe() {
     let reqBody = {
-      length: 8
+      length: 12
     }
 
     this.recipeService.getTodaysPick(reqBody).subscribe(
