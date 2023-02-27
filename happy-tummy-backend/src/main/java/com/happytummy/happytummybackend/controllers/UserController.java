@@ -15,33 +15,35 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
-
+@CrossOrigin()
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/login")
-    public Object login(User user) {
+
+    @PostMapping("/login")
+    public Object login(@RequestBody User user) {
         User logged_in=userRepository.findByEmail(user.getEmail());
-        if(user.getPassword().equals(logged_in.getPassword())){
-            return "login successful";
+        if(logged_in != null && user.getPassword().equals(logged_in.getPassword())){
+            return new Response("success", "login successful");
         }
         else{
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("invalid password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new Response("error", "user already exists"));
         }
     }
 
-//    @PostMapping("/signup")
-//    public String signup(@ModelAttribute User user, Model model) {
-//        User existingUser = userRepository.findByUsername(user.getUsername());
-//        if (existingUser != null) {
-//            model.addAttribute("error", "Username already exists");
-//            return "login";
-//        }
-//        userRepository.save(user);
-//        return "redirect:/login";
-//    }
+    @PostMapping("/signup")
+    public Object signup(@RequestBody User user) {
+        User isExist=userRepository.findByEmail(user.getEmail());
+        if(isExist==null){
+            userRepository.save(user);
+            return new Response("success", "signup successful");
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new Response("error", "user already exists"));
+        }
+    }
 
 
 }

@@ -18,6 +18,10 @@ public class User {
     @Column(nullable = false)
     private String email;
 
+    public User() {
+
+    }
+
     public Long getId() {
         return id;
     }
