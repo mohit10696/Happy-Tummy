@@ -23,7 +23,7 @@ public class IngredientController {
     @GetMapping()
     public Object getAllIngredients(RecipeQueryParam recipeQueryParam){
         try {
-            List<Ingredient> ingredient = ingredientService.getIngredients(recipeQueryParam);
+            List<String> ingredient = ingredientService.getIngredients(recipeQueryParam);
             return new Response("success", ingredient);
         } catch (Exception e) {
             return new Response("error", e.getMessage());

@@ -1,7 +1,6 @@
 <!-- <p>login works!</p> -->
-
-
-<div class="container my-3">
+<div class="vh-100 d-flex justify-content-center align-items-center">
+<div class="container my-3 height-min-content">
     <h1 class="text-center">Login</h1>
     <form [formGroup]="loginForm" (ngSubmit)="submitForm()" *ngIf="this.loginForm">
         <div class="form-group">
@@ -15,8 +14,9 @@
         <button type="submit" class="btn btn-primary my-3">Submit</button>
         <div class="row">
             <a routerLink="/authentication/signup" class="my-2">Don't have an account ? Register </a>
-        
+
         </div>
-            
+
     </form>
+</div>
 </div>
