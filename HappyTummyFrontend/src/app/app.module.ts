@@ -10,16 +10,20 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoaderInterceptor } from './shared/interceptor/loader.Interceptor';
 import { ToastrModule } from 'ngx-toastr';
+import { RecipeUploadDialogComponent } from './shared/dialog/recipe-upload-dialog/recipe-upload-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
+    RecipeUploadDialogComponent,
   ],
   imports: [
     BrowserModule,
     NgxSpinnerModule.forRoot({ type: 'ball-grid-pulse' }),
     RouterModule,
     HttpClientModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(), // ToastrModule added
     AppRoutingModule

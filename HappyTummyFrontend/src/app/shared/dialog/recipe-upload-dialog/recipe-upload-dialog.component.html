@@ -1,0 +1,51 @@
+<div class="bg-white container overflow-auto">
+  <div class="col-md-12 d-flex justify-content-between mt-3">
+    <h3 class="text-dark">Add Ingredient</h3>
+    <div class="cursor-pointer" (click)="onClose()"><i class="fa fa-close text-dark"></i></div>
+  </div>
+  <div class="col-md-12 bg-grey p-1 upload-box-container my-1">
+    <div class="upload-box" (click)="fieInput.click()">
+      <span>
+        Upload Image
+      </span>
+      <input type="file" class="d-none" #fieInput (change)="onFileSelected($event)">
+    </div>
+  </div>
+  <div class="col-md-12">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Recipe Name</label>
+        <input type="email" class="form-control" formControlName="recipe_name" id="exampleFormControlInput1"
+          placeholder="name@example.com">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Recipe Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="recipe_description"
+          rows="3"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Recipe Steps</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="steps" rows="5"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Ingredients</label>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" #ingredient placeholder="Ingredient" aria-label="Ingredients"
+            aria-describedby="button-addon2">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+            (click)="addIngredient(ingredient.value);ingredient.value = '';">Add</button>
+        </div>
+        <div class="col-md-12 d-flex">
+          <span class="bg-primary text-light p-2 rounded mx-1" *ngFor="let ingredient of getIngredients.value">
+            {{ingredient}}
+            <i class="fa fa-close ms-2"></i>
+          </span>
+        </div>
+      </div>
+      <div class="mb-3 d-flex justify-content-end">
+        <button type="button" class="btn btn-primary-outline">Cancel</button>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
