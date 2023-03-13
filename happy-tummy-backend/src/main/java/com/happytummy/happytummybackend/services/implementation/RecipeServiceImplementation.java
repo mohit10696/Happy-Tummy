@@ -32,6 +32,9 @@ public class RecipeServiceImplementation implements RecipeService {
     @Autowired
     NutritionRepository nutritionRepository;
 
+    @Autowired
+    ReviewRepository reviewRepository;
+
 
     @Override
     public List<Recipe> getRecipes(RecipeQueryParam queryParam) {
@@ -57,6 +60,8 @@ public class RecipeServiceImplementation implements RecipeService {
             responseData.put("ingredients", ingredientRepository.findByRecipeId(id).toArray());
             responseData.put("steps", stepRepository.findByRecipeId(id).toArray());
             responseData.put("nutrition", nutritionRepository.findByRecipeId(id).toArray());
+            responseData.put("reviews", reviewRepository.findReviewsByRecipeId(id).toArray());
+
             return responseData;
         } else {
             return "Recipe not found";
