@@ -17,7 +17,7 @@ public class IngredientServiceImplementation implements IngredientService {
     IngredientRepository ingredientRepository;
 
     @Override
-    public List<Ingredient> getIngredients(RecipeQueryParam queryParam) {
-        return ingredientRepository.findAll();
+    public List<String> getIngredients(RecipeQueryParam queryParam) {
+        return ingredientRepository.findDistinctByIngredientName();
     }
 }
