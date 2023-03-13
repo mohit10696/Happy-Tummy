@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +8,9 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit{
   isLoggedIn = false;
+  query = '';
 
-  constructor(private router : Router){}
+  constructor(private router : Router,private activatedRoute : ActivatedRoute){}
   ngOnInit(): void {
     this.isLoggedIn = localStorage.getItem('user') ? true : false;
   }
@@ -17,6 +18,15 @@ export class HeaderComponent implements OnInit{
   onLogout(){
     localStorage.clear();
     this.router.navigateByUrl('/authentication/login');
+  }
+
+  search(){
+    let queryParams = this.activatedRoute.snapshot.queryParams;
+    queryParams = {
+      ...queryParams,
+      query: this.query
+    }
+    this.router.navigate(['/pages/recipe-recommendation'],{queryParams});
   }
 
 }

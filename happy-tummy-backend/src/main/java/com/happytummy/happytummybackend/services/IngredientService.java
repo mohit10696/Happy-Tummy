@@ -7,5 +7,5 @@ import com.happytummy.happytummybackend.models.RecipeQueryParam;
 import java.util.List;
 
 public interface IngredientService {
-    List<Ingredient> getIngredients(RecipeQueryParam queryParam);
+    List<String> getIngredients(RecipeQueryParam queryParam);
 }
