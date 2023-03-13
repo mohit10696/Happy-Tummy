@@ -1,11 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from 'src/app/pages/user-profile/home/home.component';
+
+// const routes: Routes = [
+//   { path: 'home', component: HomeComponent }
+// ];
+
+const routes: Routes = [
+  { path: 'home/:id', component: HomeComponent }
+];
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
+
+
 export class HeaderComponent implements OnInit{
   isLoggedIn = false;
 
@@ -18,5 +30,5 @@ export class HeaderComponent implements OnInit{
     localStorage.clear();
     this.router.navigateByUrl('/authentication/login');
   }
-
+  
 }
