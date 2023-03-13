@@ -4,33 +4,28 @@ public class RecipeQueryParam {
 
 
     Integer length;
+
+    Integer pageIndex;
     String tag;
     String ingredients;
-    String search;
+    String q;
 
-    public String getIngredients() {
-        return ingredients;
+
+
+    public Integer getPageIndex() {
+        return pageIndex;
     }
 
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
+    public void setPageIndex(Integer pageIndex) {
+        this.pageIndex = pageIndex;
     }
 
-
-
-    public RecipeQueryParam(Integer length, String tag, String ingredients, String search) {
+    public RecipeQueryParam(Integer length, String tag, String ingredients, String q, Integer pageIndex) {
         this.length = length;
         this.tag = tag;
         this.ingredients = ingredients;
-        this.search = search;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
+        this.q = q;
+        this.pageIndex = pageIndex;
     }
 
     public Integer getLength() {
@@ -41,11 +36,27 @@ public class RecipeQueryParam {
         this.length = length;
     }
 
-    public String getSearch() {
-        return search;
+    public String getTag() {
+        return tag;
     }
 
-    public void setSearch(String search) {
-        this.search = search;
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public String getQ() {
+        return q;
+    }
+
+    public void setQ(String q) {
+        this.q = q;
     }
 }
