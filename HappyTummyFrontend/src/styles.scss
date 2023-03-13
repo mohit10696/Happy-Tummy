@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 //variables
+@import 'ngx-toastr/toastr';
+
 $primary-color: #ffc035 ;
 $primary-color-dark: #ff9f00;
 $secondary-light: #dce8e8;
@@ -13,6 +15,17 @@ $secondary-color: #2c3e50;
   background-color: $primary-color;
   border-color: $primary-color-dark;
 }
+.form-check-input:checked {
+  background-color:  $primary-color;
+  border-color: $primary-color;
+}
+.btn-outline-primary{
+  color: $primary-color;
+  border-color: $primary-color;
+}
 .w-33{
   width: 33%;
+}
+.height-min-content{
+  height: min-content;
 }

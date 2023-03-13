@@ -1,0 +1,28 @@
+body {
+    background-color: #F7B731;
+}
+
+.container {
+    margin-top: 100px;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #FFC312;
+    border-color: #FFC312;
+}
+
+.btn-primary:hover {
+    background-color: #F79F1F;
+    border-color: #F79F1F;
+}
+

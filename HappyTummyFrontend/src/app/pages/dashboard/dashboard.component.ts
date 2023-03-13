@@ -10,12 +10,16 @@ import { RecipesService } from 'src/app/services/recipes.service';
 export class DashboardComponent implements OnInit{
   todaysPick:IRecipe[];
   topChickenItems:IRecipe[];
+  veggiesItems:IRecipe[];
+  pizzaItems:IRecipe[];
 
   constructor(private recipesService:RecipesService){}
 
   ngOnInit(): void {
     this.fetchTodayPick();
     this.fetchTopChickenItems();
+    this.fetchVeggieItems();
+    this.fetchPizzaItems();
   }
 
   
@@ -40,6 +44,30 @@ export class DashboardComponent implements OnInit{
     this.recipesService.getTodaysPick(reqBody).subscribe(res => {
       if(res.status === 'success'){
         this.topChickenItems = res.data;
+      }
+    });
+  }
+
+  fetchVeggieItems(){
+    let reqBody = {
+      length: 4,
+      tag : 'indian'
+    }
+    this.recipesService.getTodaysPick(reqBody).subscribe(res => {
+      if(res.status === 'success'){
+        this.veggiesItems = res.data;
+      }
+    });
+  }
+
+  fetchPizzaItems(){
+    let reqBody = {
+      length: 4,
+      tag : 'pizza'
+    }
+    this.recipesService.getTodaysPick(reqBody).subscribe(res => {
+      if(res.status === 'success'){
+        this.pizzaItems = res.data;
       }
     });
   }

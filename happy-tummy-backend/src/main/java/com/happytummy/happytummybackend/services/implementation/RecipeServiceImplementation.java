@@ -39,13 +39,25 @@ public class RecipeServiceImplementation implements RecipeService {
     @Override
     public List<Recipe> getRecipes(RecipeQueryParam queryParam) {
         int length = queryParam.getLength() != null ? queryParam.getLength() : 10;
+        int pageIndex = queryParam.getPageIndex() != null ? queryParam.getPageIndex() : 0;
         if(queryParam.getTag() != null){
-            return recipeRepository.findByTagName(queryParam.getTag(),length);
+            return recipeRepository.findByTagName(queryParam.getTag(),length,pageIndex);
+        }
+        else if(queryParam.getIngredients() != null){
+            if(queryParam.getIngredients().contains("||")){
+                return recipeRepository.findByIngredientName(queryParam.getIngredients().split("\\|\\|"),length,pageIndex);
+            }
+            if (queryParam.getIngredients().contains("&&")){
+                return recipeRepository.findByCombinedIngredientName(queryParam.getIngredients().split("&&"),length,pageIndex);
+            }
+            return recipeRepository.findByIngredientName(queryParam.getIngredients().split(","),length,pageIndex);
+        }
+        else if(queryParam.getQ() != null){
+            return recipeRepository.findBySearch(queryParam.getQ(),length,pageIndex);
         }
         else{
-            return recipeRepository.findByLimit(length);
+            return recipeRepository.findByLimit(length,pageIndex);
         }
-
     }
 
 
@@ -67,7 +79,6 @@ public class RecipeServiceImplementation implements RecipeService {
             return "Recipe not found";
         }
     }
-
 
 }
 
