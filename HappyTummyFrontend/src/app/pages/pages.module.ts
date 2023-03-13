@@ -6,6 +6,7 @@ import { PagesComponent } from './pages.component';
 import { LayoutModule } from '../layout/layout.module';
 
 
+
 @NgModule({
   declarations: [
     PagesComponent
