@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ReviewService {
 
-    List<Review> getReviewByRecipeId(int id);
+    List<Review> getReviewByRecipeId(String id);
 }
