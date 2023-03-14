@@ -60,7 +60,7 @@ public class UserServiceImplementation implements UserService{
                 }
                 String fileName = id + "." + extension;
 
-                File dir = new File("assets/profile_images");
+                File dir = new File("/assets/profile_images");
                 if (!dir.exists()) {
                     dir.mkdirs();
                 }
@@ -71,7 +71,7 @@ public class UserServiceImplementation implements UserService{
                 stream.close();
 
                 User user = userRepository.findById(Long.parseLong(id)).get();
-                user.setAvatar("profile_images/" + fileName);
+                user.setAvatar("/assets/profile_images/" + fileName);
                 userRepository.save(user);
 
                 return new Response("success", fileName);

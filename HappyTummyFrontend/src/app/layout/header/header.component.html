@@ -47,7 +47,9 @@
         <input type="search" [(ngModel)]="query" class="form-control" placeholder="Search..." aria-label="Search" (keyup.enter)="search()"> 
       </div>
       <div class="text-end" *ngIf="isLoggedIn">
+        <button type="button" class="btn btn-light text-dark me-2" (click)="onUpload()"><i class="fa fa-upload me-1" aria-hidden="true"></i>Add Yours </button>
         <button type="button" class="btn btn-light text-dark me-2" (click)="onLogout()">Logout</button>
+
       </div>
       <div class="text-end" *ngIf="!isLoggedIn">
         <button type="button" class="btn btn-light text-dark me-2" routerLink="/authentication">Login</button>
