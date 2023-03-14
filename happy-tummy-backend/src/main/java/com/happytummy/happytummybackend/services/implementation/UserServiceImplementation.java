@@ -71,7 +71,7 @@ public class UserServiceImplementation implements UserService{
                 stream.close();
 
                 User user = userRepository.findById(Long.parseLong(id)).get();
-                user.setAvatar("profile_images/" + fileName);
+                user.setAvatar("/assets/profile_images/" + fileName);
                 userRepository.save(user);
 
                 return new Response("success", fileName);
