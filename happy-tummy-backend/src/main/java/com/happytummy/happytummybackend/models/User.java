@@ -18,6 +18,8 @@ public class User {
     @Column(nullable = false)
     private String email;
 
+    private String avatar;
+
     public User() {
 
     }
@@ -53,6 +55,10 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+    public String getAvatar(){
+        return avatar;
+    }
+    public void setAvatar(String avatar){this.avatar=avatar;}
 
     public User(Long id, String name, String password, String email) {
         this.id = id;
@@ -61,5 +67,5 @@ public class User {
         this.email = email;
     }
 
-    // getters and setters
+
 }
