@@ -1,31 +1,40 @@
 package com.happytummy.happytummybackend.services.implementation;
 
 import com.happytummy.happytummybackend.models.Review;
+import com.happytummy.happytummybackend.models.User;
 import com.happytummy.happytummybackend.repositories.ReviewRepository;
+import com.happytummy.happytummybackend.repositories.UserRepository;
 import com.happytummy.happytummybackend.services.ReviewService;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ReviewServiceImplementation implements ReviewService {
 
-//    @PersistenceContext
-//    private EntityManager entityManager;
-
     @Autowired
     ReviewRepository reviewRepository;
 
-    public List<Review> getReviewByRecipeId(String recipeId) {
-//        String query = "SELECT r FROM Review r WHERE r.recipeId = :recipeId";
-//        System.out.println(recipeId);
-//        List<Review> reviews = entityManager.createQuery(query, Review.class)
-//                .setParameter("recipeId", recipeId)
-//                .getResultList();
-        return reviewRepository.findReviewsByRecipeId(recipeId);
+    @Autowired
+    UserRepository userRepository;
+
+    public List<Object> getReviewByRecipeId(String recipeId) {
+        List<Object> resBody = new ArrayList<>();
+        List<Review> reviews = reviewRepository.findReviewsByRecipeId(recipeId);
+//        System.out.println(reviews);
+        for (Review review : reviews) {
+            Map<String, Object> result = new HashMap<>();
+            Optional<User> user = userRepository.findById(review.getUserId());
+            System.out.println(review.getUserId());
+            if (user.isPresent()) {
+                result.put("review", review);
+                result.put("user", user.get());
+            }
+
+            resBody.add(result);
+        }
+        return resBody;
     }
 
 //    public List<Review> getReviewByRecipeId(String recipeId) {

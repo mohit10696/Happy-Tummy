@@ -13,6 +13,13 @@ public class Review {
     private String imgURL;
     private Date date;
     private int recipeId;
+
+    private long userId;
+
+    public Review() {
+
+    }
+
     public int getReviewId() {
         return reviewId;
     }
@@ -48,5 +55,23 @@ public class Review {
     }
     public void setRecipeId(int recipeId) {
         this.recipeId = recipeId;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public Review(int reviewId, String description, int rating, String imgURL, Date date, int recipeId, long userId) {
+        this.reviewId = reviewId;
+        this.description = description;
+        this.rating = rating;
+        this.imgURL = imgURL;
+        this.date = date;
+        this.recipeId = recipeId;
+        this.userId = userId;
     }
 }

@@ -5,6 +5,7 @@ import com.happytummy.happytummybackend.models.RecipeQueryParam;
 import com.happytummy.happytummybackend.models.Step;
 import com.happytummy.happytummybackend.repositories.*;
 import com.happytummy.happytummybackend.services.RecipeService;
+import com.happytummy.happytummybackend.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,9 @@ public class RecipeServiceImplementation implements RecipeService {
 
     @Autowired
     ReviewRepository reviewRepository;
+
+    @Autowired
+    ReviewService reviewService;
 
 
     @Override
@@ -72,7 +76,7 @@ public class RecipeServiceImplementation implements RecipeService {
             responseData.put("ingredients", ingredientRepository.findByRecipeId(id).toArray());
             responseData.put("steps", stepRepository.findByRecipeId(id).toArray());
             responseData.put("nutrition", nutritionRepository.findByRecipeId(id).toArray());
-            responseData.put("reviews", reviewRepository.findReviewsByRecipeId(id).toArray());
+            responseData.put("reviews", reviewService.getReviewByRecipeId(id).toArray());
 
             return responseData;
         } else {

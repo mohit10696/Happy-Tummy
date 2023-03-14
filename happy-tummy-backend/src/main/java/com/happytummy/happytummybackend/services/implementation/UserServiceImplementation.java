@@ -1,5 +1,6 @@
 package com.happytummy.happytummybackend.services.implementation;
 
+import com.happytummy.happytummybackend.CONSTANT;
 import com.happytummy.happytummybackend.models.Response;
 import com.happytummy.happytummybackend.models.User;
 import com.happytummy.happytummybackend.repositories.UserRepository;
@@ -75,7 +76,7 @@ public class UserServiceImplementation implements UserService{
                 }
                 String fileName = id + "." + extension;
 
-                File dir = new File("/assets/profile_images");
+                File dir = new File(CONSTANT.BASE_FOLDER_PATH + "/profile_images");
                 if (!dir.exists()) {
                     dir.mkdirs();
                 }
@@ -86,7 +87,7 @@ public class UserServiceImplementation implements UserService{
                 stream.close();
 
                 User user = userRepository.findById(Long.parseLong(id)).get();
-                user.setAvatar("/assets/profile_images/" + fileName);
+                user.setAvatar(CONSTANT.BASE_URL + CONSTANT.BASE_FOLDER_PATH +"/profile_images/" + fileName);
                 userRepository.save(user);
 
                 return new Response("success", fileName);
