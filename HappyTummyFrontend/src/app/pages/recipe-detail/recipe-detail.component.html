@@ -121,26 +121,26 @@
          <ng-container  *ngFor="let review of recipeDetails.reviews">
         <div class="col-md-6 mt-2 border-top p-2">
           <div class="d-flex align-items-center">
-            <img class="rounded-circle profile-img" src="https://resizing.flixster.com/r4Q7lPPL9oUuO_cW7gNphBEHnFg=/300x300/v2/https://flxt.tmsimg.com/assets/p160820_i_h10_ab.jpg" alt="">
-            <span class="mx-2">Vidhi</span>
+            <img class="rounded-circle profile-img" src="{{review.user.avatar}}" alt="">
+            <span class="mx-2">{{review.user.name}}</span>
           </div>
           <div class="d-flex my-2 justify-content-between">
             <div class="stars">
-              <span class="fa fa-star" [ngClass]="{'checked' : review.rating > 0}"></span>
-              <span class="fa fa-star" [ngClass]="{'checked' : review.rating > 1}"></span>
-              <span class="fa fa-star" [ngClass]="{'checked' : review.rating > 2}"></span>
-              <span class="fa fa-star" [ngClass]="{'checked' : review.rating > 3}"></span>
-              <span class="fa fa-star" [ngClass]="{'checked' : review.rating > 4}"></span>
-              <span class="ms-2 text-muted">{{review.rating}}/5</span>
+              <span class="fa fa-star" [ngClass]="{'checked' : review.review.rating > 0}"></span>
+              <span class="fa fa-star" [ngClass]="{'checked' : review.review.rating > 1}"></span>
+              <span class="fa fa-star" [ngClass]="{'checked' : review.review.rating > 2}"></span>
+              <span class="fa fa-star" [ngClass]="{'checked' : review.review.rating > 3}"></span>
+              <span class="fa fa-star" [ngClass]="{'checked' : review.review.rating > 4}"></span>
+              <span class="ms-2 text-muted">{{review.review.rating}}/5</span>
             </div>
             
-            <div class="text-muted ms-2">{{review.date | date : "YYYY/MM/dd"}}</div>
+            <div class="text-muted ms-2">{{review.review.date | date : "YYYY/MM/dd"}}</div>
           </div>
           <div *ngIf="review.imgURL">
-            <img src="{{review.imgURL}}" height="150px">
+            <img src="{{review.review.imgURL}}" height="150px">
           </div>
           <div>
-            {{review.description}}  
+            {{review.review.description}}  
           </div>
         </div>
         <div class="col-md-6"></div>
