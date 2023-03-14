@@ -19,6 +19,10 @@ public class UserServiceImplementation implements UserService{
     @Autowired
     private UserRepository userRepository;
 
+    @Override
+    public User getProfile(String id) {
+        return userRepository.findById(Long.parseLong(id)).orElse(null);
+    }
 
     @Override
     public Object login(User user) {
@@ -44,8 +48,19 @@ public class UserServiceImplementation implements UserService{
     }
 
     @Override
-    public Object updateProfile(String avatar, Long id) {
-        return null;
+    public User updateProfile(User user) {
+        User isExist=userRepository.findByEmail(user.getEmail());
+        if(isExist!=null){
+            isExist.setName(user.getName());
+            isExist.setBio(user.getBio());
+            isExist.setLocation(user.getLocation());
+            isExist.setAvatar(user.getAvatar());
+            userRepository.save(isExist);
+            return isExist;
+        }
+        else{
+            return null;
+        }
     }
 
     @Override
