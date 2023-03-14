@@ -19,6 +19,10 @@ public class UserServiceImplementation implements UserService{
     @Autowired
     private UserRepository userRepository;
 
+    @Override
+    public User getProfile(String id) {
+        return userRepository.findById(Long.parseLong(id)).orElse(null);
+    }
 
     @Override
     public Object login(User user) {
@@ -44,8 +48,19 @@ public class UserServiceImplementation implements UserService{
     }
 
     @Override
-    public Object updateProfile(String avatar, Long id) {
-        return null;
+    public User updateProfile(User user) {
+        User isExist=userRepository.findByEmail(user.getEmail());
+        if(isExist!=null){
+            isExist.setName(user.getName());
+            isExist.setBio(user.getBio());
+            isExist.setLocation(user.getLocation());
+            isExist.setAvatar(user.getAvatar());
+            userRepository.save(isExist);
+            return isExist;
+        }
+        else{
+            return null;
+        }
     }
 
     @Override
@@ -60,7 +75,7 @@ public class UserServiceImplementation implements UserService{
                 }
                 String fileName = id + "." + extension;
 
-                File dir = new File("assets/profile_images");
+                File dir = new File("/assets/profile_images");
                 if (!dir.exists()) {
                     dir.mkdirs();
                 }
@@ -71,7 +86,7 @@ public class UserServiceImplementation implements UserService{
                 stream.close();
 
                 User user = userRepository.findById(Long.parseLong(id)).get();
-                user.setAvatar("profile_images/" + fileName);
+                user.setAvatar("/assets/profile_images/" + fileName);
                 userRepository.save(user);
 
                 return new Response("success", fileName);

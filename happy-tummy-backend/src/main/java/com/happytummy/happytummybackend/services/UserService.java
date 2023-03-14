@@ -7,11 +7,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface UserService {
 
+    User getProfile(String id);
     Object login(User user);
 
     Object signup(User user);
 
-    Object updateProfile(String avatar, Long id);
+    User updateProfile(User user);
 
     Object updateProfileImage(MultipartFile file,String id);
 }
