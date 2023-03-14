@@ -60,7 +60,7 @@ public class UserServiceImplementation implements UserService{
                 }
                 String fileName = id + "." + extension;
 
-                File dir = new File("assets/profile_images");
+                File dir = new File("/assets/profile_images");
                 if (!dir.exists()) {
                     dir.mkdirs();
                 }
