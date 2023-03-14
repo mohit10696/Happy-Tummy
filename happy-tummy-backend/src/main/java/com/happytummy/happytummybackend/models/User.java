@@ -18,6 +18,8 @@ public class User {
     @Column(nullable = false)
     private String email;
 
+    private String avatar;
+
     public User() {
 
     }
@@ -53,7 +55,7 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-    public void getAvatar(){
+    public String getAvatar(){
         return avatar;
     }
     public void setAvatar(String avatar){this.avatar=avatar;}
