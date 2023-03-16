@@ -12,6 +12,7 @@ public class Recipe {
     @Id
     private int id;
     private String intro;
+    private int user_id;
     private String name;
     private String serve;
     private String cookTime;
@@ -43,6 +44,13 @@ public class Recipe {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getServe() {
