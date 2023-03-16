@@ -91,33 +91,37 @@ public class RecipeServiceImplementation implements RecipeService {
             recipeRepository.save(recipe);
         }
         int recipe_id= recipe.getId();
-        List<Nutrition> nutritions= List.of(recipe_details.getNutrition());
-        List<Step> steps= List.of(recipe_details.getSteps());
-        List<Tag> tag= List.of(recipe_details.getTag());
-        List<Ingredient> ingredient= List.of(recipe_details.getIngredient());
+        List<Nutrition> nutritions= recipe_details.getNutrition();
+        List<Step> stepy= recipe_details.getSteps();
+        List<Tag> tags= recipe_details.getTag();
+        List<Ingredient> ingredient= recipe_details.getIngredient();
 
-        if (nutritions!=null) {
+        if (!nutritions.isEmpty()) {
+//            System.out.println("inside nut");
             for (Nutrition nutrition1 : nutritions) {
                 nutrition1.setRecipeId(String.valueOf(recipe_id));
                 nutritionRepository.save(nutrition1);
             }
         }
 
-        if(steps!=null) {
-            for (Step step1 : steps) {
+        if(!stepy.isEmpty()) {
+//            System.out.println("inside ste");
+            for (Step step1 : stepy) {
                 step1.setRecipeId(String.valueOf(recipe_id));
                 stepRepository.save(step1);
             }
         }
 
-        if(tag!=null) {
-            for (Tag tag1 : tag) {
+        if(!tags.isEmpty()) {
+//            System.out.println("inside ta");
+            for (Tag tag1 : tags) {
                 tag1.setRecipeId(String.valueOf(recipe_id));
                 tagRepository.save(tag1);
             }
         }
 
-        if(ingredient!=null) {
+        if(!ingredient.isEmpty()) {
+//            System.out.println("inside ing");
             for (Ingredient ingredient1 : ingredient) {
                 ingredient1.setRecipeId(String.valueOf(recipe_id));
                 ingredientRepository.save(ingredient1);

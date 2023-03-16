@@ -1,40 +1,43 @@
 package com.happytummy.happytummybackend.models;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+
+import java.util.ArrayList;
 
 public class UserRecipeQueryParam {
-
-    Recipe recipe;
-
-    Ingredient ingredient[];
-
-    Tag tag[];
-
-    Nutrition nutritions[];
-
-    Step steps[];
+@OneToOne
+    private Recipe recipe;
+    @ManyToOne
+    private ArrayList<Tag> tag =new ArrayList<Tag>();
+    @ManyToOne
+    private ArrayList<Nutrition> nutritions =new ArrayList<Nutrition>();
+    @ManyToOne
+    private ArrayList<Ingredient> ingredients =new ArrayList<Ingredient>();
+    @ManyToOne
+    private ArrayList<Step> stepps =new ArrayList<Step>();
 
     public Recipe getRecipe() {
-        return recipe;
+        return this.recipe;
     }
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
     }
 
-    public Ingredient[] getIngredient() {
-        return ingredient;
+    public ArrayList<Ingredient> getIngredient() {
+        return this.ingredients;
     }
 
-    public Tag[] getTag() {
-        return tag;
+    public ArrayList<Tag> getTag() {
+        return this.tag;
     }
 
-    public Nutrition[] getNutrition() {
-        return nutritions;
+    public ArrayList<Nutrition> getNutrition() {
+        return this.nutritions;
     }
 
-    public Step[] getSteps() {
-        return steps;
+    public ArrayList<Step> getSteps() {
+        return this.stepps;
     }
 
 }
