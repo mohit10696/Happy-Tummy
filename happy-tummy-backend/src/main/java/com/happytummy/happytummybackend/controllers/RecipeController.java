@@ -3,6 +3,7 @@ package com.happytummy.happytummybackend.controllers;
 import com.happytummy.happytummybackend.models.Recipe;
 import com.happytummy.happytummybackend.models.RecipeQueryParam;
 import com.happytummy.happytummybackend.models.Response;
+import com.happytummy.happytummybackend.models.UserRecipeQueryParam;
 import com.happytummy.happytummybackend.services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,5 +39,11 @@ public class RecipeController {
         }
     }
 
+    @PostMapping("/{id}")
+    public Object addRecipeByUser(UserRecipeQueryParam recipe_details,@PathVariable String id){
+
+     return recipeService.addRecipeByUser(recipe_details,id);
+
+    }
 
 }

@@ -1,8 +1,6 @@
 package com.happytummy.happytummybackend.services.implementation;
 
-import com.happytummy.happytummybackend.models.Recipe;
-import com.happytummy.happytummybackend.models.RecipeQueryParam;
-import com.happytummy.happytummybackend.models.Step;
+import com.happytummy.happytummybackend.models.*;
 import com.happytummy.happytummybackend.repositories.*;
 import com.happytummy.happytummybackend.services.RecipeService;
 import com.happytummy.happytummybackend.services.ReviewService;
@@ -83,6 +81,17 @@ public class RecipeServiceImplementation implements RecipeService {
             return "Recipe not found";
         }
     }
+
+    @Override
+    public Object addRecipeByUser(UserRecipeQueryParam recipe_details, String id){
+        try{
+            return "recipe successfully added";
+        }
+        catch (Exception e){
+            return new Response("Error occured while adding the recipe",e.getMessage());
+        }
+    }
+
 
 }
 
