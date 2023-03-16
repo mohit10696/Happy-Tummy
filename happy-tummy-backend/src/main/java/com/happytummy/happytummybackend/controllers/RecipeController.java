@@ -40,7 +40,7 @@ public class RecipeController {
     }
 
     @PostMapping("/{id}")
-    public Object addRecipeByUser(UserRecipeQueryParam recipe_details,@PathVariable String id){
+    public Object addRecipeByUser(@RequestBody UserRecipeQueryParam recipe_details,@PathVariable String id){
 
      return recipeService.addRecipeByUser(recipe_details,id);
 

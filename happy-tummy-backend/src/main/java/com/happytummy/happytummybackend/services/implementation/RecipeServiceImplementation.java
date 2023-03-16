@@ -36,6 +36,7 @@ public class RecipeServiceImplementation implements RecipeService {
 
     @Autowired
     ReviewService reviewService;
+    private UserRecipeQueryParam recipe_det;
 
 
     @Override
@@ -84,6 +85,45 @@ public class RecipeServiceImplementation implements RecipeService {
 
     @Override
     public Object addRecipeByUser(UserRecipeQueryParam recipe_details, String id){
+        Recipe recipe=recipe_details.getRecipe();
+        if(recipe!=null){
+            recipe.setUser_id(Integer.parseInt(id));
+            recipeRepository.save(recipe);
+        }
+        int recipe_id= recipe.getId();
+        List<Nutrition> nutritions= List.of(recipe_details.getNutrition());
+        List<Step> steps= List.of(recipe_details.getSteps());
+        List<Tag> tag= List.of(recipe_details.getTag());
+        List<Ingredient> ingredient= List.of(recipe_details.getIngredient());
+
+        if (nutritions!=null) {
+            for (Nutrition nutrition1 : nutritions) {
+                nutrition1.setRecipeId(String.valueOf(recipe_id));
+                nutritionRepository.save(nutrition1);
+            }
+        }
+
+        if(steps!=null) {
+            for (Step step1 : steps) {
+                step1.setRecipeId(String.valueOf(recipe_id));
+                stepRepository.save(step1);
+            }
+        }
+
+        if(tag!=null) {
+            for (Tag tag1 : tag) {
+                tag1.setRecipeId(String.valueOf(recipe_id));
+                tagRepository.save(tag1);
+            }
+        }
+
+        if(ingredient!=null) {
+            for (Ingredient ingredient1 : ingredient) {
+                ingredient1.setRecipeId(String.valueOf(recipe_id));
+                ingredientRepository.save(ingredient1);
+            }
+        }
+
         try{
             return "recipe successfully added";
         }
