@@ -29,7 +29,7 @@ public class UserServiceImplementation implements UserService{
     public Object login(User user) {
         User logged_in=userRepository.findByEmail(user.getEmail());
         if(logged_in != null && user.getPassword().equals(logged_in.getPassword())){
-            return new Response("success", "login successful");
+            return new Response("success", logged_in);
         }
         else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new Response("error", "user already exists"));
