@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit{
   ngOnInit(): void {
     this.initForm();
   }
-  
+
   initForm() {
     this.loginForm = new FormGroup({
       email: new FormControl(),
@@ -30,12 +30,12 @@ export class LoginComponent implements OnInit{
     this.authenticationService.login(this.loginForm.value).subscribe(res => {
       this.toasterService.success("Login Successful");
       this.router.navigateByUrl('/pages/dashboard');
-      localStorage.setItem('user',JSON.stringify(this.loginForm.value));
+      localStorage.setItem('user',JSON.stringify(res.data));
     },error => {
       this.toasterService.error("Invalid login or password");
     })
   }
 
-  
-   
+
+
 }
