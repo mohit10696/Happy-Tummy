@@ -7,6 +7,7 @@ import com.happytummy.happytummybackend.repositories.UserRepository;
 import com.happytummy.happytummybackend.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
@@ -37,17 +38,17 @@ public class ReviewServiceImplementation implements ReviewService {
         return resBody;
     }
 
-//    public List<Review> getReviewByRecipeId(String recipeId) {
-//        return entityManager.createQuery("SELECT p FROM Review p WHERE p.recipeId = recipeId").getResultList();
-//        int length = .getLength() != null ? queryParam.getLength() : 10;
-//        if(queryParam.getTag() != null){
-//            return recipeRepository.findByTagName(queryParam.getTag(),length);
-//        }
-//        else{
-//            return recipeRepository.findByLimit(length);
-//        }
-
-//    }
+    public Review addReview(String recipeId, String reviewText, int rating, MultipartFile image) {
+        // create a new review object
+        Review review = new Review();
+        review.setRecipeId(recipeId);
+        review.setDescription(reviewText);
+        review.setRating(rating);
+        // save the review object to the database
+        review = reviewRepository.save(review);
+        // return the saved review object
+        return review;
+    }
 
 //    @Override
 //    public Object getReviewByRecipeId(String id) {

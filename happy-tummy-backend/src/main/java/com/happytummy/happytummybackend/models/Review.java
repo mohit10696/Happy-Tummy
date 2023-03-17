@@ -12,7 +12,7 @@ public class Review {
     private int rating;
     private String imgURL;
     private Date date;
-    private int recipeId;
+    private String recipeId;
 
     private long userId;
 
@@ -50,10 +50,10 @@ public class Review {
     public void setDate(Date date) {
         this.date = date;
     }
-    public int getRecipeId() {
+    public String getRecipeId() {
         return recipeId;
     }
-    public void setRecipeId(int recipeId) {
+    public void setRecipeId(String recipeId) {
         this.recipeId = recipeId;
     }
 
@@ -65,7 +65,7 @@ public class Review {
         this.userId = userId;
     }
 
-    public Review(int reviewId, String description, int rating, String imgURL, Date date, int recipeId, long userId) {
+    public Review(int reviewId, String description, int rating, String imgURL, Date date, String recipeId, long userId) {
         this.reviewId = reviewId;
         this.description = description;
         this.rating = rating;
