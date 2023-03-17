@@ -1,12 +1,12 @@
 package com.happytummy.happytummybackend.models;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.util.Date;
 @Entity
 @Table(name="review")
 public class Review {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reviewId;
     private String description;
     private int rating;
