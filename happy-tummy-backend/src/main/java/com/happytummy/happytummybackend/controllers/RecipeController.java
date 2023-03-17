@@ -7,6 +7,7 @@ import com.happytummy.happytummybackend.models.UserRecipeQueryParam;
 import com.happytummy.happytummybackend.services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -58,6 +59,11 @@ public class RecipeController {
         }
 
         return recipeService.addRecipeByUser(recipe_details,id);
+    }
+
+    @PostMapping("/upload/{id}")
+    public Object uploadRecipeImage(@PathVariable String id,@RequestParam("file") MultipartFile file){
+        return recipeService.uploadRecipeImage(id,file);
     }
 
 }
