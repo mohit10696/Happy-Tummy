@@ -1,44 +1,66 @@
 package com.happytummy.happytummybackend.models;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserRecipeQueryParam {
-@OneToOne
-    private Recipe recipe;
-    @ManyToOne
-    private ArrayList<Tag> tag =new ArrayList<Tag>();
-    @ManyToOne
-    private ArrayList<Nutrition> nutritions =new ArrayList<Nutrition>();
-    @ManyToOne
-    private ArrayList<Ingredient> ingredients =new ArrayList<Ingredient>();
-    @ManyToOne
-    private ArrayList<Step> stepps =new ArrayList<Step>();
+     Recipe recipe;
+     List<Tag> tag;
+     List<Nutrition> nutrition;
+     List<Ingredient> ingredients;
+     List<Step> steps;
+
+    public UserRecipeQueryParam() {
+    }
+
+    public UserRecipeQueryParam(Recipe recipe, List<Tag> tag, List<Nutrition> nutrition, List<Ingredient> ingredients, List<Step> steps) {
+        this.recipe = recipe;
+        this.tag = tag;
+        this.nutrition = nutrition;
+        this.ingredients = ingredients;
+        this.steps = steps;
+    }
 
     public Recipe getRecipe() {
-        return this.recipe;
+        return recipe;
     }
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
     }
 
-    public ArrayList<Ingredient> getIngredient() {
-        return this.ingredients;
+    public List<Tag> getTag() {
+        return tag;
     }
 
-    public ArrayList<Tag> getTag() {
-        return this.tag;
+    public void setTag(List<Tag> tag) {
+        this.tag = tag;
     }
 
-    public ArrayList<Nutrition> getNutrition() {
-        return this.nutritions;
+    public List<Nutrition> getNutrition() {
+        return nutrition;
     }
 
-    public ArrayList<Step> getSteps() {
-        return this.stepps;
+    public void setNutrition(List<Nutrition> nutrition) {
+        this.nutrition = nutrition;
     }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public List<Step> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(List<Step> steps) {
+        this.steps = steps;
+    }
+
 
 }
 
