@@ -1,18 +1,17 @@
 package com.happytummy.happytummybackend.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "nutrition")
 public class Nutrition {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "recipeId")
     private String recipeId;
     private String nutrition;
+
 
     public int getId() {
         return id;

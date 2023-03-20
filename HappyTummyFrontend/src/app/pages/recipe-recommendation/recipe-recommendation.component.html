@@ -1,23 +1,16 @@
-<!--<!doctype html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--  <meta charset="utf-8">-->
-<!--  <title>Recipe Search</title>-->
-<!--  <base href="/">-->
-<!--  <meta name="viewport" content="width=device-width, initial-scale=1">-->
-<!--  <link rel="icon" type="image/x-icon" href="favicon.ico">-->
-<!--</head>-->
-<!--<body>-->
-<script src="recipe-recommendation.component.ts"></script>
 <div class="container">
   <div class="row">
     <div class="col-md-3">
       <div class="ingredient-filter">
-      <h4>Filter by Ingredients</h4>
-      <input type="text" [(ngModel)]="searchIngredient" placeholder="Search...">
-      <div class="form-group" *ngFor="let item of ingredients">
-        <input type="checkbox" [(ngModel)]="item.checked">{{ item.plain_ingredient }}
-      </div>
+        <h4>Filter by Ingredients</h4>
+        <input type="text" [(ngModel)]="searchIngredient" placeholder="Search..." (change)="filterIngredientList()">
+        <div class="form-group" *ngFor="let item of ingredients">
+          <input class="form-check-input" type="checkbox" [(ngModel)]="item.checked" id="{{item.plain_ingredient}}"
+            (click)="onIngredientStateChange()">
+          <label class="form-check-label ms-2" for="{{item.plain_ingredient}}">
+            {{item.plain_ingredient}}
+          </label>
+        </div>
       </div>
       <div class="ingredient-filter mt-3">
         <h4>Filter by Meal Preference</h4>
@@ -30,23 +23,30 @@
     <div class="col-md-9">
       <h3>Recipes</h3>
       <div class="row">
-        <div class="col-md-4" *ngFor="let recipe of recipes ">
-          <div class="card mb-4 shadow-sm">
+        <div class="col-md-4 p-2" *ngFor="let recipe of recipes ">
+          <div class="card mb-4 shadow-sm h-100 ">
             <img class="card-img-top" [src]="recipe.imgURL" alt="Recipe image">
             <div class="card-body">
               <h5 class="card-title">{{ recipe.name }}</h5>
-              <p class="card-text">{{ recipe.ingredients }}</p>
+              <ul>
+                <li *ngFor="let item of recipe.ingredients">{{item}}</li>
+              </ul>
               <p class="card-text">{{ recipe.intro }}</p>
+              <a [routerLink]="['/pages/recipe',recipe.id]" routerLinkActive="router-link-active"  class="btn btn-primary">Make Yours !!!</a>
+
             </div>
+          </div>
+        </div>
+        <div class="col-md-12 d-flex justify-content-end">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" [disabled]="this.filterObj.pageIndex === 0"
+              (click)="onPreviousPage()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous </button>
+            <button type="button disabled" class="btn btn-outline-primary">{{this.filterObj.pageIndex+1}}</button>
+            <button type="button" class="btn btn-primary" (click)="onNextPage()"> Next <i class="fa fa-arrow-right"
+                aria-hidden="true"></i> </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<!--| filterByIngredients:ingredients | filterBySearch:searchIngredient-->
-<!--<script src="app.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>-->
-<!--</body>-->
-<!--</html>-->

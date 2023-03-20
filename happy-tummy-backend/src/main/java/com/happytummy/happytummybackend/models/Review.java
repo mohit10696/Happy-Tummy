@@ -1,17 +1,12 @@
 package com.happytummy.happytummybackend.models;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
-
 @Entity
 @Table(name="review")
-
 public class Review {
-
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reviewId;
     private String description;
     private int rating;
@@ -19,50 +14,64 @@ public class Review {
     private Date date;
     private int recipeId;
 
+    private long userId;
+
+    public Review() {
+
+    }
+
     public int getReviewId() {
         return reviewId;
     }
-
     public void setReviewId(int reviewId) {
         this.reviewId = reviewId;
     }
-
     public int getRating() {
         return rating;
     }
     public void setRating(int rating) {
         this.rating = rating;
     }
-
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
-
     public String getImgURL() {
         return imgURL;
     }
     public void setImgURL(String imgURL) {
         this.imgURL = imgURL;
     }
-
     public Date getDate() {
         return date;
     }
-
     public void setDate(Date date) {
         this.date = date;
     }
-
     public int getRecipeId() {
         return recipeId;
     }
-
     public void setRecipeId(int recipeId) {
         this.recipeId = recipeId;
     }
 
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public Review(int reviewId, String description, int rating, String imgURL, Date date, int recipeId, long userId) {
+        this.reviewId = reviewId;
+        this.description = description;
+        this.rating = rating;
+        this.imgURL = imgURL;
+        this.date = date;
+        this.recipeId = recipeId;
+        this.userId = userId;
+    }
 }

@@ -18,6 +18,26 @@ public class User {
     @Column(nullable = false)
     private String email;
 
+    private String avatar;
+    private String location;
+    private String bio;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
     public User() {
 
     }
@@ -53,13 +73,18 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+    public String getAvatar(){
+        return avatar;
+    }
+    public void setAvatar(String avatar){this.avatar=avatar;}
 
-    public User(Long id, String name, String password, String email) {
+    public User(Long id, String name, String password, String email, String avatar, String location, String bio) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.email = email;
+        this.avatar = avatar;
+        this.location = location;
+        this.bio = bio;
     }
-
-    // getters and setters
 }

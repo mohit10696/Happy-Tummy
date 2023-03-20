@@ -20,8 +20,7 @@ public class ReviewController {
     @GetMapping("/{recipeId}")
     public Object getReviews(@PathVariable String recipeId) {
         try {
-            int id= Integer.parseInt(recipeId);
-            List<Review> reviews  = reviewService.getReviewByRecipeId(id);
+            List<Object> reviews  = reviewService.getReviewByRecipeId(recipeId);
             return new Response("success", reviews);
         } catch (Exception e) {
             return new Response("error", e.getMessage());

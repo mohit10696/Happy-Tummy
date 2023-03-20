@@ -27,6 +27,7 @@ export class RecipeDetailComponent implements OnInit{
       res => {
         if(res.status === 'success'){
           this.recipeDetails = res.data;
+          console.log(this.recipeDetails);
         }
       }
     );

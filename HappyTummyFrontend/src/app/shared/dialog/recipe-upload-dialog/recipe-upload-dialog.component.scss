@@ -1,0 +1,13 @@
+.upload-box-container{
+    background-color: rgb(185, 185, 185);
+    padding: 10px;
+    cursor: pointer;
+    .upload-box{
+        border: 1px dashed #000000;
+        display: flex;
+        height: -webkit-fill-available;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}
