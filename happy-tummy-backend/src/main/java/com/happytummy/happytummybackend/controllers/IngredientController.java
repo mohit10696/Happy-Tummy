@@ -18,12 +18,13 @@ import java.util.List;
 @CrossOrigin()
 public class IngredientController {
     @Autowired
-    IngredientService ingredientService;
+    public IngredientService ingredientService;
 
     @GetMapping()
     public Object getAllIngredients(RecipeQueryParam recipeQueryParam){
         try {
             List<String> ingredient = ingredientService.getIngredients(recipeQueryParam);
+            System.out.println("ingredient = " + ingredient.size());
             return new Response("success", ingredient);
         } catch (Exception e) {
             return new Response("error", e.getMessage());

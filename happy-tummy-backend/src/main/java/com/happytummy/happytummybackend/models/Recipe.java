@@ -10,7 +10,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String intro;
-    private int user_id;
+    private Integer userId;
     private String name;
     private String serve;
     private String cookTime;
@@ -19,6 +19,67 @@ public class Recipe {
     private String imgURL;
     private String ingredients;
     private String tip;
+    private String mealType;
+
+    private String dietaryCategory;
+
+
+    public Recipe() {
+    }
+
+
+    public String getDietaryCategory() {
+        return dietaryCategory;
+    }
+
+    public void setDietaryCategory(String dietary_category) {
+        this.dietaryCategory = dietary_category;
+    }
+
+
+    public Recipe(int id, String intro, Integer userId, String name, String serve, String cookTime, String prepTime, String difficulty, String imgURL, String ingredients, String tip, String mealType, String dietary_category) {
+        this.id = id;
+        this.intro = intro;
+        this.userId = userId;
+        this.name = name;
+        this.serve = serve;
+        this.cookTime = cookTime;
+        this.prepTime = prepTime;
+        this.difficulty = difficulty;
+        this.imgURL = imgURL;
+        this.ingredients = ingredients;
+        this.tip = tip;
+        this.mealType = mealType;
+        this.dietaryCategory = dietary_category;
+    }
+
+    public void setUserId(Integer user_id) {
+        this.userId = user_id;
+    }
+
+    public String getMealType() {
+        return mealType;
+    }
+
+    public void setMealType(String mealType) {
+        this.mealType = mealType;
+    }
+
+
+    public Recipe(int id, String intro, Integer UserId, String name, String serve, String cookTime, String prepTime, String difficulty, String imgURL, String ingredients, String tip, String mealType) {
+        this.id = id;
+        this.intro = intro;
+        this.userId = UserId;
+        this.name = name;
+        this.serve = serve;
+        this.cookTime = cookTime;
+        this.prepTime = prepTime;
+        this.difficulty = difficulty;
+        this.imgURL = imgURL;
+        this.ingredients = ingredients;
+        this.tip = tip;
+        this.mealType = mealType;
+    }
 
     public int getId() {
         return id;
@@ -43,12 +104,12 @@ public class Recipe {
     public void setName(String name) {
         this.name = name;
     }
-    public int getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
     public void setUser_id(int user_id) {
-        this.user_id = user_id;
+        this.userId = user_id;
     }
 
     public String getServe() {

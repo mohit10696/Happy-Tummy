@@ -1,5 +1,6 @@
 package com.happytummy.happytummybackend.services.implementation;
 
+import com.happytummy.happytummybackend.CONSTANT;
 import com.happytummy.happytummybackend.models.*;
 import com.happytummy.happytummybackend.repositories.*;
 import com.happytummy.happytummybackend.services.RecipeService;
@@ -7,7 +8,11 @@ import com.happytummy.happytummybackend.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -124,9 +129,44 @@ public class RecipeServiceImplementation implements RecipeService {
             }
 
 
-            return new Response("success", "Recipe added");
+            return new Response("success", recipe);
         } catch (Exception e) {
             return new Response("error", e.getMessage());
+        }
+    }
+
+    @Override
+    public Object uploadRecipeImage(String id, MultipartFile file) {
+        if(!file.isEmpty()){
+            try {
+                byte[] bytes = file.getBytes();
+                String extension = "";
+                int i = file.getOriginalFilename().lastIndexOf('.');
+                if (i > 0) {
+                    extension = file.getOriginalFilename().substring(i + 1);
+                }
+                String fileName = id + "." + extension;
+
+                File dir = new File(CONSTANT.BASE_FOLDER_PATH + "/recipes_images");
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+
+                File uploadedFile = new File(dir.getAbsolutePath() + File.separator + fileName);
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadedFile));
+                stream.write(bytes);
+                stream.close();
+
+                Recipe recipe = recipeRepository.findById(Integer.valueOf(id)).get();
+                recipe.setImgURL(CONSTANT.BASE_URL + CONSTANT.BASE_FOLDER_PATH +"/recipes_images/" + fileName);
+                recipeRepository.save(recipe);
+
+                return new Response("success", fileName);
+            } catch (Exception e) {
+                return new Response("error", e.getMessage());
+            }
+        } else {
+            return new Response("error", "You failed to upload " + file.getOriginalFilename() + " because the file was empty.");
         }
     }
 

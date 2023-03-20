@@ -1,10 +1,13 @@
 package com.happytummy.happytummybackend.services.implementation;
 
 import com.happytummy.happytummybackend.CONSTANT;
+import com.happytummy.happytummybackend.models.Recipe;
 import com.happytummy.happytummybackend.models.Response;
 import com.happytummy.happytummybackend.models.User;
+import com.happytummy.happytummybackend.repositories.RecipeRepository;
 import com.happytummy.happytummybackend.repositories.UserRepository;
 import com.happytummy.happytummybackend.services.UserService;
+import com.happytummy.happytummybackend.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,22 +17,43 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class UserServiceImplementation implements UserService{
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RecipeRepository recipeRepository;
+
+    @Autowired
+    private JwtUtils jwtUtils;
+
     @Override
-    public User getProfile(String id) {
-        return userRepository.findById(Long.parseLong(id)).orElse(null);
+    public Object getProfile(String name) {
+        Map<String, Object> responseData = new HashMap<>();
+        Optional<User> user = userRepository.findByName(name);
+        if (user != null) {
+            responseData.put("user", user);
+            List<Recipe> recipe = recipeRepository.findByUserId(user.get().getId());
+            responseData.put("recipes", recipe);
+            return responseData;
+        }
+        return null;
     }
 
     @Override
     public Object login(User user) {
         User logged_in=userRepository.findByEmail(user.getEmail());
+        HashMap<String, Object> responseData = new HashMap<>();
         if(logged_in != null && user.getPassword().equals(logged_in.getPassword())){
-            return new Response("success", "login successful");
+            responseData.put("user", logged_in);
+            responseData.put("token", jwtUtils.generateToken(logged_in));
+            return new Response("success", responseData);
         }
         else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new Response("error", "user already exists"));

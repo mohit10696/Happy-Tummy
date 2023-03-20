@@ -22,6 +22,62 @@ public class User {
     private String location;
     private String bio;
 
+    private String latitude;
+    private String longitude;
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public String coverImage;
+
+    public String getCoverImage() {
+        return coverImage;
+    }
+
+    public User(Long id, String name, String password, String email, String avatar, String location, String bio, String latitude, String longitude, String coverImage) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.avatar = avatar;
+        this.location = location;
+        this.bio = bio;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.coverImage = coverImage;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public User(Long id, String name, String password, String email, String avatar, String location, String bio, String latitude, String longitude) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.avatar = avatar;
+        this.location = location;
+        this.bio = bio;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
     public String getLocation() {
         return location;
     }
