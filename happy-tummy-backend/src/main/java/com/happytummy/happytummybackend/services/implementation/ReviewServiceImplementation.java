@@ -61,7 +61,6 @@ public class ReviewServiceImplementation implements ReviewService {
                 }
 
 
-
                 String fileName = review.getReviewId() + "." + extension;
 
                 File dir = new File(CONSTANT.BASE_FOLDER_PATH + "/review_images");
