@@ -45,13 +45,16 @@ public class ReviewServiceImplementation implements ReviewService {
 
         Review review = new Review();
         review.setRecipeId(recipeId);
-        review.setDescription(reviewQueryParam.getReviewText());
+        if (!reviewQueryParam.getReviewText().isEmpty()) {
+            review.setDescription(reviewQueryParam.getReviewText());
+        }
         review.setRating(reviewQueryParam.getRating());
         review.setUserId(Long.parseLong(userId));
         review = reviewRepository.save(review);
 
-        MultipartFile image = reviewQueryParam.getImage();
-        if(!image.isEmpty()){
+
+        if(!reviewQueryParam.getImage().isEmpty()){
+            MultipartFile image = reviewQueryParam.getImage();
             try {
                 byte[] bytes =image.getBytes();
                 String extension = "";
@@ -82,8 +85,9 @@ public class ReviewServiceImplementation implements ReviewService {
                 return new Response("error", e.getMessage());
             }
         } else {
-            return new Response("error", "You failed to upload " + image.getOriginalFilename() + " because the file was empty.");
+            return new Response("error", "You failed to upload " + reviewQueryParam.getImage().getOriginalFilename() + " because the file was empty.");
         }
+
     }
 
 //    @Override

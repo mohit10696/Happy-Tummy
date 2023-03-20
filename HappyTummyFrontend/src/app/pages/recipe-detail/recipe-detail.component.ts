@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { HttpClient } from '@angular/common/http';
-import {ToastrService} from "ngx-toastr";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-recipe-detail',
@@ -18,12 +18,14 @@ export class RecipeDetailComponent implements OnInit{
   rating: number=0;
   image: File;
   selectedFiles: any;
+  searchQuery:string;
+
 
   constructor(
     private recipeService: RecipesService,
     private activatedRoutes : ActivatedRoute,
     private toasterService: ToastrService,
-    private http: HttpClient
+    private http: HttpClient,
   ){}
 
   ngOnInit(): void {
@@ -70,21 +72,20 @@ export class RecipeDetailComponent implements OnInit{
       this.recipeService.addReview(reviewData,this.recipeId).subscribe((res:any) => {
         if(res.status == "success"){
           this.toasterService.success("Review added");
+          this.ngOnInit();
         }
       })
     }
 
-    //   this.http.post(`/reviews/${(this.recipeId)}/reviews`, reviewData).subscribe(
-    //     (response) => {
-    //       console.log(response);
-    //     },
-    //     (error) => {
-    //       console.log(error);
-    //     }
-    //   )
-    // }
   }
 
-
+  encodeSearchQueryUrl(): string {
+    if (this.recipeDetails && this.recipeDetails.recipe && this.recipeDetails.recipe.name) {
+      const searchQuery = encodeURIComponent(this.recipeDetails.recipe.name);
+      return `https://www.youtube.com/results?search_query=${searchQuery}`;
+    } else {
+      return '';
+    }
+  }
 
 }
