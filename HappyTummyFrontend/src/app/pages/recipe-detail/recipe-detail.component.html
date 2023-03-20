@@ -85,12 +85,22 @@
           #{{ t.tag }}
       </span>
     </div>
+    <div class="col-md-12 mt-4 px-2 d-flex justify-content-between">
+      <div class="h4">Not in a mood to read? </div>
+    </div>
+    <div class="col-md-12 mt-1 px-2 d-flex">
+      <a [href]="encodeSearchQueryUrl()" target="_blank">
+        <button class="btn btn-danger">
+          <i class="fa fa-youtube-play"> </i> Watch it on Youtube
+        </button>
+      </a>
+    </div>
     <div class="col-md-12 mt-1 px-2 mt-4">
       <div class="h4">Reviews: </div>
       <div class="row">
         <div class="col-md-6">
           <div class="stars">
-            <label>Your rating:</label>
+            <label class="">Your rating:</label>
             <span (click)="setRating(1);" [ngClass]="{'checked': rating >= 1}" class="fa fa-star"></span>
             <span (click)="setRating(2);" [ngClass]="{'checked': rating >= 2}" class="fa fa-star"></span>
             <span (click)="setRating(3);" [ngClass]="{'checked': rating >= 3}" class="fa fa-star"></span>
