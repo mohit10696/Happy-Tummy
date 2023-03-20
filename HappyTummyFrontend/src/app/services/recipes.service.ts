@@ -44,4 +44,11 @@ export class RecipesService {
       methodType: 'post',
     });
   }
+
+  addReview(reviewData: FormData,recipeId : string) {
+    const user = this.authenticationService.user;
+    const headers = new HttpHeaders();
+    headers.append('Content-Type','multipart/form-data');
+    return this.httpClient.post(`${environment.API_URL}/reviews/${recipeId}/${user.id}`, reviewData, { headers });
+  }
 }

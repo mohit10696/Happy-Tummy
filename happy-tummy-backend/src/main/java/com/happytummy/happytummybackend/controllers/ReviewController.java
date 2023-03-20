@@ -2,6 +2,7 @@ package com.happytummy.happytummybackend.controllers;
 
 import com.happytummy.happytummybackend.models.Response;
 import com.happytummy.happytummybackend.models.Review;
+import com.happytummy.happytummybackend.models.ReviewQueryParam;
 import com.happytummy.happytummybackend.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,10 +30,9 @@ public class ReviewController {
         }
     }
 
-    @PostMapping("/{recipeId}/writeReview")
-    public ResponseEntity<?> addReview(@PathVariable String recipeId, @RequestParam("reviewText") String reviewText, @RequestParam("rating") int rating, @RequestParam("image") MultipartFile image) {
+    @PostMapping("/{recipeId}/{userId}")
+    public Object addReview( @ModelAttribute ReviewQueryParam reviewQueryParam,@PathVariable String recipeId, @PathVariable String userId) {
         // call the review service to create a new review and return the response
-        Review review = reviewService.addReview(recipeId, reviewText, rating, image);
-        return ResponseEntity.ok().body(review);
+        return reviewService.addReview(recipeId, reviewQueryParam, userId);
     }
 }

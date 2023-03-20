@@ -5,14 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3e33911-83ba-40d3-a0e0-8e6e8190f0d6" name="Changes" comment="UI for displaying recipe details">
+      <change afterPath="$PROJECT_DIR$/happy-tummy-backend/src/main/java/com/happytummy/happytummybackend/models/ReviewQueryParam.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HappyTummyFrontend/src/app/pages/recipe-detail/recipe-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/pages/recipe-detail/recipe-detail.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HappyTummyFrontend/src/app/pages/recipe-detail/recipe-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/pages/recipe-detail/recipe-detail.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HappyTummyFrontend/src/app/pages/recipe-detail/recipe-detail.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/pages/recipe-detail/recipe-detail.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HappyTummyFrontend/src/app/services/recipes.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/HappyTummyFrontend/src/app/services/recipes.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/happy-tummy-backend/src/main/java/com/happytummy/happytummybackend/controllers/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/happy-tummy-backend/src/main/java/com/happytummy/happytummybackend/controllers/ReviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/happy-tummy-backend/src/main/java/com/happytummy/happytummybackend/models/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/happy-tummy-backend/src/main/java/com/happytummy/happytummybackend/models/Review.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/happy-tummy-backend/src/main/java/com/happytummy/happytummybackend/services/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/happy-tummy-backend/src/main/java/com/happytummy/happytummybackend/services/ReviewService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/happy-tummy-backend/src/main/java/com/happytummy/happytummybackend/services/implementation/ReviewServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/happy-tummy-backend/src/main/java/com/happytummy/happytummybackend/services/implementation/ReviewServiceImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/happy-tummy-backend/target/classes/com/happytummy/happytummybackend/HappyTummyBackendApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/happy-tummy-backend/target/classes/com/happytummy/happytummybackend/HappyTummyBackendApplication.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +110,10 @@
       <workItem from="1678854121725" duration="623000" />
       <workItem from="1678902158200" duration="1688000" />
       <workItem from="1678907665036" duration="16999000" />
-      <workItem from="1679071010953" duration="329000" />
+      <workItem from="1679071010953" duration="779000" />
+      <workItem from="1679071986606" duration="3166000" />
+      <workItem from="1679081769037" duration="1658000" />
+      <workItem from="1679340827884" duration="3182000" />
     </task>
     <task id="LOCAL-00001" summary="Jenkins fixed">
       <created>1676055785294</created>
