@@ -1,13 +1,17 @@
 package com.happytummy.happytummybackend.services.implementation;
 
-import com.happytummy.happytummybackend.models.Review;
-import com.happytummy.happytummybackend.models.User;
+import com.happytummy.happytummybackend.CONSTANT;
+import com.happytummy.happytummybackend.models.*;
 import com.happytummy.happytummybackend.repositories.ReviewRepository;
 import com.happytummy.happytummybackend.repositories.UserRepository;
 import com.happytummy.happytummybackend.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.*;
 
 @Service
@@ -37,17 +41,51 @@ public class ReviewServiceImplementation implements ReviewService {
         return resBody;
     }
 
-//    public List<Review> getReviewByRecipeId(String recipeId) {
-//        return entityManager.createQuery("SELECT p FROM Review p WHERE p.recipeId = recipeId").getResultList();
-//        int length = .getLength() != null ? queryParam.getLength() : 10;
-//        if(queryParam.getTag() != null){
-//            return recipeRepository.findByTagName(queryParam.getTag(),length);
-//        }
-//        else{
-//            return recipeRepository.findByLimit(length);
-//        }
+    public Object addReview(String recipeId, ReviewQueryParam reviewQueryParam, String userId) {
 
-//    }
+        Review review = new Review();
+        review.setRecipeId(recipeId);
+        review.setDescription(reviewQueryParam.getReviewText());
+        review.setRating(reviewQueryParam.getRating());
+        review.setUserId(Long.parseLong(userId));
+        review = reviewRepository.save(review);
+
+        MultipartFile image = reviewQueryParam.getImage();
+        if(!image.isEmpty()){
+            try {
+                byte[] bytes =image.getBytes();
+                String extension = "";
+                int i = image.getOriginalFilename().lastIndexOf('.');
+                if (i > 0) {
+                    extension = image.getOriginalFilename().substring(i + 1);
+                }
+
+
+
+                String fileName = review.getReviewId() + "." + extension;
+
+                File dir = new File(CONSTANT.BASE_FOLDER_PATH + "/review_images");
+                if(!dir.exists()){
+                    dir.mkdirs();
+                }
+
+                File uploadedFile = new File(dir.getAbsolutePath() + File.separator + fileName);
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadedFile));
+                stream.write(bytes);
+                stream.close();
+
+                review.setImgURL(CONSTANT.BASE_URL + CONSTANT.BASE_FOLDER_PATH +"/review_images/" + fileName);
+                review = reviewRepository.save(review);
+
+
+                return new Response("success", fileName);
+            } catch (Exception e) {
+                return new Response("error", e.getMessage());
+            }
+        } else {
+            return new Response("error", "You failed to upload " + image.getOriginalFilename() + " because the file was empty.");
+        }
+    }
 
 //    @Override
 //    public Object getReviewByRecipeId(String id) {

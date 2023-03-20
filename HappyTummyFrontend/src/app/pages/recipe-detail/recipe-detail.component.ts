@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecipesService } from 'src/app/services/recipes.service';
+import { HttpClient } from '@angular/common/http';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-recipe-detail',
@@ -11,13 +13,25 @@ export class RecipeDetailComponent implements OnInit{
 
   recipeId;
   recipeDetails:any;
-  constructor(private recipeService: RecipesService,private activatedRoutes : ActivatedRoute){}
+  isLoggedIn;
+  reviewText: string;
+  rating: number=0;
+  image: File;
+  selectedFiles: any;
+
+  constructor(
+    private recipeService: RecipesService,
+    private activatedRoutes : ActivatedRoute,
+    private toasterService: ToastrService,
+    private http: HttpClient
+  ){}
 
   ngOnInit(): void {
     this.activatedRoutes.params.subscribe(params => {
       if(params['id']){
         this.recipeId = params['id'];
         this.fetchDetails();
+
       }
     });
   }
@@ -32,5 +46,45 @@ export class RecipeDetailComponent implements OnInit{
       }
     );
   }
+
+  setRating(rating: number) {
+    this.rating= rating;
+  }
+
+  onFileSelected(event: any) {
+    this.image = event.target.files[0];
+  }
+
+  onSubmit() {
+    if(localStorage.getItem('user')){
+      this.isLoggedIn=true;
+    }
+    if(this.isLoggedIn){
+      const reviewData = new FormData();
+      reviewData.append('reviewText', this.reviewText);
+      reviewData.append('rating', this.rating.toString());
+
+      reviewData.append('image', this.image);
+      reviewData.append('date', Date.now().toString());
+
+      this.recipeService.addReview(reviewData,this.recipeId).subscribe((res:any) => {
+        if(res.status == "success"){
+          this.toasterService.success("Review added");
+        }
+      })
+    }
+
+    //   this.http.post(`/reviews/${(this.recipeId)}/reviews`, reviewData).subscribe(
+    //     (response) => {
+    //       console.log(response);
+    //     },
+    //     (error) => {
+    //       console.log(error);
+    //     }
+    //   )
+    // }
+  }
+
+
 
 }
