@@ -9,32 +9,44 @@
         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
           <li>
             <a href="#" class="nav-link text-secondary">
-              <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"></use></svg>
+              <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                <use xlink:href="#home"></use>
+              </svg>
               Home
             </a>
           </li>
           <li>
-            <a [routerLink]="['/pages/recipe-recommendation']" routerLinkActive="router-link-active"  class="nav-link text-white">
-              <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"></use></svg>
+            <a [routerLink]="['/pages/recipe-recommendation']" routerLinkActive="router-link-active"
+              class="nav-link text-white">
+              <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                <use xlink:href="#speedometer2"></use>
+              </svg>
               Recipe Recommendation
             </a>
           </li>
           <li>
             <a href="#" class="nav-link text-white">
-              <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"></use></svg>
+              <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                <use xlink:href="#table"></use>
+              </svg>
               Orders
             </a>
           </li>
           <li>
             <a href="#" class="nav-link text-white">
-              <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"></use></svg>
+              <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                <use xlink:href="#grid"></use>
+              </svg>
               Products
             </a>
           </li>
           <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"></use></svg>
-              Customers
+            <!-- <a href="#" class="nav-link text-white" routerLink="/user-profile/home" routerLinkActive="router-link-active"> -->
+              <a [routerLink]="['/pages/user-profile/home']" routerLinkActive="router-link-active">
+              <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"></use></svg> 
+              Customers -->
+                <img src="/assets/images/user-profile/default_user_profile_icon.jpg" class="profile-image"
+                  alt="Profile Image">
             </a>
           </li>
         </ul>
@@ -58,4 +70,3 @@
     </div>
   </div>
 </header>
-

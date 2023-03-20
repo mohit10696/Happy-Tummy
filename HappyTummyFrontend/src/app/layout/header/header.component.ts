@@ -1,14 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import {RecipeDetailComponent} from "../../pages/recipe-detail/recipe-detail.component";
-import {RecipeUploadDialogComponent} from "../../shared/dialog/recipe-upload-dialog/recipe-upload-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from 'src/app/pages/user-profile/home/home.component';
+
+// const routes: Routes = [
+//   { path: 'home', component: HomeComponent }
+// ];
+
+const routes: Routes = [
+  { path: 'home/:id', component: HomeComponent }
+];
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
+
+
 export class HeaderComponent implements OnInit{
   isLoggedIn = false;
   query = '';
