@@ -56,8 +56,19 @@ export class RecipeRecommendationComponent implements OnInit {
     }
     this.recipeService.getTodaysPick(reqBody).subscribe((res) => {
       if (res.status === 'success') {
-        this.recipes = res.data;
+        this.recipes = res.data.map(data => {
+          return {
+            ...data,
+            ingredients: data.ingredients.split(',').map((item) => {
+              return item.replaceAll('[', '').replaceAll(']', '').replaceAll('"', '').replaceAll("'","").trim();
+              }).filter((item) => {
+                return item.length > 0;
+                }),
+          }
+        });
       }
+      console.log(this.recipes);
+
     });
   }
 
