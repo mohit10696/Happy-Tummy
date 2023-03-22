@@ -42,11 +42,11 @@ public class JwtUtils {
         return expirationDate.before(new Date());
     }
 
-    private Date extractExpiration(String token) {
+    Date extractExpiration(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getExpiration();
     }
 
-    private String extractUsername(String token) {
+    String extractUsername(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
     }
 

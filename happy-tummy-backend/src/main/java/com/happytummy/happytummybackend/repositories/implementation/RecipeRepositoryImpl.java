@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public class RecipeRepositoryImpl implements RecipeRepositoryCustom {
     @PersistenceContext
-    private EntityManager entityManager;
+    EntityManager entityManager;
 
     @Override
     public List<Recipe> findByLimit(int limit, int pageIndex) {

@@ -53,6 +53,12 @@ public class Recipe {
         this.dietaryCategory = dietary_category;
     }
 
+    public Recipe(int id, Integer userId, String name) {
+        this.id = id;
+        this.userId = userId;
+        this.name = name;
+    }
+
     public void setUserId(Integer user_id) {
         this.userId = user_id;
     }
