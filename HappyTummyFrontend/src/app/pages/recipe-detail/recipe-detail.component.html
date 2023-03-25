@@ -7,11 +7,12 @@
         <div class="h2">{{ recipeDetails.recipe.name }}</div>
         <div class="h6"></div>
         <div class="stars mt-2">
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
+          <span class="fa fa-star" [ngClass]="{'checked' :averageRating > 0}"></span>
+              <span class="fa fa-star" [ngClass]="{'checked' :averageRating > 1}"></span>
+              <span class="fa fa-star" [ngClass]="{'checked' : averageRating > 2}"></span>
+              <span class="fa fa-star" [ngClass]="{'checked' : averageRating > 3}"></span>
+              <span class="fa fa-star" [ngClass]="{'checked' : averageRating > 4}"></span>
+              <span class="ms-2 text-muted">{{averageRating}}/5</span>
         </div>
         <div class="intro mt-3 h5">
           {{ recipeDetails.recipe.intro }}
@@ -46,7 +47,7 @@
         </div>
         <div class="col-md-12 mt-1 px-2">
             <div class="ingredients" *ngFor="let ingredient of recipeDetails.ingredients">
-                <div class="ingredient"> <span class="mx-2"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></span> {{ingredient.plain_ingredient}}</div>
+                <div class="ingredient"> <span class="mx-2"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></span> {{ingredient}}</div>
             </div>
         </div>
 
@@ -109,7 +110,7 @@
             <input type="hidden" name="rating" [value]="rating" [(ngModel)]="rating">
           </div>
           <div class="my-2">
-            Your review:
+            Your review: 
           </div>
           <form>
             <div class="form-group ">
@@ -139,7 +140,7 @@
          <ng-container  *ngFor="let review of recipeDetails.reviews">
         <div class="col-md-6 mt-2 border-top p-2">
           <div class="d-flex align-items-center">
-            <img class="rounded-circle profile-img" src="{{review.user.avatar || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQajVijyoJgMl3Gpyve3xw1osi4bljAFkRVaQ&usqp=CAU'}}" alt="">
+            <img class="rounded-circle profile-img" src="{{review?.user?.avatar || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQajVijyoJgMl3Gpyve3xw1osi4bljAFkRVaQ&usqp=CAU'}}" alt="">
             <span class="mx-2">{{review.user.name}}</span>
           </div>
           <div class="d-flex my-2 justify-content-between">
@@ -154,7 +155,7 @@
 
             <div class="text-muted ms-2">{{review.review.date | date : "YYYY/MM/dd"}}</div>
           </div>
-          <div *ngIf="review.review.imgURL">
+          <div *ngIf="review.review.imgURL" (click)="zoomImage(review.review.imgURL)">
             <img src="{{review.review.imgURL}}" height="150px">
           </div>
           <div>

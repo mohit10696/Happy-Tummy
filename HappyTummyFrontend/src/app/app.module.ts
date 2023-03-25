@@ -12,11 +12,13 @@ import { LoaderInterceptor } from './shared/interceptor/loader.Interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { RecipeUploadDialogComponent } from './shared/dialog/recipe-upload-dialog/recipe-upload-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ImageViewerComponent } from './shared/dialog/image-viewer/image-viewer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeUploadDialogComponent,
+    ImageViewerComponent,
   ],
   imports: [
     BrowserModule,
