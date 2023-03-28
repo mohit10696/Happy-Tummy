@@ -13,6 +13,16 @@ public class Nutrition {
     private String nutrition;
 
 
+    public Nutrition(String recipeId, String nutrition) {
+        this.recipeId = recipeId;
+        this.nutrition = nutrition;
+    }
+
+    public Nutrition() {
+
+    }
+
+
     public int getId() {
         return id;
     }

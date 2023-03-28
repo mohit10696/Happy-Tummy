@@ -13,6 +13,12 @@ public class Step {
     @Column(name = "recipe_id")
     private String recipeId;
 
+    public Step(String position, String description, String recipeId) {
+        this.position = position;
+        this.description = description;
+        this.recipeId = recipeId;
+    }
+
     public int getId() {
         return id;
     }
