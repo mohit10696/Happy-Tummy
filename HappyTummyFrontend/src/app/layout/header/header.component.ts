@@ -1,22 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import {RecipeDetailComponent} from "../../pages/recipe-detail/recipe-detail.component";
-import {RecipeUploadDialogComponent} from "../../shared/dialog/recipe-upload-dialog/recipe-upload-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from 'src/app/pages/user-profile/home/home.component';
+import { RecipeUploadDialogComponent } from 'src/app/shared/dialog/recipe-upload-dialog/recipe-upload-dialog.component';
+
+// const routes: Routes = [
+//   { path: 'home', component: HomeComponent }
+// ];
+
+const routes: Routes = [
+  { path: 'home/:id', component: HomeComponent }
+];
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
+
+
 export class HeaderComponent implements OnInit{
   isLoggedIn = false;
   query = '';
+  user;
 
   constructor(private router : Router,private dialog: MatDialog,private activatedRoute : ActivatedRoute){}
 
   ngOnInit(): void {
     this.isLoggedIn = localStorage.getItem('user') ? true : false;
+    if(this.isLoggedIn){
+      this.user = JSON.parse(localStorage.getItem('user'));
+    }
   }
 
   onLogout(){
@@ -29,7 +44,7 @@ export class HeaderComponent implements OnInit{
       panelClass: 'mat-dialog-container',
       width: '570px'});
   }
-  
+
   search(){
     let queryParams = this.activatedRoute.snapshot.queryParams;
     queryParams = {

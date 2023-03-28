@@ -3,3 +3,17 @@
   border-radius: 5px;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
 }
+.rounded-image {
+  border-radius: 70%;
+  background-color: #ccc;
+  padding: 10px;
+}
+.profile-image {
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  background-size: cover;
+  background-position: center;
+  text-indent: -9999px;
+  margin-top: 20px;
+}
