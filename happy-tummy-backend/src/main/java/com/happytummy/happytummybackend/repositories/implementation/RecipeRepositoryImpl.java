@@ -4,6 +4,7 @@ import com.happytummy.happytummybackend.models.Recipe;
 import com.happytummy.happytummybackend.repositories.RecipeRepositoryCustom;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
@@ -27,18 +28,39 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom {
     }
 
     @Override
-    public List<Recipe> findByIngredientName(String[] ingredientNames, int limit, int pageIndex) {
-        System.out.println(limit);
-        System.out.println(pageIndex * limit);
-        return entityManager.createQuery("SELECT p FROM Recipe p WHERE p.id IN (SELECT i.recipeId FROM Ingredient i WHERE i.plain_ingredient IN :ingredientNames)",
-                Recipe.class).setParameter("ingredientNames", Arrays.asList(ingredientNames)).setMaxResults(limit).setFirstResult(pageIndex * limit).getResultList();
+    public List<Recipe> findByIngredientName(String[] ingredientNames,String[] dietaryCategory, int limit, int pageIndex) {
+        String queryString = "SELECT p FROM Recipe p where true ";
+        if(ingredientNames.length > 0){
+            queryString += "AND p.id IN (SELECT i.recipeId FROM Ingredient i WHERE i.plain_ingredient IN :ingredientNames)";
+        }
+        if(dietaryCategory.length > 0){
+            queryString += "AND p.dietaryCategory IN :dietaryCategory";
+        }
+        System.out.println(queryString);
+        Query query = entityManager.createQuery(queryString,Recipe.class);
+        if(ingredientNames.length > 0){
+            query.setParameter("ingredientNames", Arrays.asList(ingredientNames));
+        }
+        if(dietaryCategory.length > 0){
+            query.setParameter("dietaryCategory", Arrays.asList(dietaryCategory));
+        }
+        return query.setMaxResults(limit).setFirstResult(pageIndex * limit).getResultList();
     }
 
     @Override
-    public List<Recipe> findByCombinedIngredientName(String[] ingredientNames, int limit, int pageIndex) {
-        System.out.println(Arrays.asList(ingredientNames));
-        return entityManager.createQuery("SELECT p FROM Recipe p WHERE p.id IN (SELECT i.recipeId FROM Ingredient i WHERE i.plain_ingredient IN :ingredientNames GROUP BY i.recipeId HAVING COUNT(i.recipeId) = :ingredientNamesLength) ",
-                Recipe.class).setParameter("ingredientNames", Arrays.asList(ingredientNames)).setParameter("ingredientNamesLength", ingredientNames.length).setMaxResults(limit).setFirstResult(pageIndex * limit).getResultList();
+    public List<Recipe> findByCombinedIngredientName(String[] ingredientNames,String[] dietaryCategory, int limit, int pageIndex) {
+        String queryString = "SELECT p FROM Recipe p WHERE p.id IN (SELECT i.recipeId FROM Ingredient i WHERE i.plain_ingredient IN :ingredientNames GROUP BY i.recipeId HAVING COUNT(i.recipeId) = :ingredientNamesLength)";
+        if (dietaryCategory.length > 0) {
+            queryString += " AND p.dietaryCategory IN :dietaryCategory";
+        }
+        Query query = entityManager.createQuery(queryString,Recipe.class);
+        if(ingredientNames.length > 0){
+            query.setParameter("ingredientNames", Arrays.asList(ingredientNames)).setParameter("ingredientNamesLength", ingredientNames.length);
+        }
+        if(dietaryCategory.length > 0){
+            query.setParameter("dietaryCategory", Arrays.asList(dietaryCategory));
+        }
+        return query.setMaxResults(limit).setFirstResult(pageIndex * limit).getResultList();
     }
 
     @Override
@@ -46,6 +68,7 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom {
         return entityManager.createQuery("SELECT p FROM Recipe p WHERE p.name LIKE :search OR p.intro LIKE :search",
                 Recipe.class).setParameter("search", "%" + search + "%").setMaxResults(limit).setFirstResult(pageIndex * limit).getResultList();
     }
+
 
 
 }
