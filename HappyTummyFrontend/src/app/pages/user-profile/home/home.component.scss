@@ -1114,6 +1114,8 @@
   
   .shadow,
   .card-profile-image img {
+    object-fit: scale-down;
+    background: white;
     box-shadow: 0 0 2rem 0 rgba(136, 152, 170, .15) !important;
   }
   

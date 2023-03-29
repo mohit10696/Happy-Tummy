@@ -22,6 +22,9 @@ import java.util.Optional;
 public class RecipeServiceImplementation implements RecipeService {
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
     RecipeRepository recipeRepository;
 
     @Autowired
@@ -35,6 +38,11 @@ public class RecipeServiceImplementation implements RecipeService {
 
     @Autowired
     NutritionRepository nutritionRepository;
+
+
+    @Autowired
+    RecipeLikeRepository recipeLikeRepository;
+
 
     @Autowired
     ReviewRepository reviewRepository;
@@ -73,12 +81,13 @@ public class RecipeServiceImplementation implements RecipeService {
         if (recipeOptional.isPresent()) {
             Recipe recipe = recipeOptional.get();
             responseData.put("recipe", recipe);
+            responseData.put("likes", recipeLikeRepository.findByRecipeId(Long.valueOf(id)).toArray());
             responseData.put("tags", tagRepository.findByRecipeId(id).toArray());
             responseData.put("ingredients", ingredientRepository.findByRecipeId(id).toArray());
             responseData.put("steps", stepRepository.findByRecipeId(id).toArray());
             responseData.put("nutrition", nutritionRepository.findByRecipeId(id).toArray());
             responseData.put("reviews", reviewService.getReviewByRecipeId(id).toArray());
-
+            responseData.put("user", userRepository.findById(Long.valueOf(recipe.getUserId())).get());
             return responseData;
         } else {
             return "Recipe not found";
@@ -99,6 +108,7 @@ public class RecipeServiceImplementation implements RecipeService {
             List<Step> step = recipe_details.getSteps();
             List<Tag> tags = recipe_details.getTag();
             List<Ingredient> ingredient = recipe_details.getIngredients();
+
 
             if (!nutrition.isEmpty()) {
                 for (Nutrition nutrition1 : nutrition) {

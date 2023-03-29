@@ -34,27 +34,28 @@
                   class="card-profile-stats d-flex justify-content-center "
                 >
                   <div>
-                    <span class="heading">22</span>
+                    <span class="heading">{{likes}}</span>
                     <span class="description">Likes</span>
                   </div>
-                  <div>
-                    <span class="heading">10</span>
+                  <div (click)="listFollower()">
+                    <span class="heading">{{followers.length}}</span>
                     <span class="description">Followers</span>
                   </div>
-                  <div>
-                    <span class="heading">89</span>
+                  <div (click)="listFollowing()">
+                    <span class="heading">{{following.length}}</span>
                     <span class="description">Following</span>
                   </div>
                   <div>
-                    <span class="heading">{{recpipeInformation.length}}</span>
+                    <span class="heading">{{totalRecipes}}</span>
                     <span class="description">Recipes</span>
                   </div>
                 </div>
               </div>
             </div>
             <div class="row">
-              <button class="btn-primary btn flex-1">Follow</button>
-              <button class="btn-primary btn flex-1">Edit Profile</button>
+              <button class="btn-primary btn flex-1" *ngIf="!isLoggedInUser && isLoggedin && !isFollowing" (click)="follow()">Follow</button>
+              <button class="btn-primary btn flex-1" *ngIf="!isLoggedInUser && isLoggedin && isFollowing" (click)="unfollow()">Unfollow</button>
+              <button class="btn-primary btn flex-1" *ngIf="isLoggedInUser" (click)="editProfile()">Edit Profile</button>
             </div>
             <div class="text-center">
               <div class="h5 font-weight-300">
@@ -78,27 +79,27 @@
           </div>
           <div class="card-body ">
             <div class="row">
-              <div _ngcontent-uhp-c91="" class="col-md-4 p-2 cursor-pointer" *ngFor="let item of recpipeInformation">
+              <div _ngcontent-uhp-c91="" class="col-md-4 p-2 cursor-pointer" *ngFor="let item of recpipeInformation" (click)="navigateToRecipeDetailPage(item);">
                 <div _ngcontent-uhp-c91="" class="card mb-2 shadow-sm h-100">
                   <img
                     _ngcontent-uhp-c91=""
                     alt="Recipe image"
                     class="card-img-top"
-                    src="{{item.imgURL}}"
+                    src="{{item.recipe.imgURL}}"
                   />
                   <div _ngcontent-uhp-c91="" class="card-body">
                     <h5 _ngcontent-uhp-c91="" class="card-title">
-                      {{item.name}}
+                      {{item.recipe.name}}
                     </h5>
                     <p _ngcontent-uhp-c91="" class="card-text">
-                      {{item.intro}}
+                      {{item.recipe.intro}}
                     </p>
                     <div class="d-flex flex-column">
                         <p class="mb-0">
-                            Likes <i class="fa fa-heart"></i> 10
+                            Likes <i class="fa fa-heart"></i> {{item.likes.length}}
                         </p>
                         <p class="mb-0">
-                            Reviews <i class="fa fa-comment"></i> 5
+                            Reviews <i class="fa fa-comment"></i> {{item.reviews.length}}
                         </p>
                     </div>
                   </div>

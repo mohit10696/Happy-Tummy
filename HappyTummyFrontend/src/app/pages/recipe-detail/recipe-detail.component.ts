@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from "ngx-toastr";
 import { ImageViewerComponent } from 'src/app/shared/dialog/image-viewer/image-viewer.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MapComponent } from 'src/app/shared/dialog/map/map.component';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -23,12 +25,13 @@ export class RecipeDetailComponent implements OnInit {
   selectedFiles: any;
   searchQuery: string;
   averageRating: number = 0;
+  isLiked: boolean = false;
 
   constructor(
     private recipeService: RecipesService,
     private activatedRoutes: ActivatedRoute,
     private toasterService: ToastrService,
-    private http: HttpClient,
+    private authenticationService: AuthenticationService,
     private dialog: MatDialog
   ) { }
 
@@ -54,6 +57,9 @@ export class RecipeDetailComponent implements OnInit {
                   return item.length > 0;
                   }),
             };
+          this.isLiked = this.recipeDetails.likes.findIndex((like) => like.userId === this.authenticationService.user.id) > -1;
+          console.log(this.isLiked);
+          
           
           console.log(this.recipeDetails);
           this.averageRating = this.recipeDetails.reviews.reduce((acc, review) => acc + review.review.rating, 0) / this.recipeDetails.reviews.length;
@@ -69,6 +75,34 @@ export class RecipeDetailComponent implements OnInit {
 
   onFileSelected(event: any) {
     this.image = event.target.files[0];
+  }
+
+  likeRecipe(){
+    if (localStorage.getItem('user')) {
+      this.isLoggedIn = true;
+    }
+    if (this.isLoggedIn) {
+      this.recipeService.addLike(this.recipeId).subscribe((res: any) => {
+        if (res.status == "success") {
+          this.toasterService.success("Recipe liked");
+          this.ngOnInit();
+        }
+      })
+    }
+  }
+
+  dislikeRecipe(){
+    if (localStorage.getItem('user')) {
+      this.isLoggedIn = true;
+    }
+    if (this.isLoggedIn) {
+      this.recipeService.removeLike(this.authenticationService.user.id, this.recipeId).subscribe((res: any) => {
+        if (res.status == "success") {
+          this.toasterService.success("Recipe disliked");
+          this.ngOnInit();
+        }
+      })
+    }
   }
 
   onSubmit() {
@@ -109,6 +143,14 @@ export class RecipeDetailComponent implements OnInit {
       panelClass: 'mat-dialog-container',
       data : arg0,
       width: '570px'
+    });
+  }
+
+  openMap(){
+    const dialogRef = this.dialog.open(MapComponent, {
+      panelClass: 'mat-dialog-container',
+      data : this.recipeDetails,
+      width: '80%'
     });
   }
 }

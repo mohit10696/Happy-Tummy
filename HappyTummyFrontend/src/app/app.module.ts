@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,12 +13,28 @@ import { ToastrModule } from 'ngx-toastr';
 import { RecipeUploadDialogComponent } from './shared/dialog/recipe-upload-dialog/recipe-upload-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ImageViewerComponent } from './shared/dialog/image-viewer/image-viewer.component';
+import { MapComponent } from './shared/dialog/map/map.component';
+import { AgmCoreModule } from '@agm/core';
+import { AuthenticationService } from './services/authentication.service';
+import { ListUsersComponent } from './shared/dialog/list-users/list-users.component';
+
+export function initializeApp(authenticationService: AuthenticationService) {
+  return () => {
+    if(authenticationService.user){
+      return Promise.all([authenticationService.fetchUserFollowers().toPromise(),authenticationService.fetchUserFollowings().toPromise()]);
+    }else{
+      return Promise.resolve();
+    }
+  };
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeUploadDialogComponent,
     ImageViewerComponent,
+    MapComponent,
+    ListUsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,10 +44,21 @@ import { ImageViewerComponent } from './shared/dialog/image-viewer/image-viewer.
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(), // ToastrModule added
-    AppRoutingModule
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBd_a4RP34XxbMuYLN21frg3Tb2RNfylrU',
+      libraries: ['places']
+    })
   ],
   providers: [{ 
     provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi:true
+  },
+  AuthenticationService,
+  {
+    provide: APP_INITIALIZER,
+    useFactory: initializeApp,
+    deps: [AuthenticationService],
+    multi: true
   }],
   bootstrap: [AppComponent]
 })

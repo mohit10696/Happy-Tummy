@@ -1,0 +1,40 @@
+@import 'src/styles';
+
+agm-map {
+    height: 500px;
+  }
+  .sidebar{
+    height: 500px;
+    overflow-y: auto;
+    .card{
+      border-left: 10px solid $primary-color !important;
+      position: relative;
+      .logo{
+        height: 25px;
+        width: 25px;
+        right: 5px;
+        top: 5px;
+        position: absolute;
+      }
+    }
+
+  }
+
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }

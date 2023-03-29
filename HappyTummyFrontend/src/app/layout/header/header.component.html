@@ -42,7 +42,7 @@
           </li>
           <li>
             <!-- <a href="#" class="nav-link text-white" routerLink="/user-profile/home" routerLinkActive="router-link-active"> -->
-              <a [routerLink]="['/pages/user-profile',user.name]" routerLinkActive="router-link-active">
+              <a *ngIf="user" [routerLink]="['/pages/user-profile',user.name]" routerLinkActive="router-link-active">
               <!-- <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"></use></svg>
               Customers -->
                 <img src="{{user?.avatar || '/assets/images/user-profile/default_user_profile_icon.jpg'}}" class="profile-image"

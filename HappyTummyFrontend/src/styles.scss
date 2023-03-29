@@ -48,3 +48,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .cursor-pointer{
   cursor: pointer;
 }
+
+.width-min-content{
+  width: min-content;
+}
+
+.width-max-content{
+  width: max-content;
+}
