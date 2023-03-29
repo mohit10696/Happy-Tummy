@@ -27,6 +27,7 @@ code_quality:
         --env CODECLIMATE_CODE="$PWD/happy-tummy-backend"
         --volume "$PWD:/code"
         --volume /var/run/docker.sock:/var/run/docker.sock
+        -e DOCKER_HOST=unix:///var/run/docker.sock
         codeclimate/codeclimate analyze -f json > codequality.json
   artifacts:
     reports:
