@@ -15,7 +15,7 @@ public class UserController {
 
 
     @Autowired
-    private UserService userService;
+    UserService userService;
 
     @GetMapping("/getProfile/{name}")
     public Object getProfile(@PathVariable String name){

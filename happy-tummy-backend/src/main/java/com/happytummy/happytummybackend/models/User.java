@@ -25,6 +25,11 @@ public class User {
     private String latitude;
     private String longitude;
 
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
     public String getLatitude() {
         return latitude;
     }

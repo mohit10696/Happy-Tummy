@@ -38,4 +38,12 @@ public class Ingredient {
     public void setPlain_ingredient(String plain_ingredient) {
         this.plain_ingredient = plain_ingredient;
     }
+
+    public Ingredient() {
+    }
+
+    public Ingredient(String recipeId, String plain_ingredient) {
+        this.recipeId = recipeId;
+        this.plain_ingredient = plain_ingredient;
+    }
 }

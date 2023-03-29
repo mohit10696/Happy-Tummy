@@ -14,6 +14,11 @@ public class Tag {
     @Column(name = "recipe_id")
     private String recipeId;
 
+    public Tag(String tag, String recipeId) {
+        this.tag = tag;
+        this.recipeId = recipeId;
+    }
+
     public int getId() {
         return id;
     }

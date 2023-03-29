@@ -40,7 +40,6 @@ public class Recipe {
 
 
 
-
     public void setUserId(Integer user_id) {
         this.userId = user_id;
     }

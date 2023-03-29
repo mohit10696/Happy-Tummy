@@ -48,6 +48,9 @@ public class RecipeQueryParam {
         this.pageIndex = pageIndex;
     }
 
+    public RecipeQueryParam() {
+    }
+
     public Integer getLength() {
         return length;
     }
