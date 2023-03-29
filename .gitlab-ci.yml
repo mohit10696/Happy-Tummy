@@ -31,3 +31,9 @@ code_quality:
   artifacts:
     reports:
       codequality: codequality.json
+
+runners:
+  config:
+    runners:
+      - tags: [docker]
+        privileged: true
