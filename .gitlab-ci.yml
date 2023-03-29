@@ -21,7 +21,7 @@ code_quality:
   stage: code_quality
   image: docker:stable
   services:
-    - docker:dind
+    - docker:19.03.13-dind
   script:
     - docker run
         --env CODECLIMATE_CODE="$PWD/happy-tummy-backend"
@@ -32,8 +32,3 @@ code_quality:
     reports:
       codequality: codequality.json
 
-runners:
-  config:
-    runners:
-      - tags: [docker]
-        privileged: true
