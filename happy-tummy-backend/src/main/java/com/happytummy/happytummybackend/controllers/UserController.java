@@ -15,13 +15,13 @@ public class UserController {
 
 
     @Autowired
-    private UserService userService;
+    UserService userService;
 
-    @GetMapping("/getProfile/{id}")
-    public Object getProfile(@PathVariable String id){
-            User user=userService.getProfile(id);
-        if (user!=null){
-            return new Response("success", user);
+    @GetMapping("/getProfile/{name}")
+    public Object getProfile(@PathVariable String name){
+        Object response = userService.getProfile(name);
+        if (response!=null){
+            return new Response("success", response);
         }
         else{
             return new Response("error", "user not found");

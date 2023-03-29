@@ -1,0 +1,30 @@
+<div class="container-fluid ">
+    <div class="row px-2">
+        <div class="col-md-12 mt-3">
+            <div class="d-flex justify-content-between">
+                <h2 class="align-content-center align-items-center d-flex justify-content-center mb-0 text-dark">{{title}}</h2>
+                <button class="btn" (click)="this.dialogRef.close()"><i class="fa fa-close"></i></button>
+            </div>
+            <hr>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12" *ngFor="let item of users">
+                    <div class="card cursor-pointer" (click)="navigateTo(item)">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="{{item.avatar}}" class="rounded-circle" width="60px" height="60px" />
+                                </div>
+                                <div class="col-md-10">
+                                    <span class="text-dark h-5">{{item.name}}</span>
+                                    <p class="text-dark">{{item.email}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

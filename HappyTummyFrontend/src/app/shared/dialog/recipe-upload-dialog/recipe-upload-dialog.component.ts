@@ -49,7 +49,13 @@ export class RecipeUploadDialogComponent {
   }
 
   uploadRecipeInfo() {
-    const reqBody = this.recipeForm.value;
+    let reqBody = this.recipeForm.value;
+    reqBody = {
+      ...reqBody,
+      recipe: {
+        ...reqBody.recipe,
+      }
+    }
     this.recipesService.addNewRecipe(reqBody).subscribe(res => {
       if(this.file == null){
         this.onClose();
@@ -89,13 +95,13 @@ export class RecipeUploadDialogComponent {
     return this.recipeForm.get("ingredients") as FormArray
   }
 
-  addStep(step: string) {
-    if (step == null || step == "") {
+  addStep(description: string) {
+    if (description == null || description == "") {
       return;
     }
     this.getSteps.push(new FormGroup({
       position: new FormControl(this.getSteps.length),
-      step: new FormControl(step)
+      description: new FormControl(description)
     })
     );
   }

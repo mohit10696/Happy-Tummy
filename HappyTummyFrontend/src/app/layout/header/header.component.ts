@@ -5,14 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from 'src/app/pages/user-profile/home/home.component';
 import { RecipeUploadDialogComponent } from 'src/app/shared/dialog/recipe-upload-dialog/recipe-upload-dialog.component';
 
-// const routes: Routes = [
-//   { path: 'home', component: HomeComponent }
-// ];
-
-const routes: Routes = [
-  { path: 'home/:id', component: HomeComponent }
-];
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -20,38 +12,42 @@ const routes: Routes = [
 })
 
 
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
   isLoggedIn = false;
   query = '';
   user;
 
-  constructor(private router : Router,private dialog: MatDialog,private activatedRoute : ActivatedRoute){}
+  constructor(private router: Router, private dialog: MatDialog, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.isLoggedIn = localStorage.getItem('user') ? true : false;
-    if(this.isLoggedIn){
+    if (this.isLoggedIn) {
       this.user = JSON.parse(localStorage.getItem('user'));
+      console.log(this.user);
+      this.user = this.user.user;
     }
   }
 
-  onLogout(){
+  onLogout() {
     localStorage.clear();
     this.router.navigateByUrl('/authentication/login');
   }
 
-  onUpload(){
-    const dialogRef = this.dialog.open(RecipeUploadDialogComponent,{ height: '80%',
+  onUpload() {
+    const dialogRef = this.dialog.open(RecipeUploadDialogComponent, {
+      height: '80%',
       panelClass: 'mat-dialog-container',
-      width: '570px'});
+      width: '570px'
+    });
   }
 
-  search(){
+  search() {
     let queryParams = this.activatedRoute.snapshot.queryParams;
     queryParams = {
       ...queryParams,
       query: this.query
     }
-    this.router.navigate(['/pages/recipe-recommendation'],{queryParams});
+    this.router.navigate(['/pages/recipe-recommendation'], { queryParams });
   }
 
 }

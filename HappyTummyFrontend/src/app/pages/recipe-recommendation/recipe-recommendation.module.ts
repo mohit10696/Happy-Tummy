@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { RecipeRecommendationRoutingModule } from './recipe-recommendation-routing.module';
 import { RecipeRecommendationComponent } from './recipe-recommendation.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -11,6 +11,7 @@ import {FormsModule} from "@angular/forms";
     imports: [
         CommonModule,
         RecipeRecommendationRoutingModule,
+        ReactiveFormsModule,
         FormsModule
     ]
 })

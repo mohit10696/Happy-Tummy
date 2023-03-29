@@ -53,7 +53,7 @@ public class ReviewServiceImplementation implements ReviewService {
         review = reviewRepository.save(review);
 
 
-        if(!reviewQueryParam.getImage().isEmpty()){
+        if(reviewQueryParam.getImage() != null && !reviewQueryParam.getImage().isEmpty()){
             MultipartFile image = reviewQueryParam.getImage();
             try {
                 byte[] bytes =image.getBytes();
@@ -85,7 +85,7 @@ public class ReviewServiceImplementation implements ReviewService {
                 return new Response("error", e.getMessage());
             }
         } else {
-            return new Response("error", "You failed to upload " + reviewQueryParam.getImage().getOriginalFilename() + " because the file was empty.");
+            return new Response("success", "Review added successfully");
         }
 
     }

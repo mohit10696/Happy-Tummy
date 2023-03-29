@@ -8,9 +8,29 @@ public class RecipeQueryParam {
     Integer pageIndex;
     String tag;
     String ingredients;
+
+    String mealPreference;
     String q;
 
+    public RecipeQueryParam() {
+    }
 
+    public RecipeQueryParam(Integer length, Integer pageIndex, String tag, String ingredients, String mealPreference, String q) {
+        this.length = length;
+        this.pageIndex = pageIndex;
+        this.tag = tag;
+        this.ingredients = ingredients;
+        this.mealPreference = mealPreference;
+        this.q = q;
+    }
+
+    public String getMealPreference() {
+        return mealPreference;
+    }
+
+    public void setMealPreference(String mealPreference) {
+        this.mealPreference = mealPreference;
+    }
 
     public Integer getPageIndex() {
         return pageIndex;
@@ -26,6 +46,9 @@ public class RecipeQueryParam {
         this.ingredients = ingredients;
         this.q = q;
         this.pageIndex = pageIndex;
+    }
+
+    public RecipeQueryParam() {
     }
 
     public Integer getLength() {

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { APINAME } from '../shared/constants/api.constant';
 import { CommonAPIService } from '../shared/services/common-api.service';
@@ -51,4 +52,38 @@ export class RecipesService {
     headers.append('Content-Type','multipart/form-data');
     return this.httpClient.post(`${environment.API_URL}/reviews/${recipeId}/${user.id}`, reviewData, { headers });
   }
+
+  getLikesForRecipe(recipeId: number): Observable<any> {
+    return this.commonAPIService.getObservableResponse({
+      originKey: 'API_URL',
+      apiName: APINAME.GET_RECIPES + "/likes/" + recipeId,
+      methodType: 'get',
+    });
+  }
+
+  getNumLikesForRecipe(recipeId: number): Observable<any> {
+    return this.commonAPIService.getObservableResponse({
+      originKey: 'API_URL',
+      apiName: APINAME.GET_RECIPES + "/likes/" + recipeId + "/count",
+      methodType: 'get',
+    });
+  }
+
+  addLike(recipeId: number): Observable<any> {
+    return this.commonAPIService.getObservableResponse({
+      originKey: 'API_URL',
+      apiName: APINAME.GET_RECIPES + "/likes/" + recipeId,
+      methodType: 'post',
+    });
+  }
+
+  removeLike(userId: number, recipeId: number): Observable<any> {
+    return this.commonAPIService.getObservableResponse({
+      originKey: 'API_URL',
+      apiName: APINAME.GET_RECIPES + "/likes/"  + recipeId,
+      methodType: 'delete',
+    });
+  }
+
+  
 }

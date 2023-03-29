@@ -1,10 +1,17 @@
 package com.happytummy.happytummybackend.services.implementation;
 
 import com.happytummy.happytummybackend.CONSTANT;
+import com.happytummy.happytummybackend.models.Recipe;
 import com.happytummy.happytummybackend.models.Response;
 import com.happytummy.happytummybackend.models.User;
+import com.happytummy.happytummybackend.models.UserFollower;
+import com.happytummy.happytummybackend.repositories.RecipeRepository;
 import com.happytummy.happytummybackend.repositories.UserRepository;
+import com.happytummy.happytummybackend.services.RecipeLikeService;
+import com.happytummy.happytummybackend.services.RecipeService;
+import com.happytummy.happytummybackend.services.UserFollowerService;
 import com.happytummy.happytummybackend.services.UserService;
+import com.happytummy.happytummybackend.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,22 +21,66 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.*;
 
 @Service
 public class UserServiceImplementation implements UserService{
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RecipeRepository recipeRepository;
+
+    @Autowired
+    private UserFollowerService userFollowerService;
+
+
+    @Autowired
+    private RecipeLikeService recipeLikeService;
+
+    @Autowired
+    private RecipeService recipeService;
+
+    @Autowired
+    private JwtUtils jwtUtils;
+
     @Override
-    public User getProfile(String id) {
-        return userRepository.findById(Long.parseLong(id)).orElse(null);
+    public Object getProfile(String name) {
+        Map<String, Object> responseData = new HashMap<>();
+        Optional<User> user = userRepository.findByName(name);
+        if (user != null) {
+            responseData.put("user", user);
+            List<Recipe> recipe = recipeRepository.findByUserId(user.get().getId());
+            Integer totalRecipes = recipe.size();
+            responseData.put("totalRecipes", totalRecipes);
+            if(recipe.size() > 20){
+                recipe = recipe.subList(0, 20);
+            }
+            List<Object> recipeDetails = new ArrayList<Object>();
+            recipe.forEach(r -> {
+                recipeDetails.add(recipeService.getRecipeById(String.valueOf(r.getId())));
+            });
+
+            responseData.put("recipes", recipeDetails);
+            List<UserFollower> followers = userFollowerService.getFollowersList(String.valueOf(user.get().getId()));
+            responseData.put("followers", followers);
+            List<UserFollower> following = userFollowerService.getFollowingList(String.valueOf(user.get().getId()));
+            responseData.put("following", following);
+            Long likes = recipeLikeService.getNumLikesForUser(user.get().getId());
+            responseData.put("likes", likes);
+            return responseData;
+        }
+        return null;
     }
 
     @Override
     public Object login(User user) {
         User logged_in=userRepository.findByEmail(user.getEmail());
+        HashMap<String, Object> responseData = new HashMap<>();
         if(logged_in != null && user.getPassword().equals(logged_in.getPassword())){
-            return new Response("success", logged_in);
+            responseData.put("user", logged_in);
+            responseData.put("token", jwtUtils.generateToken(logged_in));
+            return new Response("success", responseData);
         }
         else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new Response("error", "user already exists"));
