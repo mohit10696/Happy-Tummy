@@ -23,12 +23,7 @@ code_quality:
   services:
     - docker:19.03.13-dind
   script:
-    - docker run
-        --env CODECLIMATE_CODE="$PWD/happy-tummy-backend"
-        --volume "$PWD:/code"
-        --volume /var/run/docker.sock:/var/run/docker.sock
-        -e DOCKER_HOST=unix:///var/run/docker.sock
-        codeclimate/codeclimate analyze -f json > codequality.json
+    - docker run --env CODECLIMATE_CODE="$PWD/happy-tummy-backend" --env DOCKER_HOST=tcp://docker:2375 --volume "$PWD:/code" --volume /var/run/docker.sock:/var/run/docker.sock codeclimate/codeclimate analyze -f json > codequality.json
   artifacts:
     reports:
       codequality: codequality.json
