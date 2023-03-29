@@ -39,21 +39,7 @@ public class Recipe {
     }
 
 
-    public Recipe(int id, String intro, Integer userId, String name, String serve, String cookTime, String prepTime, String difficulty, String imgURL, String ingredients, String tip, String mealType, String dietary_category) {
-        this.id = id;
-        this.intro = intro;
-        this.userId = userId;
-        this.name = name;
-        this.serve = serve;
-        this.cookTime = cookTime;
-        this.prepTime = prepTime;
-        this.difficulty = difficulty;
-        this.imgURL = imgURL;
-        this.ingredients = ingredients;
-        this.tip = tip;
-        this.mealType = mealType;
-        this.dietaryCategory = dietary_category;
-    }
+
 
     public void setUserId(Integer user_id) {
         this.userId = user_id;
@@ -68,10 +54,10 @@ public class Recipe {
     }
 
 
-    public Recipe(int id, String intro, Integer UserId, String name, String serve, String cookTime, String prepTime, String difficulty, String imgURL, String ingredients, String tip, String mealType) {
+    public Recipe(int id, String intro, Integer userId, String name, String serve, String cookTime, String prepTime, String difficulty, String imgURL, String ingredients, String tip, String mealType, String dietaryCategory) {
         this.id = id;
         this.intro = intro;
-        this.userId = UserId;
+        this.userId = userId;
         this.name = name;
         this.serve = serve;
         this.cookTime = cookTime;
@@ -81,6 +67,7 @@ public class Recipe {
         this.ingredients = ingredients;
         this.tip = tip;
         this.mealType = mealType;
+        this.dietaryCategory = dietaryCategory;
     }
 
     public int getId() {

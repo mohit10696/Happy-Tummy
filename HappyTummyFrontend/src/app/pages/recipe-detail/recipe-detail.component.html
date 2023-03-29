@@ -101,7 +101,7 @@
               <span
                 class="value"
                 *ngFor="
-                  let item of recipeDetails.nutrition[0].nutrition.split('-')
+                  let item of recipeDetails.nutrition[0]?.nutrition.split('-')
                 "
                 >{{ item }}</span
               >

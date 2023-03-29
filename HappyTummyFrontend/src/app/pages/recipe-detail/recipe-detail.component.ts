@@ -49,6 +49,12 @@ export class RecipeDetailComponent implements OnInit {
     this.recipeService.findById(this.recipeId).subscribe(
       res => {
         if (res.status === 'success') {
+          if(res.data.recipe.ingredients == null){
+            res.data.recipe.ingredients = "";
+            res.data.ingredients.forEach((item) => {
+              res.data.recipe.ingredients += item.plain_ingredient + ",";
+            });
+          }
           this.recipeDetails = {
               ...res.data,
               ingredients: res.data.recipe.ingredients.split(',').map((item) => {
