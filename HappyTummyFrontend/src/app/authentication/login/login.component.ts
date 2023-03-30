@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit{
     this.authenticationService.login(this.loginForm.value).subscribe(res => {
       this.toasterService.success("Login Successful");
       this.router.navigateByUrl('/pages/dashboard');
-      localStorage.setItem('user',JSON.stringify(res.data));
     },error => {
       this.toasterService.error("Invalid login or password");
     })

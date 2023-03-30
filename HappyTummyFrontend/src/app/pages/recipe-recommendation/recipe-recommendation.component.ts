@@ -181,8 +181,29 @@ export class RecipeRecommendationComponent implements OnInit {
       },
     });
     this.scrollToTop();
+
   }
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  removeQ(){
+    this.filterObj.q = '';
+    this.changeRoute();
+  }
+  removeMealPreference(mf){
+    this.mealPreference.forEach((item) => {
+      if(item.value == mf){
+        item.checked = false;
+      }
+    });
+    this.onMealPrefrenceStateChange();
+  }
+  removeIngredient(i){
+    this.ingredients.forEach((item) => {
+      if(item.plain_ingredient == i){
+        item.checked = false;
+      }
+    });
+    this.onIngredientStateChange();
   }
 }
