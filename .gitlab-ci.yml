@@ -1,30 +1,11 @@
-image: maven:latest
+include:
+  - template: Code-Quality.gitlab-ci.yml
 
 stages:
-  - build
   - test
-  - code_quality
-
-build:
-  stage: build
-  script:
-    - cd happy-tummy-backend
-    - mvn install
-
-test:
-  stage: test
-  script:
-    - cd happy-tummy-backend
-    - mvn test
 
 code_quality:
-  stage: code_quality
-  image: docker:stable
-  services:
-    - docker:19.03.13-dind
-  script:
-    - docker run --env CODECLIMATE_CODE="$PWD/happy-tummy-backend" --env DOCKER_HOST=tcp://docker:2375 --volume "$PWD:/code" --volume /var/run/docker.sock:/var/run/docker.sock codeclimate/codeclimate analyze -f json > codequality.json
+  image: docker:19.03.11
   artifacts:
     reports:
-      codequality: codequality.json
-
+      codequality: gl-code-quality-report.json
