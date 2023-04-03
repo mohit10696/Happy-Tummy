@@ -41,7 +41,10 @@
             class="form-check-input"
             type="checkbox"
             [(ngModel)]="item.checked"
-          />{{ item.name }}
+          />
+          <label class="form-check-label ms-2" for="{{ item.name }}">
+            {{ item.name }}
+          </label>
         </div>
       </div>
     </div>
@@ -53,21 +56,21 @@
           *ngIf="filterObj.q"
         >
           Search:{{ filterObj.q }}
-          <i class="fa fa-close ms-1 cursor-pointer"></i>
+          <i class="fa fa-close ms-1 cursor-pointer" (click)="removeQ()"></i>
         </div>
         <div
           class="width-max-content bg-primary rounded text-light px-2 py-1 mx-1"
-          *ngFor="let item of filterObj.mealPreference"
+          *ngFor="let item of filterObj.mealPreference ; let i = index"
         >
           {{ item }}
-          <i class="fa fa-close ms-1 cursor-pointer"></i>
+          <i class="fa fa-close ms-1 cursor-pointer" (click)="removeMealPreference(item)"></i>
         </div>
         <div
           class="width-max-content bg-primary rounded text-light px-2 py-1 mx-1"
-          *ngFor="let item of filterObj.ingredients"
+          *ngFor="let item of filterObj.ingredients ; let i = index"
         >
           {{ item }}
-          <i class="fa fa-close ms-1 cursor-pointer"></i>
+          <i class="fa fa-close ms-1 cursor-pointer" (click)="removeIngredient(item)"></i>
         </div>
       </div>
       <div class="row">

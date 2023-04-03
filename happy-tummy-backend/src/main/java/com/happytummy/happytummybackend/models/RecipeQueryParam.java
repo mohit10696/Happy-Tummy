@@ -12,8 +12,6 @@ public class RecipeQueryParam {
     String mealPreference;
     String q;
 
-    public RecipeQueryParam() {
-    }
 
     public RecipeQueryParam(Integer length, Integer pageIndex, String tag, String ingredients, String mealPreference, String q) {
         this.length = length;
