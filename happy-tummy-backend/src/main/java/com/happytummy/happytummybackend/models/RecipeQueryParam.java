@@ -22,6 +22,9 @@ public class RecipeQueryParam {
         this.q = q;
     }
 
+    public RecipeQueryParam() {
+    }
+
     public String getMealPreference() {
         return mealPreference;
     }

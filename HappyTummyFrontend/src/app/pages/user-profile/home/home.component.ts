@@ -29,6 +29,7 @@ export class HomeComponent {
       }
     });
     this.isLoggedin = !!this.authenticationService.user;
+
   }
 
   fetchUserProfile(username: string) {
