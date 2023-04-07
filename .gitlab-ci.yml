@@ -1,8 +1,24 @@
-stages:          # List of stages for jobs, and their order of execution
-  - smells
+image: maven:latest
+
+stages:
+  - build
+  - test
+  - code-quality
+
+build:
+  stage: build
+  script:
+    - cd happy-tummy-backend
+    - mvn install
+
+test:
+  stage: test
+  script:
+    - cd happy-tummy-backend
+    - mvn test
 
 smells-job:
-    stage: smells
+    stage: code-quality
     image: openjdk:11
     script:
         - echo "Starting DesigniteJava"
