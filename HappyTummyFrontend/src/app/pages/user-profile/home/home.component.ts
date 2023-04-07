@@ -69,6 +69,10 @@ export class HomeComponent {
     });
   }
   editProfile() {
+    console.log("hello");
+    
+    // this.router.navigateByUrl();
+    this.router.navigate(["/pages/user-profile/settings"]);
 
   }
 

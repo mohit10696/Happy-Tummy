@@ -13,9 +13,6 @@ export class AuthenticationService {
   userFollowings: any[];
   constructor(private commonAPIService: CommonAPIService) {
     this.user = JSON.parse(localStorage.getItem('user'));
-    if (this.user) {
-      this.user = this.user;
-    }
     this.token = localStorage.getItem('token');
   }
 

@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import { CommonAPIService } from '../shared/services/common-api.service';
 import { APINAME } from '../shared/constants/api.constant';
 import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  
-  constructor(private commonAPIService: CommonAPIService) { }
+  baseUrl = environment.API_URL + APINAME.USER;
+  constructor(private commonAPIService: CommonAPIService,private httpClient:HttpClient) { }
 
   getUserProfile(username: string) {
     return this.commonAPIService.getObservableResponse({
@@ -33,6 +35,21 @@ export class UserService {
       apiName: APINAME.USERS + '/unfollow/' + followingId,
       methodType: 'post',
     });
+  }
+
+  updateUser(followingId: number,reqBody): Observable<any> {
+    return this.commonAPIService.getObservableResponse({
+      originKey: 'API_URL',
+      apiName: APINAME.USER + '/updateProfile/' + followingId,
+      parameterObject: reqBody,
+      methodType: 'patch',
+    });
+  }
+
+  updateUserProfile(id: number, formData: FormData){
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    return this.httpClient.post(`${this.baseUrl}/updateProfileImage/${id}`, formData, { headers });
   }
 
   getFollowersList(userId: number): Observable<any> {
