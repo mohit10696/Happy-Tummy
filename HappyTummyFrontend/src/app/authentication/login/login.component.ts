@@ -13,6 +13,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 
 export class LoginComponent implements OnInit{
   loginForm:FormGroup;
+  data=[]
 
   constructor(private authenticationService: AuthenticationService,private router:Router,private toasterService: ToastrService){}
   ngOnInit(): void {
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit{
     this.authenticationService.login(this.loginForm.value).subscribe(res => {
       this.toasterService.success("Login Successful");
       this.router.navigateByUrl('/pages/dashboard');
+      
     },error => {
       this.toasterService.error("Invalid login or password");
     })

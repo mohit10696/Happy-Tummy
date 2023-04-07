@@ -44,8 +44,10 @@ public class UserController {
     }
 
     @PatchMapping("/updateProfile/{id}")
-    public Object updateProfile(@RequestBody User user){
+    public Object updateProfile(@RequestBody User user,@PathVariable String id){
+        user.setId(Long.valueOf(id));
         User newUser=userService.updateProfile(user);
+//        System.out.println(newUser);
         if (newUser!=null){
             return new Response("success", newUser);
         }

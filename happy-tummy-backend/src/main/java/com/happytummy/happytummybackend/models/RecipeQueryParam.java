@@ -22,6 +22,9 @@ public class RecipeQueryParam {
         this.q = q;
     }
 
+    public RecipeQueryParam() {
+    }
+
     public String getMealPreference() {
         return mealPreference;
     }
@@ -46,8 +49,7 @@ public class RecipeQueryParam {
         this.pageIndex = pageIndex;
     }
 
-    public RecipeQueryParam() {
-    }
+
 
     public Integer getLength() {
         return length;

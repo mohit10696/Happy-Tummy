@@ -29,6 +29,7 @@ export class HomeComponent {
       }
     });
     this.isLoggedin = !!this.authenticationService.user;
+
   }
 
   fetchUserProfile(username: string) {
@@ -68,6 +69,10 @@ export class HomeComponent {
     });
   }
   editProfile() {
+    console.log("hello");
+    
+    // this.router.navigateByUrl();
+    this.router.navigate(["/pages/user-profile/settings"]);
 
   }
 
