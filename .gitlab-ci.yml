@@ -1,11 +1,33 @@
-include:
-  - template: Code-Quality.gitlab-ci.yml
+image: maven:latest
 
 stages:
+  - build
   - test
+  - code-quality
 
-code_quality:
-  image: docker:19.03.11
-  artifacts:
-    reports:
-      codequality: gl-code-quality-report.json
+build:
+  stage: build
+  script:
+    - cd happy-tummy-backend
+    - mvn install
+
+test:
+  stage: test
+  script:
+    - cd happy-tummy-backend
+    - mvn test
+
+smells-job:
+    stage: code-quality
+    image: openjdk:11
+    script:
+        - echo "Starting DesigniteJava"
+        - mkdir smells/
+        - java -jar $CI_PROJECT_DIR/.gitlab/DesigniteJava.jar -i $CI_PROJECT_DIR/happy-tummy-backend -o smells/ -d
+        - cd smells/
+        - ls -a
+    artifacts:
+      paths:
+        - smells/
+        - $CI_PROJECT_DIR
+

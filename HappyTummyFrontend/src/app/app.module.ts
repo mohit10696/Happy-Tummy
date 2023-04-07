@@ -46,7 +46,7 @@ export function initializeApp(authenticationService: AuthenticationService) {
     ToastrModule.forRoot(), // ToastrModule added
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBd_a4RP34XxbMuYLN21frg3Tb2RNfylrU',
+      apiKey: 'AIzaSyD8GED_UGjPTaqX1UcI957lovSsquUUSPo',
       libraries: ['places']
     })
   ],
