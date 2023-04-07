@@ -63,7 +63,7 @@ export class MapComponent implements OnInit {
           address: result.vicinity,
           rating: result.rating,
           icon: result.icon,
-          isOpen: result.opening_hours.isOpen(),
+          isOpen: result.opening_hours?.isOpen(),
           place_id: result.place_id,
           geometry: result.geometry,
           selected : false
