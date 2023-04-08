@@ -108,50 +108,57 @@ public class RecipeServiceImplementation implements RecipeService {
         }
     }
 
+    private Recipe saveRecipe(Recipe recipe, String id) {
+        if (recipe != null) {
+            recipe.setUser_id(Integer.parseInt(id));
+            return recipeRepository.save(recipe);
+        }
+        return null;
+    }
+
+    private void saveNutrition(int recipe_id, List<Nutrition> nutrition) {
+        if (!nutrition.isEmpty()) {
+            for (Nutrition nutrition1 : nutrition) {
+                nutrition1.setRecipeId(String.valueOf(recipe_id));
+                nutritionRepository.save(nutrition1);
+            }
+        }
+    }
+
+    private void saveSteps(int recipe_id, List<Step> steps) {
+        if (!steps.isEmpty()) {
+            for (Step step : steps) {
+                step.setRecipeId(String.valueOf(recipe_id));
+                stepRepository.save(step);
+            }
+        }
+    }
+
+    private void saveTags(int recipe_id, List<Tag> tags) {
+        if (!tags.isEmpty()) {
+            for (Tag tag : tags) {
+                tag.setRecipeId(String.valueOf(recipe_id));
+                tagRepository.save(tag);
+            }
+        }
+    }
+
+    private void saveIngredients(int recipe_id, List<Ingredient> ingredients) {
+        if (!ingredients.isEmpty()) {
+            for (Ingredient ingredient : ingredients) {
+                ingredient.setRecipeId(String.valueOf(recipe_id));
+                ingredientRepository.save(ingredient);
+            }
+        }
+    }
     @Override
     public Object addRecipeByUser(UserRecipeQueryParam recipe_details, String id) {
         try {
-            Recipe recipe = recipe_details.getRecipe();
-            if (recipe != null) {
-                recipe.setUser_id(Integer.parseInt(id));
-                recipe = recipeRepository.save(recipe);
-            }
-            int recipe_id = recipe.getId();
-            System.out.println(recipe_id);
-            List<Nutrition> nutrition = recipe_details.getNutrition();
-            List<Step> step = recipe_details.getSteps();
-            List<Tag> tags = recipe_details.getTag();
-            List<Ingredient> ingredient = recipe_details.getIngredients();
-
-
-            if (!nutrition.isEmpty()) {
-                for (Nutrition nutrition1 : nutrition) {
-                    nutrition1.setRecipeId(String.valueOf(recipe_id));
-                    nutritionRepository.save(nutrition1);
-                }
-            }
-
-            if (!step.isEmpty()) {
-                for (Step step1 : step) {
-                    step1.setRecipeId(String.valueOf(recipe_id));
-                    stepRepository.save(step1);
-                }
-            }
-
-            if (!tags.isEmpty()) {
-                for (Tag tag1 : tags) {
-                    tag1.setRecipeId(String.valueOf(recipe_id));
-                    tagRepository.save(tag1);
-                }
-            }
-
-            if (!ingredient.isEmpty()) {
-                for (Ingredient ingredient1 : ingredient) {
-                    ingredient1.setRecipeId(String.valueOf(recipe_id));
-                    ingredientRepository.save(ingredient1);
-                }
-            }
-
+            Recipe recipe = saveRecipe(recipe_details.getRecipe(), id);
+            saveNutrition(recipe.getId(), recipe_details.getNutrition());
+            saveSteps(recipe.getId(), recipe_details.getSteps());
+            saveTags(recipe.getId(), recipe_details.getTag());
+            saveIngredients(recipe.getId(), recipe_details.getIngredients());
 
             return new Response("success", recipe);
         } catch (Exception e) {
