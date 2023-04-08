@@ -46,6 +46,7 @@ public class UserServiceImplementation implements UserService{
 
     @Override
     public Object getProfile(String name) {
+        final int MAX_RECIPES_TO_DISPLAY = 20;
         Map<String, Object> responseData = new HashMap<>();
         Optional<User> user = userRepository.findByName(name);
         if (user != null) {
@@ -53,8 +54,8 @@ public class UserServiceImplementation implements UserService{
             List<Recipe> recipe = recipeRepository.findByUserId(user.get().getId());
             Integer totalRecipes = recipe.size();
             responseData.put("totalRecipes", totalRecipes);
-            if(recipe.size() > 20){
-                recipe = recipe.subList(0, 20);
+            if(recipe.size() > MAX_RECIPES_TO_DISPLAY){
+                recipe = recipe.subList(0, MAX_RECIPES_TO_DISPLAY);
             }
             List<Object> recipeDetails = new ArrayList<Object>();
             recipe.forEach(r -> {
