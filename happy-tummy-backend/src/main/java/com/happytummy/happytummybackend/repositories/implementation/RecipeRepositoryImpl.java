@@ -116,10 +116,22 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom {
     @Override
     public List<Recipe> findBySearch(String search, int limit, int pageIndex) {
         String queryString = "SELECT p FROM Recipe p WHERE p.name LIKE :search OR p.intro LIKE :search";
-        TypedQuery<Recipe> query = entityManager.createQuery(queryString, Recipe.class)
-                .setParameter("search", "%" + search + "%")
-                .setMaxResults(limit)
-                .setFirstResult(pageIndex * limit);
+        TypedQuery<Recipe> query;
+        if (search == null) {
+            query = entityManager.createQuery("SELECT r FROM Recipe r", Recipe.class);
+        } else {
+            query = entityManager.createQuery(queryString, Recipe.class)
+                    .setParameter("search", "%" + search + "%");
+        }
+        int firstResult = pageIndex * limit;
+        query.setMaxResults(limit);
+        query.setFirstResult(firstResult);
+
+
+//        TypedQuery<Recipe> query = entityManager.createQuery(queryString, Recipe.class)
+//                .setParameter("search", "%" + search + "%")
+//                .setMaxResults(limit)
+//                .setFirstResult(pageIndex * limit);
         return query.getResultList();
 
 //        return entityManager.createQuery("SELECT p FROM Recipe p WHERE p.name LIKE :search OR p.intro LIKE :search",

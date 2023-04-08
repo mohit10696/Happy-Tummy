@@ -58,9 +58,15 @@ public class RecipeServiceImplementation implements RecipeService {
         int length = queryParam.getLength() != null ? queryParam.getLength() : default_length;
         int pageIndex = queryParam.getPageIndex() != null ? queryParam.getPageIndex() : 0;
         //String[] mealPreference = queryParam.getMealPreference() != null ? queryParam.getMealPreference().split(",") : new String[0];
-        String[] mealPreference = Optional.ofNullable(queryParam.getMealPreference())
-                .map(preference -> preference.split(","))
-                .orElse(new String[0]);
+//        String[] mealPreference = Optional.ofNullable(queryParam.getMealPreference())
+//                .map(preference -> preference.split(","))
+//                .orElse(new String[0]);
+        String[] mealPreference;
+        if (queryParam.getMealPreference() != null) {
+            mealPreference = queryParam.getMealPreference().split(",");
+        } else {
+            mealPreference = new String[0];
+        }
         String[] ingredients = queryParam.getIngredients() != null ? queryParam.getIngredients().split(",") : new String[0];
         if (queryParam.getTag() != null) {
             return recipeRepository.findByTagName(queryParam.getTag(), length, pageIndex);

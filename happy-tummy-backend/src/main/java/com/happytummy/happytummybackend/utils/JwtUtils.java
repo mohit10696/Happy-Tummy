@@ -1,6 +1,7 @@
 package com.happytummy.happytummybackend.utils;
 
 import com.happytummy.happytummybackend.models.User;
+import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,13 +28,23 @@ public class JwtUtils {
         String subject = String.valueOf(user.getId());
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS512;
 
-        return Jwts.builder()
-                .setClaims(claims)
-                .setSubject(subject)
-                .setIssuedAt(now)
-                .setExpiration(expiration)
-                .signWith(signatureAlgorithm, jwtSecret)
-                .compact();
+        JwtBuilder jwtBuilder = Jwts.builder();
+        jwtBuilder.setClaims(claims);
+        jwtBuilder.setSubject(subject);
+        jwtBuilder.setIssuedAt(now);
+        jwtBuilder.setExpiration(expiration);
+        jwtBuilder.signWith(signatureAlgorithm, jwtSecret);
+        String token = jwtBuilder.compact();
+
+        return token;
+
+//        return Jwts.builder()
+//                .setClaims(claims)
+//                .setSubject(subject)
+//                .setIssuedAt(now)
+//                .setExpiration(expiration)
+//                .signWith(signatureAlgorithm, jwtSecret)
+//                .compact();
 
 
 //        Map<String, Object> claims = new HashMap<>();
