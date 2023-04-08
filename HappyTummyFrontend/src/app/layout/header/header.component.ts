@@ -26,10 +26,7 @@ export class HeaderComponent implements OnInit {
       console.log(this.user);
       this.user = this.user;
     }
-    setInterval(()=>{
-      console.log(this.user);
-      
-    },2000);
+
   }
 
   onLogout() {

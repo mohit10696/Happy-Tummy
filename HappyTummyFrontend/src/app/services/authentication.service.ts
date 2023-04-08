@@ -45,6 +45,8 @@ export class AuthenticationService {
       }).pipe(tap(res => {
         localStorage.setItem('user', JSON.stringify(res.data.user));
         localStorage.setItem('token', res.data.token);
+        this.user = res.data.user;
+        console.log(this.user);
       }));
     }
 
