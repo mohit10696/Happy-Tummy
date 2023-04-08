@@ -111,29 +111,28 @@ public class RecipeServiceImplementation implements RecipeService {
             List<Tag> tags = recipe_details.getTag();
             List<Ingredient> ingredient = recipe_details.getIngredients();
 
-
-            if (!nutrition.isEmpty()) {
+            if (nutrition != null && !nutrition.isEmpty()) {
                 for (Nutrition nutrition1 : nutrition) {
                     nutrition1.setRecipeId(String.valueOf(recipe_id));
                     nutritionRepository.save(nutrition1);
                 }
             }
 
-            if (!step.isEmpty()) {
+            if (step != null && !step.isEmpty()) {
                 for (Step step1 : step) {
                     step1.setRecipeId(String.valueOf(recipe_id));
                     stepRepository.save(step1);
                 }
             }
 
-            if (!tags.isEmpty()) {
+            if (tags != null && !tags.isEmpty()) {
                 for (Tag tag1 : tags) {
                     tag1.setRecipeId(String.valueOf(recipe_id));
                     tagRepository.save(tag1);
                 }
             }
 
-            if (!ingredient.isEmpty()) {
+            if (ingredient != null && !ingredient.isEmpty()) {
                 for (Ingredient ingredient1 : ingredient) {
                     ingredient1.setRecipeId(String.valueOf(recipe_id));
                     ingredientRepository.save(ingredient1);

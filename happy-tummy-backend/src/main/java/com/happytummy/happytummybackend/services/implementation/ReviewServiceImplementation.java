@@ -26,7 +26,7 @@ public class ReviewServiceImplementation implements ReviewService {
     public List<Object> getReviewByRecipeId(String recipeId) {
         List<Object> resBody = new ArrayList<>();
         List<Review> reviews = reviewRepository.findReviewsByRecipeId(recipeId);
-//        System.out.println(reviews);
+        System.out.println(reviews);
         for (Review review : reviews) {
             Map<String, Object> result = new HashMap<>();
             Optional<User> user = userRepository.findById(review.getUserId());
@@ -90,18 +90,5 @@ public class ReviewServiceImplementation implements ReviewService {
 
     }
 
-//    @Override
-//    public Object getReviewByRecipeId(String id) {
-//        Map<String, Object> responseData = new HashMap<>();
-//        Optional<Review> reviewOptional = ReviewRepository.findById(Integer.valueOf(id));
-//        if (reviewOptional.isPresent()) {
-//            Review review = reviewOptional.get();
-//            responseData.put("review", review);
-//
-//            responseData.put("nutrition", ReviewRepository.findByReviewId(id).toArray());
-//            return responseData;
-//        } else {
-//            return "No reviews yet";
-//        }
-//    }
+
 }
