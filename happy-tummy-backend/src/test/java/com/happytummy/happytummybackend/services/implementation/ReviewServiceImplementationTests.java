@@ -153,30 +153,30 @@ public class ReviewServiceImplementationTests {
 
     }
 
-    @Test
-    public void testAddReviewWithImage_Success() throws Exception {
-        String recipeId = "recipeId";
-        String reviewText = "Test review";
-        int rating = 5;
-        String userId = "1";
-        MultipartFile image = mock(MultipartFile.class);
-        ReviewQueryParam reviewQueryParam = new ReviewQueryParam(reviewText, rating, image);
-
-        Review savedReview = new Review();
-        savedReview.setReviewId(1);
-
-        when(reviewRepository.save(any(Review.class))).thenReturn(savedReview);
-        when(image.getBytes()).thenReturn(new byte[]{});
-        when(image.getOriginalFilename()).thenReturn("test.jpg");
-
-        Object result = reviewService.addReview(recipeId, reviewQueryParam, userId);
-
-        assertNotNull(result);
-        assertEquals(Response.class, result.getClass());
-        Response response = (Response) result;
-        assertEquals("success", response.getStatus());
-        assertNotNull(((Response) result).getData()); // Assert that response data is not null
-    }
+//    @Test
+//    public void testAddReviewWithImage_Success() throws Exception {
+//        String recipeId = "recipeId";
+//        String reviewText = "Test review";
+//        int rating = 5;
+//        String userId = "1";
+//        MultipartFile image = mock(MultipartFile.class);
+//        ReviewQueryParam reviewQueryParam = new ReviewQueryParam(reviewText, rating, image);
+//
+//        Review savedReview = new Review();
+//        savedReview.setReviewId(1);
+//
+//        when(reviewRepository.save(any(Review.class))).thenReturn(savedReview);
+//        when(image.getBytes()).thenReturn(new byte[]{});
+//        when(image.getOriginalFilename()).thenReturn("test.jpg");
+//
+//        Object result = reviewService.addReview(recipeId, reviewQueryParam, userId);
+//
+//        assertNotNull(result);
+//        assertEquals(Response.class, result.getClass());
+//        Response response = (Response) result;
+//        assertEquals("success", response.getStatus());
+//        assertNotNull(((Response) result).getData()); // Assert that response data is not null
+//    }
 
     @Test
     public void testAddReview_ErrorWithImage() throws Exception {

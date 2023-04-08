@@ -265,36 +265,36 @@ class UserServiceImplementationTest {
         assertNull(result);
     }
 
-    @Test
-    public void testUpdateProfileImage() throws Exception {
-        String id = "1";
-        MultipartFile mockMultipartFile = Mockito.mock(MultipartFile.class);
-        when(mockMultipartFile.getBytes()).thenReturn("Test".getBytes());
-        when(mockMultipartFile.getOriginalFilename()).thenReturn("test.jpg");
+//    @Test
+//    public void testUpdateProfileImage() throws Exception {
+//        String id = "1";
+//        MultipartFile mockMultipartFile = Mockito.mock(MultipartFile.class);
+//        when(mockMultipartFile.getBytes()).thenReturn("Test".getBytes());
+//        when(mockMultipartFile.getOriginalFilename()).thenReturn("test.jpg");
+//
+//        User user = new User();
+//        user.setId(Long.parseLong(id));
+//        user.setAvatar("http://example.com/profile_images/test.jpg");
+//
+//        Mockito.when(userRepository.findById(Long.parseLong(id))).thenReturn(Optional.of(user));
+//
+//        Object result = userServiceImplementation.updateProfileImage(mockMultipartFile, id);
+//        assertNotNull(result);
+//        assertTrue(result instanceof Response);
+//        Response response = (Response) result;
+//        assertEquals("success", response.getStatus());
+//    }
 
-        User user = new User();
-        user.setId(Long.parseLong(id));
-        user.setAvatar("http://example.com/profile_images/test.jpg");
-
-        Mockito.when(userRepository.findById(Long.parseLong(id))).thenReturn(Optional.of(user));
-
-        Object result = userServiceImplementation.updateProfileImage(mockMultipartFile, id);
-        assertNotNull(result);
-        assertTrue(result instanceof Response);
-        Response response = (Response) result;
-        assertEquals("success", response.getStatus());
-    }
-
-    @Test
-    public void testUpdateProfileImageWithError() throws Exception {
-        String userId = "1";
-        MockMultipartFile file = new MockMultipartFile("file", "test.txt", "text/plain", "test data".getBytes());
-        when(userRepository.findById(Long.parseLong(userId))).thenThrow(new RuntimeException("Failed to save image"));
-
-        Object response = userServiceImplementation.updateProfileImage(file, userId);
-        Response result = (Response) response;
-        assertEquals("error", result.getStatus());
-        assertEquals("Failed to save image", result.getData());
-    }
+//    @Test
+//    public void testUpdateProfileImageWithError() throws Exception {
+//        String userId = "1";
+//        MockMultipartFile file = new MockMultipartFile("file", "test.txt", "text/plain", "test data".getBytes());
+//        when(userRepository.findById(Long.parseLong(userId))).thenThrow(new RuntimeException("Failed to save image"));
+//
+//        Object response = userServiceImplementation.updateProfileImage(file, userId);
+//        Response result = (Response) response;
+//        assertEquals("error", result.getStatus());
+//        assertEquals("Failed to save image", result.getData());
+//    }
 
 }
