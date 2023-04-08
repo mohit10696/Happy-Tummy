@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { IngredientService } from '../../services/ingredient.service';
+import { MatDialog } from '@angular/material/dialog';
+import { IngredientSelecterComponent } from 'src/app/shared/dialog/ingredient-selecter/ingredient-selecter.component';
 
 @Component({
   selector: 'app-recipe-recommendation',
@@ -46,10 +48,12 @@ export class RecipeRecommendationComponent implements OnInit {
     private recipeService: RecipesService,
     private activatedRoutes: ActivatedRoute,
     private route: Router,
-    private ingredientsService: IngredientService
+    private ingredientsService: IngredientService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
+    this.fetchIngredients();
     this.activatedRoutes.queryParams.subscribe((params) => {
       if (params['query']) {
         this.filterObj.q = params['query'];
@@ -69,7 +73,6 @@ export class RecipeRecommendationComponent implements OnInit {
         });
       }
       this.fetchRecipe();
-      this.fetchIngredients();
     });
 
 
@@ -79,7 +82,7 @@ export class RecipeRecommendationComponent implements OnInit {
       tap(value => {
         this.filterIngredientList(value);
       })
-    ).subscribe((value) => {});
+    ).subscribe((value) => { });
   }
 
   fetchRecipe() {
@@ -136,7 +139,29 @@ export class RecipeRecommendationComponent implements OnInit {
           }
         });
         this.filteredIngredients = this.ingredients;
+        this.openIngredientSelecter();
       }
+    });
+  }
+
+  openIngredientSelecter() {
+    this.dialog.open(IngredientSelecterComponent, {
+      width: '600px',
+      height: '500px',
+      data: {
+        ingredients: this.ingredients,
+        onIngredientStateChange: this.onIngredientStateChange.bind(this),
+        filterIngredientList: this.filterIngredientList.bind(this),
+        searchIngredient: this.searchIngredient,
+        ingredient: this.ingredient,
+      },
+    }).afterClosed().subscribe((res) => {
+      // this.filteredIngredients.forEach(element => {
+      //   element.checked = !!res.ingredients.includes(res);
+      // });
+      // this.mealPreference.forEach(element => {
+      //   element.checked = !!res.mealPreference.includes(res);
+      // });
     });
   }
 
@@ -153,7 +178,7 @@ export class RecipeRecommendationComponent implements OnInit {
 
   filterIngredientList(value) {
     console.log(value);
-    
+
     if (!value) {
       this.filteredIngredients = this.ingredients;
       return;
@@ -186,21 +211,21 @@ export class RecipeRecommendationComponent implements OnInit {
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  removeQ(){
+  removeQ() {
     this.filterObj.q = '';
     this.changeRoute();
   }
-  removeMealPreference(mf){
+  removeMealPreference(mf) {
     this.mealPreference.forEach((item) => {
-      if(item.value == mf){
+      if (item.value == mf) {
         item.checked = false;
       }
     });
     this.onMealPrefrenceStateChange();
   }
-  removeIngredient(i){
+  removeIngredient(i) {
     this.ingredients.forEach((item) => {
-      if(item.plain_ingredient == i){
+      if (item.plain_ingredient == i) {
         item.checked = false;
       }
     });
