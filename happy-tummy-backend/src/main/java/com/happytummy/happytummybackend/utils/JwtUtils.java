@@ -20,13 +20,30 @@ public class JwtUtils {
 
     public String generateToken(User user) {
         Map<String, Object> claims = new HashMap<>();
+
+        Date now = new Date();
+        Date expiration = new Date(now.getTime() + jwtExpirationMs);
+
+        String subject = String.valueOf(user.getId());
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS512;
+
         return Jwts.builder()
                 .setClaims(claims)
-                .setSubject(String.valueOf(user.getId()))
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(new Date().getTime() + jwtExpirationMs))
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .setSubject(subject)
+                .setIssuedAt(now)
+                .setExpiration(expiration)
+                .signWith(signatureAlgorithm, jwtSecret)
                 .compact();
+
+
+//        Map<String, Object> claims = new HashMap<>();
+//        return Jwts.builder()
+//                .setClaims(claims)
+//                .setSubject(String.valueOf(user.getId()))
+//                .setIssuedAt(new Date())
+//                .setExpiration(new Date(new Date().getTime() + jwtExpirationMs))
+//                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+//                .compact();
     }
 
     public String validateToken(String token) {
