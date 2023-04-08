@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UserProfileRoutingModule } from './user-profile-routing.module';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
-
+import { ReactiveFormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
@@ -13,7 +13,8 @@ import { SettingsComponent } from './settings/settings.component';
   ],
   imports: [
     CommonModule,
-    UserProfileRoutingModule
+    UserProfileRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class UserProfileModule { }

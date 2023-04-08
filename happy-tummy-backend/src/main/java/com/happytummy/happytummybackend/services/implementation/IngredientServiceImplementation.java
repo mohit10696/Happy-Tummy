@@ -18,6 +18,7 @@ public class IngredientServiceImplementation implements IngredientService {
 
     @Override
     public List<String> getIngredients(RecipeQueryParam queryParam) {
+        System.out.println("IngredientServiceImplementation.getIngredients");
         return ingredientRepository.findDistinctByIngredientName();
     }
 }

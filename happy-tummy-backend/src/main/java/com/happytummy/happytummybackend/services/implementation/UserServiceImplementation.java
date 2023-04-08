@@ -103,6 +103,7 @@ public class UserServiceImplementation implements UserService{
     @Override
     public User updateProfile(User user) {
         User isExist=userRepository.findByEmail(user.getEmail());
+
         if(isExist!=null){
             isExist.setName(user.getName());
             isExist.setBio(user.getBio());
