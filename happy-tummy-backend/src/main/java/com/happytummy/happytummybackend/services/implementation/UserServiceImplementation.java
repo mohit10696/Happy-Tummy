@@ -12,6 +12,7 @@ import com.happytummy.happytummybackend.services.RecipeService;
 import com.happytummy.happytummybackend.services.UserFollowerService;
 import com.happytummy.happytummybackend.services.UserService;
 import com.happytummy.happytummybackend.utils.JwtUtils;
+import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 @Service
@@ -48,8 +52,9 @@ public class UserServiceImplementation implements UserService{
     public Object getProfile(String name) {
         final int MAX_RECIPES_TO_DISPLAY = 20;
         Map<String, Object> responseData = new HashMap<>();
+        System.out.println(name);
         Optional<User> user = userRepository.findByName(name);
-        if (user != null) {
+        if (user.isPresent()) {
             responseData.put("user", user);
             List<Recipe> recipe = recipeRepository.findByUserId(user.get().getId());
             Integer totalRecipes = recipe.size();
@@ -78,37 +83,55 @@ public class UserServiceImplementation implements UserService{
     public Object login(User user) {
         User logged_in=userRepository.findByEmail(user.getEmail());
         HashMap<String, Object> responseData = new HashMap<>();
-        if(logged_in != null && user.getPassword().equals(logged_in.getPassword())){
+        String password = getMd5(user.getPassword());
+        if(logged_in != null && logged_in.getPassword().equals(password)){
             responseData.put("user", logged_in);
             responseData.put("token", jwtUtils.generateToken(logged_in));
             return new Response("success", responseData);
         }
         else{
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new Response("error", "user already exists"));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new Response("error", "Invalid Password"));
         }
     }
 
     @Override
     public Object signup(User user) {
+
         User isExist=userRepository.findByEmail(user.getEmail());
         if(isExist==null){
+            user.setPassword(getMd5(user.getPassword()));
             userRepository.save(user);
-            return new Response("success", "signup successful");
+            return new Response("success", user);
         }
         else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new Response("error", "user already exists"));
         }
     }
 
+    public String getMd5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            BigInteger no = new BigInteger(1, messageDigest);
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        }
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     @Override
     public User updateProfile(User user) {
         User isExist=userRepository.findByEmail(user.getEmail());
-
         if(isExist!=null){
             isExist.setName(user.getName());
             isExist.setBio(user.getBio());
-            isExist.setLocation(user.getLocation());
-            isExist.setAvatar(user.getAvatar());
+            isExist.setEmail(user.getEmail());
             userRepository.save(isExist);
             return isExist;
         }

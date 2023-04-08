@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { CommonAPIService } from "../shared/services/common-api.service";
 import { APINAME } from "../shared/constants/api.constant";
-import { tap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  user: any;
+  user: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   token: string;
   userFollowers: any[];
   userFollowings: any[];
   constructor(private commonAPIService: CommonAPIService) {
-    this.user = JSON.parse(localStorage.getItem('user'));
+    if(JSON.parse(localStorage.getItem('user'))){
+      this.user.next(JSON.parse(localStorage.getItem('user')));
+    }
     this.token = localStorage.getItem('token');
   }
 
@@ -45,6 +47,7 @@ export class AuthenticationService {
       }).pipe(tap(res => {
         localStorage.setItem('user', JSON.stringify(res.data.user));
         localStorage.setItem('token', res.data.token);
+        this.user.next(res.data.user);
       }));
     }
 

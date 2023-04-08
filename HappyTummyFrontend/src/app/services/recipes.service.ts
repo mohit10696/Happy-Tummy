@@ -37,7 +37,7 @@ export class RecipesService {
   }
 
   addNewRecipe(reqBody) {
-    const user = this.authenticationService.user;
+    const user = this.authenticationService.user.value;
     return this.commonAPIService.getObservableResponse({
       originKey: 'API_URL',
       apiName: APINAME.GET_RECIPES + "/" + user.id,
@@ -47,7 +47,7 @@ export class RecipesService {
   }
 
   addReview(reviewData: FormData,recipeId : string) {
-    const user = this.authenticationService.user;
+    const user = this.authenticationService.user.value;
     const headers = new HttpHeaders();
     headers.append('Content-Type','multipart/form-data');
     return this.httpClient.post(`${environment.API_URL}/reviews/${recipeId}/${user.id}`, reviewData, { headers });

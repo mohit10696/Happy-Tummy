@@ -63,7 +63,7 @@ export class RecipeDetailComponent implements OnInit {
                   return item.length > 0;
                   }),
             };
-          this.isLiked = this.recipeDetails.likes.findIndex((like) => like.userId === this.authenticationService.user.id) > -1;
+          this.isLiked = this.recipeDetails.likes.findIndex((like) => like.userId === this.authenticationService.user.value.id) > -1;
           console.log(this.isLiked);
           
           
@@ -102,7 +102,7 @@ export class RecipeDetailComponent implements OnInit {
       this.isLoggedIn = true;
     }
     if (this.isLoggedIn) {
-      this.recipeService.removeLike(this.authenticationService.user.id, this.recipeId).subscribe((res: any) => {
+      this.recipeService.removeLike(this.authenticationService.user.value.id, this.recipeId).subscribe((res: any) => {
         if (res.status == "success") {
           this.toasterService.success("Recipe disliked");
           this.ngOnInit();

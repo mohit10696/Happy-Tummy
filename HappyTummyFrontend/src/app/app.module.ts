@@ -22,7 +22,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 
 export function initializeApp(authenticationService: AuthenticationService) {
   return () => {
-    if(authenticationService.user){
+    if(authenticationService.user.value){
       return Promise.all([authenticationService.fetchUserFollowers().toPromise(),authenticationService.fetchUserFollowings().toPromise()]);
     }else{
       return Promise.resolve();

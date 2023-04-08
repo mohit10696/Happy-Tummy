@@ -17,7 +17,7 @@ export class LoaderInterceptor implements HttpInterceptor {
     if (this.count === 0) {
       this.loaderService.setHttpProgressStatus(true);
     }
-    if(this.authenticationService.user){     
+    if(this.authenticationService.user.value){     
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${this.authenticationService.token}`
