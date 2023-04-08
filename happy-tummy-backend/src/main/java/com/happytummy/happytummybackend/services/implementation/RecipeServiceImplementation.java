@@ -123,7 +123,7 @@ public class RecipeServiceImplementation implements RecipeService {
     }
 
     private void saveNutrition(int recipe_id, List<Nutrition> nutrition) {
-        if (!nutrition.isEmpty()) {
+        if (nutrition != null && !nutrition.isEmpty()) {
             for (Nutrition nutrition1 : nutrition) {
                 nutrition1.setRecipeId(String.valueOf(recipe_id));
                 nutritionRepository.save(nutrition1);
@@ -132,7 +132,7 @@ public class RecipeServiceImplementation implements RecipeService {
     }
 
     private void saveSteps(int recipe_id, List<Step> steps) {
-        if (!steps.isEmpty()) {
+        if (steps != null && !steps.isEmpty()) {
             for (Step step : steps) {
                 step.setRecipeId(String.valueOf(recipe_id));
                 stepRepository.save(step);
@@ -141,7 +141,7 @@ public class RecipeServiceImplementation implements RecipeService {
     }
 
     private void saveTags(int recipe_id, List<Tag> tags) {
-        if (!tags.isEmpty()) {
+        if (tags != null && !tags.isEmpty()) {
             for (Tag tag : tags) {
                 tag.setRecipeId(String.valueOf(recipe_id));
                 tagRepository.save(tag);
@@ -150,7 +150,7 @@ public class RecipeServiceImplementation implements RecipeService {
     }
 
     private void saveIngredients(int recipe_id, List<Ingredient> ingredients) {
-        if (!ingredients.isEmpty()) {
+        if (ingredients != null && !ingredients.isEmpty()) {
             for (Ingredient ingredient : ingredients) {
                 ingredient.setRecipeId(String.valueOf(recipe_id));
                 ingredientRepository.save(ingredient);
