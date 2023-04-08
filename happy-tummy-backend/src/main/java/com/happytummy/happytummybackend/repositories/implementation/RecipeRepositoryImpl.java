@@ -73,18 +73,44 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom {
 
     @Override
     public List<Recipe> findByCombinedIngredientName(String[] ingredientNames,String[] dietaryCategory, int limit, int pageIndex) {
-        String queryString = "SELECT p FROM Recipe p WHERE p.id IN (SELECT i.recipeId FROM Ingredient i WHERE i.plain_ingredient IN :ingredientNames GROUP BY i.recipeId HAVING COUNT(i.recipeId) = :ingredientNamesLength)";
+        String ingredientQueryString = "SELECT i.recipeId FROM Ingredient i WHERE i.plain_ingredient IN :ingredientNames GROUP BY i.recipeId HAVING COUNT(i.recipeId) = :ingredientNamesLength";
+        String baseQueryString = "SELECT p FROM Recipe p WHERE p.id IN (%s)";
+        String dietaryCategoryQueryString = " AND p.dietaryCategory IN :dietaryCategory";
+
+        String combinedIngredientQueryString = String.format(baseQueryString, ingredientQueryString);
         if (dietaryCategory.length > 0) {
-            queryString += " AND p.dietaryCategory IN :dietaryCategory";
+            combinedIngredientQueryString += dietaryCategoryQueryString;
         }
-        Query query = entityManager.createQuery(queryString,Recipe.class);
-        if(ingredientNames.length > 0){
-            query.setParameter("ingredientNames", Arrays.asList(ingredientNames)).setParameter("ingredientNamesLength", ingredientNames.length);
+
+        TypedQuery<Recipe> query = entityManager.createQuery(combinedIngredientQueryString, Recipe.class);
+        if (ingredientNames.length > 0) {
+            query.setParameter("ingredientNames", Arrays.asList(ingredientNames))
+                    .setParameter("ingredientNamesLength", ingredientNames.length);
         }
-        if(dietaryCategory.length > 0){
+        if (dietaryCategory.length > 0) {
             query.setParameter("dietaryCategory", Arrays.asList(dietaryCategory));
         }
-        return query.setMaxResults(limit).setFirstResult(pageIndex * limit).getResultList();
+
+        int maxResults = limit;
+        int firstResult = pageIndex * limit;
+        query.setMaxResults(maxResults);
+        query.setFirstResult(firstResult);
+
+        return query.getResultList();
+
+
+//        String queryString = "SELECT p FROM Recipe p WHERE p.id IN (SELECT i.recipeId FROM Ingredient i WHERE i.plain_ingredient IN :ingredientNames GROUP BY i.recipeId HAVING COUNT(i.recipeId) = :ingredientNamesLength)";
+//        if (dietaryCategory.length > 0) {
+//            queryString += " AND p.dietaryCategory IN :dietaryCategory";
+//        }
+//        Query query = entityManager.createQuery(queryString,Recipe.class);
+//        if(ingredientNames.length > 0){
+//            query.setParameter("ingredientNames", Arrays.asList(ingredientNames)).setParameter("ingredientNamesLength", ingredientNames.length);
+//        }
+//        if(dietaryCategory.length > 0){
+//            query.setParameter("dietaryCategory", Arrays.asList(dietaryCategory));
+//        }
+//        return query.setMaxResults(limit).setFirstResult(pageIndex * limit).getResultList();
     }
 
     @Override
