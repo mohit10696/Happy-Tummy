@@ -14,7 +14,9 @@ const routes: Routes = [
     path: '',
     redirectTo: 'pages/dashboard',
     pathMatch: 'full'
-  }
+  },
+ 
+  
 ];
 
 @NgModule({

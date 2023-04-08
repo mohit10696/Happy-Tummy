@@ -1,0 +1,114 @@
+<div class="main-content" *ngIf="userInformation">
+  <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+    <!-- Mask -->
+    <span class="mask opacity-8" [ngStyle]="{ 'background': 'url(' + userInformation.coverImage + ')' }"></span>
+    <!-- Header container -->
+    <div class="container-fluid d-flex align-items-center">
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0" >
+        <div class="card card-profile shadow">
+          <div class="row justify-content-center">
+            <div class="col-lg-3 order-lg-2">
+              <div class="card-profile-image">
+                <img
+                  src="{{userInformation.avatar}}"
+                  class="rounded-circle"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="card-body pt-0 pt-md-4">
+            <div class="row mt-5">
+                <div class="col-md-12 w-100 mt-md-5">
+                  <p class="h3 text-dark">@{{userInformation.name}}</p>
+                  <p class="text-dark mt-0">{{userInformation.bio}}</p>
+                </div>
+              </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div
+                  class="card-profile-stats d-flex justify-content-center "
+                >
+                  <div>
+                    <span class="heading">{{likes}}</span>
+                    <span class="description">Likes</span>
+                  </div>
+                  <div (click)="listFollower()">
+                    <span class="heading">{{followers.length}}</span>
+                    <span class="description">Followers</span>
+                  </div>
+                  <div (click)="listFollowing()">
+                    <span class="heading">{{following.length}}</span>
+                    <span class="description">Following</span>
+                  </div>
+                  <div>
+                    <span class="heading">{{totalRecipes}}</span>
+                    <span class="description">Recipes</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <button class="btn-primary btn flex-1" *ngIf="!isLoggedInUser && isLoggedin && !isFollowing" (click)="follow()">Follow</button>
+              <button class="btn-primary btn flex-1" *ngIf="!isLoggedInUser && isLoggedin && isFollowing" (click)="unfollow()">Unfollow</button>
+              <button class="btn-primary btn flex-1" *ngIf="isLoggedInUser" (click)="editProfile()">Edit Profile</button>
+            </div>
+            <div class="text-center">
+              <div class="h5 font-weight-300">
+                <i class="ni location_pin mr-2"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-8 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">My Recipes</h3>
+              </div>
+              <!-- <div class="col-4 text-right">
+                                    <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                                </div> -->
+            </div>
+          </div>
+          <div class="card-body ">
+            <div class="row">
+              <div _ngcontent-uhp-c91="" class="col-md-4 p-2 cursor-pointer" *ngFor="let item of recpipeInformation" (click)="navigateToRecipeDetailPage(item);">
+                <div _ngcontent-uhp-c91="" class="card mb-2 shadow-sm h-100">
+                  <img
+                    _ngcontent-uhp-c91=""
+                    alt="Recipe image"
+                    class="card-img-top"
+                    src="{{item.recipe.imgURL}}"
+                  />
+                  <div _ngcontent-uhp-c91="" class="card-body">
+                    <h5 _ngcontent-uhp-c91="" class="card-title">
+                      {{item.recipe.name}}
+                    </h5>
+                    <p _ngcontent-uhp-c91="" class="card-text">
+                      {{item.recipe.intro}}
+                    </p>
+                    <div class="d-flex flex-column">
+                        <p class="mb-0">
+                            Likes <i class="fa fa-heart"></i> {{item.likes.length}}
+                        </p>
+                        <p class="mb-0">
+                            Reviews <i class="fa fa-comment"></i> {{item.reviews.length}}
+                        </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

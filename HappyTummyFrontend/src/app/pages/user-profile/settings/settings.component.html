@@ -1,0 +1,34 @@
+<div class="container">
+    <h1>Edit Profile</h1>
+    <div class="profile">
+      <div class="profile-image">
+        <img src="{{this.userInformation.avatar}}" alt="Profile Picture">
+        <div class="overlay">
+          <i class="fas fa-camera"></i>
+          <span>Change Profile Picture</span>
+        </div>
+      </div>
+  
+      <div class="profile-info">
+        <h2>{{this.userInformation.name}}</h2>
+        <button class="btn-primary btn" (click)="fieInput.click()">Change Profile Picture</button>
+        <input type="file" accept="image/png, image/gif, image/jpeg" class="d-none" #fieInput (change)="onFileSelected($event)">
+      </div>
+    </div>
+    <form [formGroup]="updateForm" (ngSubmit)="submitUpdateForm()"  >
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" formControlName ="name" placeholder="Enter your username">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email"  formControlName ="email"  placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label for="bio">Bio:</label>
+        <textarea class="form-control" id="bio"  formControlName ="bio"  rows="3" placeholder="Tell us about yourself"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+  </div>
+  

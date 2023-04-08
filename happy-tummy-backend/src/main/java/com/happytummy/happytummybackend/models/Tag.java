@@ -19,6 +19,9 @@ public class Tag {
         this.recipeId = recipeId;
     }
 
+    public Tag() {
+    }
+
     public int getId() {
         return id;
     }

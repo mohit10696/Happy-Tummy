@@ -22,6 +22,9 @@ import java.util.Optional;
 public class RecipeServiceImplementation implements RecipeService {
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
     RecipeRepository recipeRepository;
 
     @Autowired
@@ -36,6 +39,11 @@ public class RecipeServiceImplementation implements RecipeService {
     @Autowired
     NutritionRepository nutritionRepository;
 
+
+    @Autowired
+    RecipeLikeRepository recipeLikeRepository;
+
+
     @Autowired
     ReviewRepository reviewRepository;
 
@@ -48,20 +56,22 @@ public class RecipeServiceImplementation implements RecipeService {
     public List<Recipe> getRecipes(RecipeQueryParam queryParam) {
         int length = queryParam.getLength() != null ? queryParam.getLength() : 10;
         int pageIndex = queryParam.getPageIndex() != null ? queryParam.getPageIndex() : 0;
+        String[] mealPreference = queryParam.getMealPreference() != null ? queryParam.getMealPreference().split(",") : new String[0];
+        String[] ingredients = queryParam.getIngredients() != null ? queryParam.getIngredients().split(",") : new String[0];
         if (queryParam.getTag() != null) {
             return recipeRepository.findByTagName(queryParam.getTag(), length, pageIndex);
         } else if (queryParam.getIngredients() != null) {
             if (queryParam.getIngredients().contains("||")) {
-                return recipeRepository.findByIngredientName(queryParam.getIngredients().split("\\|\\|"), length, pageIndex);
+                return recipeRepository.findByIngredientName(queryParam.getIngredients().split("\\|\\|"),mealPreference, length, pageIndex);
             }
             if (queryParam.getIngredients().contains("&&")) {
-                return recipeRepository.findByCombinedIngredientName(queryParam.getIngredients().split("&&"), length, pageIndex);
+                return recipeRepository.findByCombinedIngredientName(queryParam.getIngredients().split("&&"),mealPreference, length, pageIndex);
             }
-            return recipeRepository.findByIngredientName(queryParam.getIngredients().split(","), length, pageIndex);
+            return recipeRepository.findByIngredientName(queryParam.getIngredients().split(","),mealPreference, length, pageIndex);
         } else if (queryParam.getQ() != null) {
             return recipeRepository.findBySearch(queryParam.getQ(), length, pageIndex);
         } else {
-            return recipeRepository.findByLimit(length, pageIndex);
+            return recipeRepository.findByIngredientName(ingredients,mealPreference, length, pageIndex);
         }
     }
 
@@ -73,12 +83,13 @@ public class RecipeServiceImplementation implements RecipeService {
         if (recipeOptional.isPresent()) {
             Recipe recipe = recipeOptional.get();
             responseData.put("recipe", recipe);
+            responseData.put("likes", recipeLikeRepository.findByRecipeId(Long.valueOf(id)).toArray());
             responseData.put("tags", tagRepository.findByRecipeId(id).toArray());
             responseData.put("ingredients", ingredientRepository.findByRecipeId(id).toArray());
             responseData.put("steps", stepRepository.findByRecipeId(id).toArray());
             responseData.put("nutrition", nutritionRepository.findByRecipeId(id).toArray());
             responseData.put("reviews", reviewService.getReviewByRecipeId(id).toArray());
-
+            responseData.put("user", userRepository.findById(Long.valueOf(recipe.getUserId())).get());
             return responseData;
         } else {
             return "Recipe not found";

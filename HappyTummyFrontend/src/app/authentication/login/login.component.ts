@@ -13,12 +13,13 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 
 export class LoginComponent implements OnInit{
   loginForm:FormGroup;
+  data=[]
 
   constructor(private authenticationService: AuthenticationService,private router:Router,private toasterService: ToastrService){}
   ngOnInit(): void {
     this.initForm();
   }
-  
+
   initForm() {
     this.loginForm = new FormGroup({
       email: new FormControl(),
@@ -30,12 +31,12 @@ export class LoginComponent implements OnInit{
     this.authenticationService.login(this.loginForm.value).subscribe(res => {
       this.toasterService.success("Login Successful");
       this.router.navigateByUrl('/pages/dashboard');
-      localStorage.setItem('user',JSON.stringify(this.loginForm.value));
+      
     },error => {
       this.toasterService.error("Invalid login or password");
     })
   }
 
-  
-   
+
+
 }

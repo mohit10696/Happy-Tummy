@@ -90,14 +90,15 @@ class UserControllerTest {
     public void testUpdateProfile() throws Exception{
         User user = new User("Vidhi","123");
         when(userServiceMock.updateProfile(user)).thenReturn(user);
-        Object response = new Gson().toJson(userControllerMock.updateProfile(user));
+        Object response = new Gson().toJson(userControllerMock.updateProfile(user,"1"));
         assertEquals(new Gson().toJson(new Response("success",user)),response);
     }
 
     @Test
     public void testUpdateProfileWithNullUser() throws Exception{
         when(userServiceMock.updateProfile(null)).thenReturn(null);
-        Object response = new Gson().toJson(userControllerMock.updateProfile(null));
+        User user = new User();
+        Object response = new Gson().toJson(userControllerMock.updateProfile(user,"1"));
         assertEquals(new Gson().toJson(new Response("error","user not found")),response);
     }
 

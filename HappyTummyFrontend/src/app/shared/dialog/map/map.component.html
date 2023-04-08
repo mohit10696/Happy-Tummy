@@ -1,0 +1,71 @@
+<div class="container pt-2">
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-between">
+        <div class="h4">Nearby stores to get groceries</div>
+        <button class="btn h5" (click)="this.dialogRef.close()"><i class="fa fa-close"></i></button>
+    </div>
+    <div class="col-md-3 sidebar">
+      <div class="row">
+        <div class="col-md-12 p-1 " *ngFor="let item of stores">
+          <div class="card rounded">
+            <img class="logo" src="{{item.icon}}" alt="">            
+            <div class="card-body ">
+              <div class="card-title cursor-pointer" (click)="focusTo(item)">{{ item.name }}</div>
+              <div class="card-subtitle">{{ item.address }}</div>
+              <div class="card-text">{{ item.rating }} / 5</div>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-primary" (click)="navigateTo(item)">
+                  Navigate
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <agm-map
+        #AgmMap
+        [latitude]="maplocation.latitude"
+        [zoom]="zoom"
+        [longitude]="maplocation.longitude"
+        [usePanning]="true"
+        (mapReady)="mapReady($event)"
+      >
+        <agm-marker
+          *ngFor="let store of stores"
+          [latitude]="store.lat"
+          [longitude]="store.lng"
+          (markerClick)="markerClick($event, store)"
+          [iconUrl]="store.selected ? 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' : 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'">
+        >
+          <agm-info-window>
+            <div class="info-window">
+              <div class="info-window__title">
+                <span class="text-bold">Name: </span>{{ store.name }}
+              </div>
+              <div class="info-window__address">
+                <span class="text-bold">Name: </span>{{ store.address }}
+              </div>
+              <div class="info-window__phone">
+                <span class="text-bold">Ratings: </span> {{ store.rating }} / 5
+              </div>
+              <button
+                class="btn btn-primary p-0 px-1 my-1"
+                (click)="navigateTo(store)"
+              >
+                Navigate
+              </button>
+            </div>
+          </agm-info-window>
+        </agm-marker>
+        <agm-marker
+          [latitude]="this.location.latitude"
+          [longitude]="this.location.longitude"
+          [iconUrl]="'/assets/icons/google-circle.png'"
+        ></agm-marker>
+      </agm-map>
+    </div>
+  </div>
+</div>
