@@ -34,8 +34,21 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom {
 
     @Override
     public List<Recipe> findByTagName(String tagName, int limit, int pageIndex) {
-        return entityManager.createQuery("SELECT p FROM Recipe p WHERE p.id IN (SELECT t.recipeId FROM Tag t WHERE t.tag = :tagName)",
-                Recipe.class).setParameter("tagName", tagName).setMaxResults(limit).setFirstResult(pageIndex * limit).getResultList();
+        String queryString = "SELECT p FROM Recipe p WHERE p.id IN (SELECT t.recipeId FROM Tag t WHERE t.tag = :tagName)";
+        Class<Recipe> resultType = Recipe.class;
+        int maxResults = limit;
+        int firstResult = pageIndex * limit;
+        String parameterName = "tagName";
+
+        TypedQuery<Recipe> query = entityManager.createQuery(queryString, resultType);
+        query.setParameter(parameterName, tagName);
+        query.setMaxResults(maxResults);
+        query.setFirstResult(firstResult);
+
+        return query.getResultList();
+
+//        return entityManager.createQuery("SELECT p FROM Recipe p WHERE p.id IN (SELECT t.recipeId FROM Tag t WHERE t.tag = :tagName)",
+//                Recipe.class).setParameter("tagName", tagName).setMaxResults(limit).setFirstResult(pageIndex * limit).getResultList();
     }
 
     @Override
