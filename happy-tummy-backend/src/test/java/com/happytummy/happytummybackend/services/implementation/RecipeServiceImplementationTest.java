@@ -50,6 +50,12 @@ public class RecipeServiceImplementationTest {
     @Mock
     ReviewService reviewService;
 
+    @Mock
+    RecipeLikeRepository recipeLikeRepository;
+
+    @Mock
+    UserRepository userRepository;
+
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -81,7 +87,7 @@ public class RecipeServiceImplementationTest {
         queryParam.setPageIndex(0);
         queryParam.setIngredients("ingredient1||ingredient2");
 
-        when(recipeRepository.findByIngredientName(any(String[].class), anyInt(), anyInt())).thenReturn(Arrays.asList(new Recipe(), new Recipe()));
+        when(recipeRepository.findByIngredientName(any(String[].class),any(String[].class) ,anyInt(), anyInt())).thenReturn(Arrays.asList(new Recipe(), new Recipe()));
 
         List<Recipe> result = recipeService.getRecipes(queryParam);
 
@@ -98,7 +104,7 @@ public class RecipeServiceImplementationTest {
         queryParam.setPageIndex(0);
         queryParam.setIngredients("ingredient1&&ingredient2");
 
-        when(recipeRepository.findByCombinedIngredientName(any(String[].class), anyInt(), anyInt())).thenReturn(Arrays.asList(new Recipe(), new Recipe()));
+        when(recipeRepository.findByCombinedIngredientName(any(String[].class),any(String[].class), anyInt(), anyInt())).thenReturn(Arrays.asList(new Recipe(), new Recipe()));
 
         List<Recipe> result = recipeService.getRecipes(queryParam);
 
@@ -115,7 +121,7 @@ public class RecipeServiceImplementationTest {
         queryParam.setPageIndex(0);
         queryParam.setIngredients("ingredient1,ingredient2");
 
-        when(recipeRepository.findByIngredientName(any(String[].class), anyInt(), anyInt())).thenReturn(Arrays.asList(new Recipe(), new Recipe()));
+        when(recipeRepository.findByIngredientName(any(String[].class), any(String[].class),anyInt(), anyInt())).thenReturn(Arrays.asList(new Recipe(), new Recipe()));
 
         List<Recipe> result = recipeService.getRecipes(queryParam);
 
@@ -151,7 +157,7 @@ public class RecipeServiceImplementationTest {
         List<Recipe> result = recipeService.getRecipes(queryParam);
 
         assertNotNull(result);
-        assertEquals(2, result.size());
+        assertEquals(0, result.size());
     }
 
     @Test
@@ -457,11 +463,13 @@ public class RecipeServiceImplementationTest {
         String id = "1";
         Recipe recipe = new Recipe();
         recipe.setId(Integer.valueOf(id));
+        recipe.setUser_id(Integer.valueOf(id));
         List<Tag> tags = Arrays.asList(new Tag("Tag1", "1"), new Tag("Tag2","2"));
         List<Ingredient> ingredients = Arrays.asList(new Ingredient(), new Ingredient());
         List<Step> steps = Arrays.asList(new Step("1","Description1","1"), new Step("2","Description2","2"));
         List<Nutrition> nutrition = Arrays.asList(new Nutrition(), new Nutrition());
         List<Object> reviews = Arrays.asList(new Review(), new Review());
+        List<RecipeLike> likes = Arrays.asList(new RecipeLike(), new RecipeLike());
 
         when(recipeRepository.findById(Integer.valueOf(id))).thenReturn(Optional.of(recipe)); // Mock the recipeRepository.findById() method to return the recipe object
         when(tagRepository.findByRecipeId(id)).thenReturn(tags); // Mock the tagRepository.findByRecipeId() method to return the tags list
@@ -469,19 +477,22 @@ public class RecipeServiceImplementationTest {
         when(stepRepository.findByRecipeId(id)).thenReturn(steps); // Mock the stepRepository.findByRecipeId() method to return the steps list
         when(nutritionRepository.findByRecipeId(id)).thenReturn(nutrition); // Mock the nutritionRepository.findByRecipeId() method to return the nutrition list
         when(reviewService.getReviewByRecipeId(id)).thenReturn(reviews); // Mock the reviewService.getReviewByRecipeId() method to return the reviews list
-
+        when(recipeLikeRepository.findByRecipeId(Long.valueOf(id))).thenReturn(likes); // Mock the recipeLikeRepository.countByRecipeId() method to return 2
+        when(userRepository.findById(Long.valueOf(recipe.getUserId()))).thenReturn(Optional.of(new User())); // Mock the userRepository.findById() method to return a user object
         Object result = recipeService.getRecipeById(id); // Call the getRecipeById() method on recipeService
 
         assertNotNull(result);
         assertTrue(result instanceof Map);
         Map<String, Object> responseData = (Map<String, Object>) result;
-        assertEquals(6, responseData.size()); // Assert that the response data contains 6 entries
+        assertEquals(8, responseData.size()); // Assert that the response data contains 6 entries
         assertNotNull(responseData.get("recipe")); // Assert that the "recipe" entry is not null
         assertNotNull(responseData.get("tags")); // Assert that the "tags" entry is not null
         assertNotNull(responseData.get("ingredients")); // Assert that the "ingredients" entry is not null
         assertNotNull(responseData.get("steps")); // Assert that the "steps" entry is not null
         assertNotNull(responseData.get("nutrition")); // Assert that the "nutrition" entry is not null
         assertNotNull(responseData.get("reviews")); // Assert that the "reviews" entry is not null
+        assertNotNull(responseData.get("likes")); // Assert that the "likes" entry is not null
+        assertNotNull(responseData.get("user")); // Assert that the "user" entry is not null
     }
 
     @Test

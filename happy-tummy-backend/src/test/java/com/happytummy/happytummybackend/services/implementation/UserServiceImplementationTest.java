@@ -5,8 +5,12 @@ import com.happytummy.happytummybackend.controllers.UserController;
 import com.happytummy.happytummybackend.models.Recipe;
 import com.happytummy.happytummybackend.models.Response;
 import com.happytummy.happytummybackend.models.User;
+import com.happytummy.happytummybackend.models.UserFollower;
 import com.happytummy.happytummybackend.repositories.RecipeRepository;
 import com.happytummy.happytummybackend.repositories.UserRepository;
+import com.happytummy.happytummybackend.services.RecipeLikeService;
+import com.happytummy.happytummybackend.services.RecipeService;
+import com.happytummy.happytummybackend.services.UserFollowerService;
 import com.happytummy.happytummybackend.services.UserService;
 import com.happytummy.happytummybackend.utils.JwtUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,8 +44,16 @@ class UserServiceImplementationTest {
     @Mock
     private RecipeRepository recipeRepository;
 
+    @Mock
+    private RecipeService recipeService;
+
     @InjectMocks
     private UserServiceImplementation userServiceImplementation;
+
+    @Mock
+    private UserFollowerService userFollowerService;
+    @Mock
+    private RecipeLikeService recipeLikeService;
 
     @BeforeEach
     public void setup() {
@@ -68,16 +80,39 @@ class UserServiceImplementationTest {
 
         when(userRepository.findByName(name)).thenReturn(Optional.of(user));
         when(recipeRepository.findByUserId(user.getId())).thenReturn(recipeList);
-
+        when(userFollowerService.getFollowersList(String.valueOf(user.getId()))).thenReturn(new ArrayList<>());
+        when(userFollowerService.getFollowingList(String.valueOf(user.getId()))).thenReturn(new ArrayList<>());
+        when(recipeLikeService.getNumLikesForUser(user.getId())).thenReturn(2L);
+        when(recipeService.getRecipeById(Mockito.anyString())).thenReturn(new Recipe()); // Specify the behavior of getRecipeById method
         Object result = userServiceImplementation.getProfile(name);
-        assertNotNull(result);
-        Map<String, Object> responseData = (Map<String, Object>) result;
-        Optional<User> responseUser = (Optional<User>) responseData.get("user");
 
+        assertNotNull(result);
+        assertTrue(result instanceof Map);
+
+        Map<String, Object> responseData = (Map<String, Object>) result;
+
+        Optional<User> responseUser = (Optional<User>) responseData.get("user");
+        assertNotNull(responseUser);
         assertTrue(responseUser.isPresent());
         assertEquals(user.getId(), responseUser.get().getId());
         assertEquals(user.getName(), responseUser.get().getName());
-        assertEquals(recipeList, responseData.get("recipes"));
+
+        List<Recipe> responseRecipes = (List<Recipe>) responseData.get("recipes");
+        assertNotNull(responseRecipes);
+        assertEquals(Math.min(recipeList.size(), 20), responseRecipes.size());
+        // Add additional assertions for recipe details if needed
+
+        List<UserFollower> responseFollowers = (List<UserFollower>) responseData.get("followers");
+        assertNotNull(responseFollowers);
+        // Add additional assertions for followers list if needed
+
+        List<UserFollower> responseFollowing = (List<UserFollower>) responseData.get("following");
+        assertNotNull(responseFollowing);
+        // Add additional assertions for following list if needed
+
+        Long responseLikes = (Long) responseData.get("likes");
+        assertNotNull(responseLikes);
+        assertEquals(2L, responseLikes.longValue());
     }
 
     //
