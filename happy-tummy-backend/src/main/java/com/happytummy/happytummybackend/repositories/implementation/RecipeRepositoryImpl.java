@@ -5,6 +5,7 @@ import com.happytummy.happytummybackend.repositories.RecipeRepositoryCustom;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
@@ -17,8 +18,18 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom {
 
     @Override
     public List<Recipe> findByLimit(int limit, int pageIndex) {
-        return entityManager.createQuery("SELECT p FROM Recipe p",
-                Recipe.class).setMaxResults(limit).setFirstResult(pageIndex * limit).getResultList();
+        String queryString = "SELECT p FROM Recipe p";
+        Class<Recipe> resultType = Recipe.class;
+        int maxResults = limit;
+        int firstResult = pageIndex * limit;
+
+        TypedQuery<Recipe> query = entityManager.createQuery(queryString, resultType);
+        query.setMaxResults(maxResults);
+        query.setFirstResult(firstResult);
+
+        return query.getResultList();
+//        return entityManager.createQuery("SELECT p FROM Recipe p",
+//                Recipe.class).setMaxResults(limit).setFirstResult(pageIndex * limit).getResultList();
     }
 
     @Override
