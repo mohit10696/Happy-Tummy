@@ -88,7 +88,7 @@ public class JwtUtils {
      * @param token The JWT token from which to extract the expiration date
      * @return The expiration date of the token
      */
-    private Date extractExpiration(String token) {
+    Date extractExpiration(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getExpiration();
     }
 
@@ -98,7 +98,7 @@ public class JwtUtils {
      * @param token The JWT token from which to extract the username (subject)
      * @return The username (subject) of the token
      */
-    private String extractUsername(String token) {
+    String extractUsername(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
     }
 
