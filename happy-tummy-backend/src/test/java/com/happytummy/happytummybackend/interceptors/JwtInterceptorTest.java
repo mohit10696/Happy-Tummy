@@ -37,39 +37,13 @@ public class JwtInterceptorTest {
         jwtInterceptor.jwtUtils = jwtUtils;
     }
 
-//    @Override
-//    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-//            throws Exception {
-//        System.out.println("interceptor called");
-//        String header = request.getHeader(AUTHORIZATION_HEADER);
-//
-//        if (header != null && header.startsWith(BEARER_PREFIX)) {
-//            String token = header.substring(BEARER_PREFIX.length());
-//            try {
-//                String userId = jwtUtils.validateToken(token);
-//                if (userId == null) {
-//                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-//                    return false;
-//                }
-//                System.out.println("userId: " + userId);
-//                request.setAttribute("claims", userId);
-//            } catch (Exception e) {
-//                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-//                return false;
-//            }
-//        } else {
-//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-//            return false;
-//        }
-//        return true;
-//    }
-//}
 
     @Test
     public void testPreHandleWithValidToken() throws Exception {
         String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTY4MDE0MjkzMSwiZXhwIjoxNjgxMDA2OTMxfQ.QcLJBYtgbMbKqF0SZnxA3uWYO7eBvpNkVk0Rug88y_nX0UVlUeQ6fkVL7ezyADMdQyQeoNODBrgymXVfYJ6zJA";
         when(request.getHeader("Authorization")).thenReturn("Bearer " + token);
         when(jwtUtils.validateToken(token)).thenReturn("user-id");
+        when(request.getMethod()).thenReturn("GET");
         assertTrue(jwtInterceptor.preHandle(request, response, null));
     }
 
@@ -77,6 +51,7 @@ public class JwtInterceptorTest {
     public void testPreHandleWithValidTokenWithNull() throws Exception {
         String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTY4MDE0MjkzMSwiZXhwIjoxNjgxMDA2OTMxfQ.QcLJBYtgbMbKqF0SZnxA3uWYO7eBvpNkVk0Rug88y_nX0UVlUeQ6fkVL7ezyADMdQyQeoNODBrgymXVfYJ6zJA";
         when(request.getHeader("Authorization")).thenReturn("Bearer " + token);
+        when(request.getMethod()).thenReturn("GET");
         when(jwtUtils.validateToken(token)).thenReturn(null);
         assertFalse(jwtInterceptor.preHandle(request, response, null));
     }
@@ -85,6 +60,7 @@ public class JwtInterceptorTest {
     public void testPreHandleWithInvalidToken() throws Exception {
         String token = "invalid-token";
         when(request.getHeader("Authorization")).thenReturn("Bearer " + token);
+        when(request.getMethod()).thenReturn("GET");
         when(jwtUtils.validateToken(token)).thenThrow(new RuntimeException());
 
         assertFalse(jwtInterceptor.preHandle(request, response, null));
@@ -93,6 +69,7 @@ public class JwtInterceptorTest {
 
     @Test
     public void testPreHandleWithNoAuthorizationHeader() throws Exception {
+        when(request.getMethod()).thenReturn("GET");
         assertFalse(jwtInterceptor.preHandle(request, response, null));
         verify(response).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
     }
@@ -100,7 +77,7 @@ public class JwtInterceptorTest {
     @Test
     public void testPreHandleWithInvalidAuthorizationHeader() throws Exception {
         when(request.getHeader("Authorization")).thenReturn("Invalid Header");
-
+        when(request.getMethod()).thenReturn("GET");
         assertFalse(jwtInterceptor.preHandle(request, response, null));
         verify(response).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
     }

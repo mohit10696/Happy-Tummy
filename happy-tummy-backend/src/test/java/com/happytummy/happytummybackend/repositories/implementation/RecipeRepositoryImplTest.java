@@ -99,14 +99,14 @@ class RecipeRepositoryImplTest {
         recipes.add(new Recipe(2,2,"Intro"));
 
         // set up mock behavior for entityManager.createQuery()
-        when(entityManager.createQuery("SELECT p FROM Recipe p WHERE p.id IN (SELECT i.recipeId FROM Ingredient i WHERE i.plain_ingredient IN :ingredientNames)", Recipe.class)).thenReturn(mockQuery);
+        when(entityManager.createQuery("SELECT p FROM Recipe p where true AND p.id IN (SELECT i.recipeId FROM Ingredient i WHERE i.plain_ingredient IN :ingredientNames)", Recipe.class)).thenReturn(mockQuery);
         when(mockQuery.setParameter("ingredientNames", Arrays.asList("ingredient"))).thenReturn(mockQuery);
         when(mockQuery.setMaxResults(2)).thenReturn(mockQuery);
         when(mockQuery.setFirstResult(0)).thenReturn(mockQuery);
         when(mockQuery.getResultList()).thenReturn(recipes);
 
         // call the method and check the output
-        List<Recipe> result = recipeRepositoryImpl.findByIngredientName(new String[]{"ingredient"}, 2, 0);
+        List<Recipe> result = recipeRepositoryImpl.findByIngredientName(new String[]{"ingredient"},new String[]{},2, 0);
         assertEquals(2, result.size());
         assertEquals(1, result.get(0).getId());
         assertEquals(2, result.get(1).getId());
@@ -127,7 +127,7 @@ class RecipeRepositoryImplTest {
         recipes.add(new Recipe(2,2,"Intro"));
 
         // set up mock behavior for entityManager.createQuery()
-        when(entityManager.createQuery("SELECT p FROM Recipe p WHERE p.id IN (SELECT i.recipeId FROM Ingredient i WHERE i.plain_ingredient IN :ingredientNames GROUP BY i.recipeId HAVING COUNT(i.recipeId) = :ingredientNamesLength) ", Recipe.class)).thenReturn(mockQuery);
+        when(entityManager.createQuery("SELECT p FROM Recipe p WHERE p.id IN (SELECT i.recipeId FROM Ingredient i WHERE i.plain_ingredient IN :ingredientNames GROUP BY i.recipeId HAVING COUNT(i.recipeId) = :ingredientNamesLength) AND p.dietaryCategory IN :dietaryCategory", Recipe.class)).thenReturn(mockQuery);
         when(mockQuery.setParameter("ingredientNames", Arrays.asList("ingredient"))).thenReturn(mockQuery);
         when(mockQuery.setParameter("ingredientNamesLength", 1)).thenReturn(mockQuery);
         when(mockQuery.setMaxResults(2)).thenReturn(mockQuery);
@@ -135,7 +135,7 @@ class RecipeRepositoryImplTest {
         when(mockQuery.getResultList()).thenReturn(recipes);
 
         // call the method and check the output
-        List<Recipe> result = recipeRepositoryImpl.findByCombinedIngredientName(new String[]{"ingredient"}, 2, 0);
+        List<Recipe> result = recipeRepositoryImpl.findByCombinedIngredientName(new String[]{"ingredient"},new String[]{"veg"}, 2, 0);
         assertEquals(2, result.size());
         assertEquals(1, result.get(0).getId());
         assertEquals(2, result.get(1).getId());

@@ -78,7 +78,6 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom {
 
         String ingredientQueryString = sub_query_1 + sub_query_2;
 
-        //String ingredientQueryString = "SELECT i.recipeId FROM Ingredient i WHERE i.plain_ingredient IN :ingredientNames GROUP BY i.recipeId HAVING COUNT(i.recipeId) = :ingredientNamesLength";
         String baseQueryString = "SELECT p FROM Recipe p WHERE p.id IN (%s)";
         String dietaryCategoryQueryString = " AND p.dietaryCategory IN :dietaryCategory";
 
@@ -93,8 +92,6 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom {
             query.setParameter("ingredientNames", ingredientNamesList);
             query.setParameter("ingredientNamesLength", ingredientNamesList.size());
 
-//            query.setParameter("ingredientNames", Arrays.asList(ingredientNames))
-//                    .setParameter("ingredientNamesLength", ingredientNames.length);
         }
         if (dietaryCategory.length > 0) {
             query.setParameter("dietaryCategory", Arrays.asList(dietaryCategory));
@@ -108,18 +105,6 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom {
         return query.getResultList();
 
 
-//        String queryString = "SELECT p FROM Recipe p WHERE p.id IN (SELECT i.recipeId FROM Ingredient i WHERE i.plain_ingredient IN :ingredientNames GROUP BY i.recipeId HAVING COUNT(i.recipeId) = :ingredientNamesLength)";
-//        if (dietaryCategory.length > 0) {
-//            queryString += " AND p.dietaryCategory IN :dietaryCategory";
-//        }
-//        Query query = entityManager.createQuery(queryString,Recipe.class);
-//        if(ingredientNames.length > 0){
-//            query.setParameter("ingredientNames", Arrays.asList(ingredientNames)).setParameter("ingredientNamesLength", ingredientNames.length);
-//        }
-//        if(dietaryCategory.length > 0){
-//            query.setParameter("dietaryCategory", Arrays.asList(dietaryCategory));
-//        }
-//        return query.setMaxResults(limit).setFirstResult(pageIndex * limit).getResultList();
     }
 
     @Override
