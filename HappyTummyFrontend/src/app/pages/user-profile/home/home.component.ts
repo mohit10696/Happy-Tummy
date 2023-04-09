@@ -28,7 +28,7 @@ export class HomeComponent {
         this.fetchUserProfile(this.username);
       }
     });
-    this.isLoggedin = !!this.authenticationService.user;
+    this.isLoggedin = !!this.authenticationService.user.value;
 
   }
 
@@ -40,7 +40,7 @@ export class HomeComponent {
         this.likes = response.data.likes;
         this.followers = response.data.followers;
         this.following = response.data.following;
-        this.isLoggedInUser = this.userInformation.id == this.authenticationService.user.id;
+        this.isLoggedInUser = this.userInformation.id == this.authenticationService.user.value.id;
         this.totalRecipes = response.data.totalRecipes;
         this.isFollowing = this.authenticationService.userFollowings.findIndex((user) => user.following.id == this.userInformation.id) > -1;
       }

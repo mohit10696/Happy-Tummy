@@ -15,7 +15,7 @@
             <div class="col-lg-3 order-lg-2">
               <div class="card-profile-image">
                 <img
-                  src="{{userInformation.avatar}}"
+                  src="{{userInformation?.avatar || '/assets/images/user-profile/default_user_profile_icon.jpg'}}"
                   class="rounded-circle"
                 />
               </div>

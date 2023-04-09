@@ -39,13 +39,13 @@ public class RecipeControllerTest {
         assertNotNull(recipeControllerMock);
     }
 
-    @Test
-    public void testGetRecipes() throws Exception {
-        Recipe recipe = new Recipe(1, "Tasty Chicken noodle", 1, "Crispy Chicken noodle", "3", "12", "3", "easy", "https://www.modernhoney.com/wp-content/uploads/2017/01/Thai-Chicken-Noodles-2.jpg", "chicken", "cook well", "lunch", "healthy");
-        when(recipeServiceMock.getRecipes(any(RecipeQueryParam.class))).thenReturn(singletonList(recipe));
-        Object response = recipeControllerMock.getAllRecipes(new RecipeQueryParam());
-        assertNotNull(response);
-    }
+   @Test
+   public void testGetRecipes() throws Exception {
+       Recipe recipe = new Recipe(1, "Tasty Chicken noodle", 1, "Crispy Chicken noodle", "3", "12", "3", "easy", "https://www.modernhoney.com/wp-content/uploads/2017/01/Thai-Chicken-Noodles-2.jpg", "chicken", "cook well", "lunch", "healthy");
+       when(recipeServiceMock.getRecipes(any(RecipeQueryParam.class))).thenReturn(singletonList(recipe));
+       Object response = recipeControllerMock.getAllRecipes(new RecipeQueryParam());
+       assertNotNull(response);
+   }
 
 @Test
     public void testGetRecipesWithEmptyList() throws Exception {

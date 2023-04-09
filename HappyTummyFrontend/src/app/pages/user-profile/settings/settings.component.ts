@@ -22,8 +22,8 @@ export class SettingsComponent {
   }
 
   ngOnInit(): void {
-    this.isLoggedin = !!this.authenticationService.user;
-    this.userInformation = this.authenticationService.user;    
+    this.isLoggedin = !!this.authenticationService.user.value;
+    this.userInformation = this.authenticationService.user.value;    
     this.initForm();
     this.updateForm.patchValue({
       name : this.userInformation.name,
@@ -51,7 +51,7 @@ export class SettingsComponent {
           ...this.userInformation,
           ...response.data
         }
-        this.authenticationService.user = this.userInformation;
+        this.authenticationService.user.next(this.userInformation);
         localStorage.setItem("user",JSON.stringify(this.userInformation));
       }
     });
