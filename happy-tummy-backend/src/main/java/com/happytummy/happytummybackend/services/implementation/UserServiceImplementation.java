@@ -194,7 +194,8 @@ public class UserServiceImplementation implements UserService{
                 }
                 String fileName = id + "." + extension;
 
-                File dir = new File(CONSTANT.BASE_FOLDER_PATH + "/profile_images");
+                //CONSTANT constant = new CONSTANT();
+                File dir = new File(CONSTANT.getBaseFolderPath() + "/profile_images");
                 if (!dir.exists()) {
                     dir.mkdirs();
                 }
@@ -205,7 +206,7 @@ public class UserServiceImplementation implements UserService{
                 stream.close();
 
                 User user = userRepository.findById(Long.parseLong(id)).get();
-                user.setAvatar(CONSTANT.BASE_URL + CONSTANT.BASE_FOLDER_PATH +"/profile_images/" + fileName);
+                user.setAvatar(CONSTANT.getBaseUrl() + CONSTANT.getBaseFolderPath() +"/profile_images/" + fileName);
                 userRepository.save(user);
 
                 return new Response("success", fileName);

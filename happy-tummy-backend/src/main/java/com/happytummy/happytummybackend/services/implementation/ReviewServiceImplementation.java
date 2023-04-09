@@ -80,8 +80,8 @@ public class ReviewServiceImplementation implements ReviewService {
 
 
                 String fileName = review.getReviewId() + "." + extension;
-
-                File dir = new File(CONSTANT.BASE_FOLDER_PATH + "/review_images");
+                //CONSTANT constant = new CONSTANT();
+                File dir = new File(CONSTANT.getBaseFolderPath() + "/review_images");
                 if(!dir.exists()){
                     dir.mkdirs();
                 }
@@ -91,7 +91,7 @@ public class ReviewServiceImplementation implements ReviewService {
                 stream.write(bytes);
                 stream.close();
 
-                review.setImgURL(CONSTANT.BASE_URL + CONSTANT.BASE_FOLDER_PATH +"/review_images/" + fileName);
+                review.setImgURL(CONSTANT.getBaseUrl() + CONSTANT.getBaseFolderPath() +"/review_images/" + fileName);
                 review = reviewRepository.save(review);
 
 

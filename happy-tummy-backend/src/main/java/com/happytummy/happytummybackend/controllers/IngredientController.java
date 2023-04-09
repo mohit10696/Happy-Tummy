@@ -17,7 +17,15 @@ import java.util.List;
 @CrossOrigin()
 public class IngredientController {
     @Autowired
-    public IngredientService ingredientService;
+    private IngredientService ingredientService;
+
+//    public IngredientService getIngredientService() {
+//        return ingredientService;
+//    }
+
+    public void setIngredientService(IngredientService ingredientService) {
+        this.ingredientService = ingredientService;
+    }
 
     /**
      * Retrieves all ingredients based on the provided recipe query parameters.
