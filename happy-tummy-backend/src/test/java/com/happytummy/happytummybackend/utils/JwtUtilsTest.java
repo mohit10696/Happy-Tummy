@@ -44,15 +44,9 @@ class JwtUtilsTest {
     void validateTokenTest(){
         User user = new User(12L, "saass", "adadsa", "asdadssa", "sadsdad", "asdasdasd", "asdfasdf", "asasd", "121231", "asasasds");
         Map<String, Object> claims = new HashMap<>();
-        //JwtUtils jwtUtils = createJwtUtils();
-
-        //JwtUtils jwtUtils = new JwtUtils();
         JwtService jwtService = new JwtService(jwtUtils);
         String token = jwtService.generateToken(user);
         String username = jwtService.validateToken(token);
-
-        //String token = jwtUtils.generateToken(user);
-        //String username = jwtUtils.validateToken(token);
         assertEquals(username, String.valueOf(user.getId()));
     }
 
@@ -61,7 +55,8 @@ class JwtUtilsTest {
     void isTokenExpiredTest(){
         User user = new User(12L, "saass", "adadsa", "asdadssa", "sadsdad", "asdasdasd", "asdfasdf", "asasd", "121231", "asasasds");
         Map<String, Object> claims = new HashMap<>();
-        String token = jwtUtils.generateToken(user);
+        JwtService jwtService = new JwtService(jwtUtils);
+        String token = jwtService.generateToken(user);
         Date expirationDate = jwtUtils.extractExpiration(token);
         boolean isExpired = expirationDate.before(new Date());
         assertFalse(isExpired);
