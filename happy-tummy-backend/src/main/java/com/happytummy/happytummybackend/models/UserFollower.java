@@ -28,7 +28,6 @@ public class UserFollower implements Serializable {
 
     }
 
-
     public User getFollower() {
         return follower;
     }

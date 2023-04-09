@@ -19,6 +19,12 @@ public class RecipeController {
     @Autowired
     RecipeService recipeService;
 
+    /**
+     * Get all recipes.
+     *
+     * @param recipeQueryParam The query parameters for filtering recipes.
+     * @return A response object containing the status and list of recipes.
+     */
     @GetMapping()
     public Object getAllRecipes(RecipeQueryParam recipeQueryParam) {
         try {
@@ -29,7 +35,12 @@ public class RecipeController {
         }
     }
 
-
+    /**
+     * Get a single recipe by id.
+     *
+     * @param id The id of the recipe.
+     * @return A response object containing the status and the recipe.
+     */
     @GetMapping("/{id}")
     public Object getSingleRecipe(@PathVariable String id) {
         try {
@@ -40,9 +51,23 @@ public class RecipeController {
         }
     }
 
+    /**
+     * Check if a string is null or empty or contains only whitespaces.
+     *
+     * @param s The string to be checked.
+     * @return true if the string is null or empty or contains only whitespaces, false otherwise.
+     */
     private boolean isNullOrEmpty(String s) {
         return s == null || s.trim().isEmpty() || s.equals(" ");
     }
+
+    /**
+     * Add a recipe by user.
+     *
+     * @param recipe_details The recipe details and user id in the request body.
+     * @param id             The id of the user.
+     * @return A response object containing the status of the operation.
+     */
     @PostMapping("/{id}")
     public Object addRecipeByUser(@RequestBody UserRecipeQueryParam recipe_details,@PathVariable String id){
         if (isNullOrEmpty(recipe_details.getRecipe().getName())) {
@@ -68,6 +93,13 @@ public class RecipeController {
         return recipeService.addRecipeByUser(recipe_details, id);
     }
 
+    /**
+     * Upload recipe image.
+     *
+     * @param id   The id of the recipe.
+     * @param file The image file in the request body.
+     * @return A response object containing the status of the operation.
+     */
     @PostMapping("/upload/{id}")
     public Object uploadRecipeImage(@PathVariable String id,@RequestParam("file") MultipartFile file){
         return recipeService.uploadRecipeImage(id,file);

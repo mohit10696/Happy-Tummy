@@ -3,7 +3,9 @@ package com.happytummy.happytummybackend.models;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ReviewQueryParam {
+
     String reviewText;
+
     int rating;
 
     MultipartFile image;

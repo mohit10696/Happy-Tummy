@@ -22,13 +22,11 @@ public class Recipe {
     private String ingredients;
     private String tip;
     private String mealType;
-
     private String dietaryCategory;
 
 
     public Recipe() {
     }
-
 
     public String getDietaryCategory() {
         return dietaryCategory;
@@ -37,8 +35,6 @@ public class Recipe {
     public void setDietaryCategory(String dietary_category) {
         this.dietaryCategory = dietary_category;
     }
-
-
 
     public void setUserId(Integer user_id) {
         this.userId = user_id;
@@ -51,7 +47,6 @@ public class Recipe {
     public void setMealType(String mealType) {
         this.mealType = mealType;
     }
-
 
     public Recipe(int id, String intro, Integer userId, String name, String serve, String cookTime, String prepTime, String difficulty, String imgURL, String ingredients, String tip, String mealType, String dietaryCategory) {
         this.id = id;
@@ -155,6 +150,5 @@ public class Recipe {
     public void setTip(String tip) {
         this.tip = tip;
     }
-
 
 }

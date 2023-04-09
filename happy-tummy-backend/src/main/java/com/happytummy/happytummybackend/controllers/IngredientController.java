@@ -1,7 +1,6 @@
 package com.happytummy.happytummybackend.controllers;
 
 
-import com.happytummy.happytummybackend.models.Ingredient;
 import com.happytummy.happytummybackend.models.RecipeQueryParam;
 import com.happytummy.happytummybackend.models.Response;
 import com.happytummy.happytummybackend.services.IngredientService;
@@ -20,6 +19,12 @@ public class IngredientController {
     @Autowired
     public IngredientService ingredientService;
 
+    /**
+     * Retrieves all ingredients based on the provided recipe query parameters.
+     *
+     * @param recipeQueryParam The recipe query parameters.
+     * @return A response object containing the status ("success" or "error") and the list of ingredients.
+     */
     @GetMapping()
     public Object getAllIngredients(RecipeQueryParam recipeQueryParam){
         try {
