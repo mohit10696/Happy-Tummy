@@ -101,7 +101,7 @@ export class RecipeRecommendationComponent implements OnInit {
         this.recipes = res.data.map(data => {
           return {
             ...data,
-            ingredients: data.ingredients.split(',').map((item) => {
+            ingredients: data?.ingredients?.split(',').map((item) => {
               return item.replaceAll('[', '').replaceAll(']', '').replaceAll('"', '').replaceAll("'", "").trim();
             }).filter((item) => {
               return item.length > 0;
@@ -144,7 +144,10 @@ export class RecipeRecommendationComponent implements OnInit {
     });
   }
 
-  openIngredientSelecter() {
+  openIngredientSelecter() {    
+    if(Object.keys(this.activatedRoutes.snapshot.queryParams).length > 0){
+      return;
+    }
     this.dialog.open(IngredientSelecterComponent, {
       width: '600px',
       height: '500px',
@@ -156,12 +159,6 @@ export class RecipeRecommendationComponent implements OnInit {
         ingredient: this.ingredient,
       },
     }).afterClosed().subscribe((res) => {
-      // this.filteredIngredients.forEach(element => {
-      //   element.checked = !!res.ingredients.includes(res);
-      // });
-      // this.mealPreference.forEach(element => {
-      //   element.checked = !!res.mealPreference.includes(res);
-      // });
     });
   }
 
