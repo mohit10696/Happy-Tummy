@@ -17,7 +17,7 @@ import java.util.List;
 @Repository
 public class RecipeRepositoryImpl implements RecipeRepositoryCustom {
     @PersistenceContext
-    private EntityManager entityManager;
+    EntityManager entityManager;
 
     /**
      * Find recipes with limit and pageIndex.

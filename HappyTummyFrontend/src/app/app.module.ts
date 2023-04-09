@@ -19,11 +19,12 @@ import { AuthenticationService } from './services/authentication.service';
 import { ListUsersComponent } from './shared/dialog/list-users/list-users.component';
 import { IngredientSelecterComponent } from './shared/dialog/ingredient-selecter/ingredient-selecter.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { UserService } from './services/user.service';
 
 export function initializeApp(authenticationService: AuthenticationService) {
   return () => {
     if(authenticationService.user.value){
-      return Promise.all([authenticationService.fetchUserFollowers().toPromise(),authenticationService.fetchUserFollowings().toPromise()]);
+      return Promise.all([authenticationService.fetchUserFollowers().toPromise(),authenticationService.fetchUserFollowings().toPromise(),authenticationService.getMyProfile().toPromise()]);
     }else{
       return Promise.resolve();
     }
@@ -62,7 +63,7 @@ export function initializeApp(authenticationService: AuthenticationService) {
   {
     provide: APP_INITIALIZER,
     useFactory: initializeApp,
-    deps: [AuthenticationService],
+    deps: [AuthenticationService,UserService],
     multi: true
   }],
   bootstrap: [AppComponent]

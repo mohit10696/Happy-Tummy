@@ -19,12 +19,7 @@ export class UserService {
       originKey: 'API_URL',
       apiName: APINAME.USER + '/getProfile/' + username,
       methodType: 'get',
-    }).pipe(tap(res => {
-      if (res.status == 'success') {
-        localStorage.setItem('user', JSON.stringify(res.data.user));
-        this.authenticationService.user.next(res.data.user);
-      }
-    }));
+    });
   }
 
   followUser(followingId: number): Observable<any> {
