@@ -22,7 +22,7 @@ export class UserService {
     }).pipe(tap(res => {
       if (res.status == 'success') {
         localStorage.setItem('user', JSON.stringify(res.data.user));
-        this.authenticationService.user.next(res.data.user);
+        // this.authenticationService.user.next(res.data.user);
       }
     }));
   }
