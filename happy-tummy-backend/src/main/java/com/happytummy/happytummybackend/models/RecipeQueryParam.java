@@ -2,16 +2,12 @@ package com.happytummy.happytummybackend.models;
 
 public class RecipeQueryParam {
 
-
     Integer length;
-
     Integer pageIndex;
     String tag;
     String ingredients;
-
     String mealPreference;
     String q;
-
 
     public RecipeQueryParam(Integer length, Integer pageIndex, String tag, String ingredients, String mealPreference, String q) {
         this.length = length;
@@ -48,8 +44,6 @@ public class RecipeQueryParam {
         this.q = q;
         this.pageIndex = pageIndex;
     }
-
-
 
     public Integer getLength() {
         return length;

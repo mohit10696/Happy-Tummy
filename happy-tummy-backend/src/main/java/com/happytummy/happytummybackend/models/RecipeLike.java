@@ -23,7 +23,6 @@ public class RecipeLike {
         this.userId = userId;
     }
 
-
     public Long getId() {
         return id;
     }

@@ -7,10 +7,7 @@ public interface UserService {
 
     Object getProfile(String id);
     Object login(User user);
-
     Object signup(User user);
-
     User updateProfile(User user);
-
     Object updateProfileImage(MultipartFile file,String id);
 }

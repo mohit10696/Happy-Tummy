@@ -1,12 +1,9 @@
 package com.happytummy.happytummybackend.interceptors;
 
 import com.happytummy.happytummybackend.utils.JwtUtils;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -20,7 +17,6 @@ public class JwtInterceptor implements HandlerInterceptor {
     @Autowired
     JwtUtils jwtUtils;
 
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         if (request.getMethod().equals("OPTIONS")) {
@@ -29,9 +25,6 @@ public class JwtInterceptor implements HandlerInterceptor {
             return true;
         }
         String header = request.getHeader(AUTHORIZATION_HEADER);
-//        if (request.getMethod().equals(HttpMethod.GET.name())) {
-//            return true;
-//        }
         System.out.println("interceptor called");
         System.out.println(header);
         if (header != null && header.startsWith(BEARER_PREFIX)) {

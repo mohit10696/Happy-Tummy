@@ -1,6 +1,5 @@
 package com.happytummy.happytummybackend.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserRecipeQueryParam {
