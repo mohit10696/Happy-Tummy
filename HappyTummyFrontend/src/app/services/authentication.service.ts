@@ -70,6 +70,7 @@ export class AuthenticationService {
       }).pipe(tap(res => {
         if (res.status == 'success') {
           localStorage.setItem('user', JSON.stringify(res.data.user));
+          this.user.next(res.data.user);
         }
       }));
     }else{
