@@ -20,7 +20,6 @@ import java.util.Optional;
 
 @Service
 public class RecipeServiceImplementation implements RecipeService {
-
     @Autowired
     UserRepository userRepository;
 
@@ -184,7 +183,8 @@ public class RecipeServiceImplementation implements RecipeService {
                 }
                 String fileName = id + "." + extension;
 
-                File dir = new File(CONSTANT.BASE_FOLDER_PATH + "/recipes_images");
+                //CONSTANT constant = new CONSTANT();
+                File dir = new File(CONSTANT.getBaseUrl() + "/recipes_images");
                 if (!dir.exists()) {
                     dir.mkdirs();
                 }
@@ -195,7 +195,7 @@ public class RecipeServiceImplementation implements RecipeService {
                 stream.close();
 
                 Recipe recipe = recipeRepository.findById(Integer.valueOf(id)).get();
-                recipe.setImgURL(CONSTANT.BASE_URL + CONSTANT.BASE_FOLDER_PATH +"/recipes_images/" + fileName);
+                recipe.setImgURL(CONSTANT.getBaseUrl() + CONSTANT.getBaseFolderPath() +"/recipes_images/" + fileName);
                 recipeRepository.save(recipe);
 
                 return new Response("success", fileName);
