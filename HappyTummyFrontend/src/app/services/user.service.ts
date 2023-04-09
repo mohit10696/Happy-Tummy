@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CommonAPIService } from '../shared/services/common-api.service';
 import { APINAME } from '../shared/constants/api.constant';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { AuthenticationService } from './authentication.service';
 
 
 @Injectable({
@@ -11,14 +12,19 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
   baseUrl = environment.API_URL + APINAME.USER;
-  constructor(private commonAPIService: CommonAPIService,private httpClient:HttpClient) { }
+  constructor(private commonAPIService: CommonAPIService, private httpClient: HttpClient, private authenticationService: AuthenticationService) { }
 
   getUserProfile(username: string) {
     return this.commonAPIService.getObservableResponse({
       originKey: 'API_URL',
       apiName: APINAME.USER + '/getProfile/' + username,
       methodType: 'get',
-    });
+    }).pipe(tap(res => {
+      if (res.status == 'success') {
+        localStorage.setItem('user', JSON.stringify(res.data.user));
+        this.authenticationService.user.next(res.data.user);
+      }
+    }));
   }
 
   followUser(followingId: number): Observable<any> {
@@ -37,19 +43,24 @@ export class UserService {
     });
   }
 
-  updateUser(followingId: number,reqBody): Observable<any> {
+  updateUser(followingId: number, reqBody): Observable<any> {
     return this.commonAPIService.getObservableResponse({
       originKey: 'API_URL',
       apiName: APINAME.USER + '/updateProfile/' + followingId,
       parameterObject: reqBody,
       methodType: 'patch',
-    });
+    }).pipe(tap(res => {
+      if (res.status == 'success') {
+        localStorage.setItem('user', JSON.stringify(res.data));
+        this.authenticationService.user.next(res.data); 
+      }
+    }));
   }
 
-  updateUserProfile(id: number, formData: FormData){
+  updateUserProfile(id: number, formData: FormData) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
-    return this.httpClient.post(`${this.baseUrl}/updateProfileImage/${id}`, formData, { headers });
+    return this.httpClient.patch(`${this.baseUrl}/updateProfileImage/${id}`, formData, { headers });
   }
 
   getFollowersList(userId: number): Observable<any> {

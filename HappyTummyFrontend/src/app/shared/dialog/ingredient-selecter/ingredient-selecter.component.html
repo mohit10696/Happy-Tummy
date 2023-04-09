@@ -1,0 +1,132 @@
+<div class="container-fluid">
+  <div class="row px-2">
+    <div class="col-md-12 mt-3">
+      <div class="d-flex justify-content-between">
+        <h2
+          class="align-content-center align-items-center d-flex justify-content-center mb-0 text-dark"
+        >
+          {{ title }}
+        </h2>
+        <button class="btn" (click)="this.dialogRef.close()">
+          <i class="fa fa-close"></i>
+        </button>
+      </div>
+      <hr />
+    </div>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              [(ngModel)]="search"
+              (ngModelChange)="filter()"
+            />
+          </div>
+        </div>
+        <div class="col-md-6 p-2">
+          <div class="ingredient-selecter">
+            <div
+              cdkDropList
+              #todoList="cdkDropList"
+              [cdkDropListData]="filteredIngredients"
+              [cdkDropListConnectedTo]="[doneList]"
+              class="example-list"
+              (cdkDropListDropped)="drop($event)"
+            >
+              <div
+                class="example-box"
+                *ngFor="let item of filteredIngredients"
+                cdkDrag
+              >
+                {{ item.plain_ingredient }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 p-2">
+          <div class="ingredient-selecter px-1">
+            <div
+              cdkDropList
+              #doneList="cdkDropList"
+              [cdkDropListData]="selectedIngredients"
+              [cdkDropListConnectedTo]="[todoList]"
+              class="example-list"
+              (cdkDropListDropped)="drop($event)"
+            >
+              <div
+                class="example-box"
+                *ngFor="let item of selectedIngredients"
+                cdkDrag
+              >
+                {{ item.plain_ingredient }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 p-2">
+          <div class="ingredient-selecter">
+            <div
+              cdkDropList
+              #todoList2="cdkDropList"
+              [cdkDropListData]="mealPreference"
+              [cdkDropListConnectedTo]="[doneList2]"
+              class="example-list"
+              (cdkDropListDropped)="drop2($event)"
+            >
+              <div
+                class="example-box"
+                *ngFor="let item of mealPreference"
+                cdkDrag
+              >
+                {{ item.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 p-2">
+          <div class="ingredient-selecter">
+            <div
+              cdkDropList
+              #doneList2="cdkDropList"
+              [cdkDropListData]="selectedMealPreference"
+              [cdkDropListConnectedTo]="[todoList2]"
+              class="example-list"
+              (cdkDropListDropped)="drop2($event)"
+            >
+              <div
+                class="example-box"
+                *ngFor="let item of selectedMealPreference"
+                cdkDrag
+              >
+                {{ item.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-12 d-flex justify-content-end align-items-center">
+          <button
+            class="btn btn-secondary mr-2"
+            (click)="this.dialogRef.close()"
+          >
+            Cancel
+          </button> <span class="mx-1">
+            |
+          </span>
+          <button
+            class="btn btn-primary"
+            (click)="save()"
+          >
+            Apply
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

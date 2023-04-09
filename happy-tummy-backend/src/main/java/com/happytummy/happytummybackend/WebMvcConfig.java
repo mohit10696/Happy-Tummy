@@ -21,11 +21,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 
 
-//        registry.addInterceptor(jwtInterceptor)
-//                .excludePathPatterns("/recipes/**", "/ingredients/**", "/user/**", "/auth/**");
-//
-//        registry.addInterceptor(jwtInterceptor)
-//                .addPathPatterns("/recipes/likes/**","/user/follow/**", "/user/unfollow/**");
+        registry.addInterceptor(jwtInterceptor)
+                .excludePathPatterns("/recipes/**", "/ingredients/**", "/user/**", "/auth/**");
+
+        registry.addInterceptor(jwtInterceptor)
+                .addPathPatterns("/recipes/likes/**","/user/follow/**", "/user/unfollow/**");
 
     }
 }
