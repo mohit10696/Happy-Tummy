@@ -24,7 +24,7 @@ class JwtUtilsTest {
 
     @Value("${jwt.expiration}")
     private int jwtExpirationMs;
- 
+
     @Test
     void generateTokenTest() {
         User user = new User(12L, "saass", "adadsa", "asdadssa", "sadsdad", "asdasdasd", "asdfasdf", "asasd", "121231", "asasasds");
@@ -40,13 +40,19 @@ class JwtUtilsTest {
         assertEquals(generatedToken, token);
     }
 
-
     @Test
     void validateTokenTest(){
         User user = new User(12L, "saass", "adadsa", "asdadssa", "sadsdad", "asdasdasd", "asdfasdf", "asasd", "121231", "asasasds");
         Map<String, Object> claims = new HashMap<>();
-        String token = jwtUtils.generateToken(user);
-        String username = jwtUtils.validateToken(token);
+        //JwtUtils jwtUtils = createJwtUtils();
+
+        //JwtUtils jwtUtils = new JwtUtils();
+        JwtService jwtService = new JwtService(jwtUtils);
+        String token = jwtService.generateToken(user);
+        String username = jwtService.validateToken(token);
+
+        //String token = jwtUtils.generateToken(user);
+        //String username = jwtUtils.validateToken(token);
         assertEquals(username, String.valueOf(user.getId()));
     }
 
