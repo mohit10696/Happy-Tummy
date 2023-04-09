@@ -24,7 +24,7 @@ class JwtUtilsTest {
 
     @Value("${jwt.expiration}")
     private int jwtExpirationMs;
-
+ 
     @Test
     void generateTokenTest() {
         User user = new User(12L, "saass", "adadsa", "asdadssa", "sadsdad", "asdasdasd", "asdfasdf", "asasd", "121231", "asasasds");
