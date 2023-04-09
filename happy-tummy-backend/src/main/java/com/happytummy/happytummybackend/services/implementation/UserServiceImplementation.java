@@ -12,7 +12,6 @@ import com.happytummy.happytummybackend.services.RecipeService;
 import com.happytummy.happytummybackend.services.UserFollowerService;
 import com.happytummy.happytummybackend.services.UserService;
 import com.happytummy.happytummybackend.utils.JwtUtils;
-import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +26,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
+/**
+ * Implementation of UserService interface
+ */
 @Service
 public class UserServiceImplementation implements UserService{
     @Autowired
@@ -38,7 +40,6 @@ public class UserServiceImplementation implements UserService{
     @Autowired
     private UserFollowerService userFollowerService;
 
-
     @Autowired
     private RecipeLikeService recipeLikeService;
 
@@ -48,6 +49,13 @@ public class UserServiceImplementation implements UserService{
     @Autowired
     private JwtUtils jwtUtils;
 
+    /**
+     * Retrieves the profile data for a user with the given name.
+     *
+     * @param name The name of the user whose profile data is to be retrieved.
+     * @return A map containing the profile data, including user information, recipe details, follower count,
+     * following count, and number of likes.
+     */
     @Override
     public Object getProfile(String name) {
         final int MAX_RECIPES_TO_DISPLAY = 20;
@@ -79,6 +87,13 @@ public class UserServiceImplementation implements UserService{
         return null;
     }
 
+    /**
+     * Authenticates a user by checking the provided email and password against the stored user data.
+     *
+     * @param user The user object containing the email and password for authentication.
+     * @return A response object containing the authentication status, user data, and token if successful,
+     * or an error message if unsuccessful.
+     */
     @Override
     public Object login(User user) {
         User logged_in=userRepository.findByEmail(user.getEmail());
@@ -94,6 +109,14 @@ public class UserServiceImplementation implements UserService{
         }
     }
 
+    /**
+     * Registers a new user by checking if the user with the provided email already exists,
+     * and saves the new user to the database if not.
+     *
+     * @param user The user object containing the user information for registration.
+     * @return A response object containing the registration status and user data if successful,
+     * or an error message if the user with the provided email already exists.
+     */
     @Override
     public Object signup(User user) {
 
@@ -108,6 +131,13 @@ public class UserServiceImplementation implements UserService{
         }
     }
 
+    /**
+     * Calculates the MD5 hash value of the input string.
+     *
+     * @param input The input string to calculate the MD5 hash for.
+     * @return The MD5 hash value of the input string.
+     * @throws RuntimeException If the MD5 algorithm is not available.
+     */
     public String getMd5(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -124,7 +154,12 @@ public class UserServiceImplementation implements UserService{
         }
     }
 
-
+    /**
+     * Updates the profile of the user with the given information.
+     *
+     * @param user The user object containing the updated profile information.
+     * @return The updated user object if the user exists, otherwise null.
+     */
     @Override
     public User updateProfile(User user) {
         User isExist=userRepository.findByEmail(user.getEmail());
@@ -140,6 +175,13 @@ public class UserServiceImplementation implements UserService{
         }
     }
 
+    /**
+     * Updates the profile image of the user with the provided image file.
+     *
+     * @param file The MultipartFile object representing the image file to upload.
+     * @param id The ID of the user whose profile image is being updated.
+     * @return A Response object indicating the result of the profile image update operation.
+     */
     @Override
     public Object updateProfileImage(MultipartFile file,String id) {
         if (!file.isEmpty()) {

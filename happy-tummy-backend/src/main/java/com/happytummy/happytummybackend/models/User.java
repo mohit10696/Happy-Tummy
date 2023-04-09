@@ -129,9 +129,11 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getAvatar(){
         return avatar;
     }
+
     public void setAvatar(String avatar){this.avatar=avatar;}
 
     public User(Long id, String name, String password, String email, String avatar, String location, String bio) {

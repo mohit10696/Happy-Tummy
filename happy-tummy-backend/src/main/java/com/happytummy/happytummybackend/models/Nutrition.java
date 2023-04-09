@@ -10,8 +10,8 @@ public class Nutrition {
     private int id;
     @Column(name = "recipeId")
     private String recipeId;
-    private String nutrition;
 
+    private String nutrition;
 
     public Nutrition(String recipeId, String nutrition) {
         this.recipeId = recipeId;

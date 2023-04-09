@@ -1,7 +1,6 @@
 package com.happytummy.happytummybackend.repositories;
 
 import com.happytummy.happytummybackend.models.Nutrition;
-import com.happytummy.happytummybackend.models.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

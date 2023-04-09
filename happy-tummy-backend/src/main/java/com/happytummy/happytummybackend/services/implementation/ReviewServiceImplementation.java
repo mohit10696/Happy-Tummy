@@ -14,6 +14,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.*;
 
+/**
+ * Implementation of ReviewService interface
+ */
 @Service
 public class ReviewServiceImplementation implements ReviewService {
 
@@ -23,6 +26,11 @@ public class ReviewServiceImplementation implements ReviewService {
     @Autowired
     UserRepository userRepository;
 
+    /**
+     * Get reviews for a recipe by recipeId
+     * @param recipeId The recipeId for which reviews are to be retrieved
+     * @return List of reviews and corresponding user details as a list of objects
+     */
     public List<Object> getReviewByRecipeId(String recipeId) {
         List<Object> resBody = new ArrayList<>();
         List<Review> reviews = reviewRepository.findReviewsByRecipeId(recipeId);
@@ -41,6 +49,13 @@ public class ReviewServiceImplementation implements ReviewService {
         return resBody;
     }
 
+    /**
+     * Add a review for a recipe
+     * @param recipeId The recipeId for which review is to be added
+     * @param reviewQueryParam The review details
+     * @param userId The userId of the user adding the review
+     * @return Response object
+     */
     public Object addReview(String recipeId, ReviewQueryParam reviewQueryParam, String userId) {
 
         Review review = new Review();

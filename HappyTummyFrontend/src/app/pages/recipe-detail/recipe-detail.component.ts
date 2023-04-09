@@ -43,6 +43,9 @@ export class RecipeDetailComponent implements OnInit {
 
       }
     });
+    this.authenticationService.user.subscribe((user) => {
+      this.isLoggedIn = user && user.id;
+    });
   }
 
   fetchDetails() {
@@ -84,9 +87,6 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   likeRecipe(){
-    if (localStorage.getItem('user')) {
-      this.isLoggedIn = true;
-    }
     if (this.isLoggedIn) {
       this.recipeService.addLike(this.recipeId).subscribe((res: any) => {
         if (res.status == "success") {
@@ -98,9 +98,6 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   dislikeRecipe(){
-    if (localStorage.getItem('user')) {
-      this.isLoggedIn = true;
-    }
     if (this.isLoggedIn) {
       this.recipeService.removeLike(this.authenticationService.user.value.id, this.recipeId).subscribe((res: any) => {
         if (res.status == "success") {
@@ -112,9 +109,6 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onSubmit() {
-    if (localStorage.getItem('user')) {
-      this.isLoggedIn = true;
-    }
     if (this.isLoggedIn) {
       const reviewData = new FormData();
       reviewData.append('reviewText', this.reviewText);
