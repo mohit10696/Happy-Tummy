@@ -58,7 +58,7 @@ public class IngredientControllerTest {
     @BeforeEach
     public void setup(){
         ingredientServiceMock = mock(IngredientService.class);
-        ingredientControllerMock.ingredientService = ingredientServiceMock;
+        ingredientControllerMock.setIngredientService(ingredientServiceMock);
     }
 
 //    public static Stream<Arguments> testGetIngredientsDatasource() {
