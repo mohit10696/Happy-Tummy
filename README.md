@@ -214,10 +214,6 @@ By addressing these user stories, Happy Tummy becomes an engaging, comprehensive
 The home page displays top recipes with a brief description, the number of likes, and reviews. It is designed to help users and guests explore popular recipes easily, providing an engaging and visually appealing browsing experience. The home page also features a search bar, ingredient drag and drop selector and filtering options, allowing users to search for specific recipes or filter by meal preferences.
 [HappyTummyFrontend - Google Chrome 2023-04-09 18-35-12.mp4](../Documentation/HappyTummyFrontend - Google Chrome 2023-04-09 18-35-12.mp4))
 
-<video width="320" height="240" controls>
-  <source src="./Documentation/HappyTummyFrontend - Google Chrome 2023-04-09 18-35-12.mp4" type="video/mp4">
-</video>
-
 #### 2. Login/SignUp:
 Happy Tummy provides an easy-to-use login and sign-up process for new and existing users. New users can create an account by providing their credentials, such as name, email, and password. Existing users can log in using their credentials to access their profiles, interact with other users, and utilize all the application's features.
 [HappyTummyFrontend - Google Chrome 2023-04-09 18-43-22.mp4](..%2FDocumentation%2FHappyTummyFrontend%20-%20Google%20Chrome%202023-04-09%2018-43-22.mp4)
