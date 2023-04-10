@@ -187,7 +187,7 @@ The [Documentation](./Documentation/) of the project consists of the User Storie
 
 ## Dependencies
 
-## Features
+<!-- ## Features -->
 
 #### User Roles
 1.	User - Registered users who have created an account on Happy Tummy.
@@ -213,6 +213,10 @@ By addressing these user stories, Happy Tummy becomes an engaging, comprehensive
 #### 1. Home Page:
 The home page displays top recipes with a brief description, the number of likes, and reviews. It is designed to help users and guests explore popular recipes easily, providing an engaging and visually appealing browsing experience. The home page also features a search bar, ingredient drag and drop selector and filtering options, allowing users to search for specific recipes or filter by meal preferences.
 [HappyTummyFrontend - Google Chrome 2023-04-09 18-35-12.mp4](../Documentation/HappyTummyFrontend - Google Chrome 2023-04-09 18-35-12.mp4))
+
+![](http://img.youtube.com/vi/kTNfi5z6Uvk/0.jpg)](https://www.youtube.com/watch?v=DqHVG6DfvuA)
+
+[![](http://img.youtube.com/vi/kTNfi5z6Uvk/0.jpg)](https://www.youtube.com/watch?v=DqHVG6DfvuA "1. Swiss Meetup 2021 in January")
 
 #### 2. Login/SignUp:
 Happy Tummy provides an easy-to-use login and sign-up process for new and existing users. New users can create an account by providing their credentials, such as name, email, and password. Existing users can log in using their credentials to access their profiles, interact with other users, and utilize all the application's features.
