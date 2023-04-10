@@ -183,11 +183,11 @@ Note that the `csci5308vm6.research.cs.dal.ca.crt` and `csci5308vm6.research.cs.
 
 
 ## Documentation
-The [Documentation](./Documentation/) of the project consists of the User Stories, Usage scenarios, Excel files for all refactored code smells, Final Presentation, Contribution sheet, Dev & Client team feedback.
+The [Documentation](./Documentation/) directory of the project consists  the User Stories, Usage scenarios, Excel files for all refactored code smells, Final Presentation, Contribution statement, Dev & Client team feedback.
 
 ## Dependencies
 
-## Features
+<!-- ## Features -->
 
 #### User Roles
 1.	User - Registered users who have created an account on Happy Tummy.
@@ -212,46 +212,58 @@ By addressing these user stories, Happy Tummy becomes an engaging, comprehensive
 
 #### 1. Home Page:
 The home page displays top recipes with a brief description, the number of likes, and reviews. It is designed to help users and guests explore popular recipes easily, providing an engaging and visually appealing browsing experience. The home page also features a search bar, ingredient drag and drop selector and filtering options, allowing users to search for specific recipes or filter by meal preferences.
-[HappyTummyFrontend - Google Chrome 2023-04-09 18-35-12.mp4](../Documentation/HappyTummyFrontend - Google Chrome 2023-04-09 18-35-12.mp4))
+[home page](https://www.youtube.com/watch?v=DqHVG6DfvuA))
 
 #### 2. Login/SignUp:
 Happy Tummy provides an easy-to-use login and sign-up process for new and existing users. New users can create an account by providing their credentials, such as name, email, and password. Existing users can log in using their credentials to access their profiles, interact with other users, and utilize all the application's features.
-[HappyTummyFrontend - Google Chrome 2023-04-09 18-43-22.mp4](..%2FDocumentation%2FHappyTummyFrontend%20-%20Google%20Chrome%202023-04-09%2018-43-22.mp4)
-[HappyTummyFrontend - Google Chrome 2023-04-09 18-44-28.mp4](..%2FDocumentation%2FHappyTummyFrontend%20-%20Google%20Chrome%202023-04-09%2018-44-28.mp4)
+
+[Login](https://www.youtube.com/watch?v=fojyFtzWiDA)
+
+[Sign-up](https://www.youtube.com/watch?v=Ck8FJ8dgndI)
 
 #### 3. User Profile:
 Registered users have a personalized profile page where they can manage their profile information, including profile image, name, list of liked recipes, followed users, followers, and added recipes. Users can view and edit their bio and other details, making their profiles more personalized and engaging. The profile page also displays the user's "My Recipes" section, showcasing the recipes they have added to the platform.
-[HappyTummyFrontend - Google Chrome 2023-04-09 18-47-10.mp4](..%2FDocumentation%2FHappyTummyFrontend%20-%20Google%20Chrome%202023-04-09%2018-47-10.mp4)
-[HappyTummyFrontend - Google Chrome 2023-04-09 19-01-30.mp4](..%2FDocumentation%2FHappyTummyFrontend%20-%20Google%20Chrome%202023-04-09%2019-01-30.mp4)
+
+[Edit user profile](https://www.youtube.com/watch?v=0wD_K0IMW9Q)
+
+[Show recipes](https://www.youtube.com/watch?v=wE3cDaBEHWA)
 
 #### 4. Add Recipe:
 Logged-in users can add their own recipes to Happy Tummy using the "Add Recipe" feature. They need to provide the recipe name, introduction, preparation time, cooking time, servings, recipe difficulty, tips (if any), ingredients, steps, nutritional information, and tags. Once added, the recipe will be displayed on their profile page and can be liked, reviewed, and commented on by other users.
-[HappyTummyFrontend - Google Chrome 2023-04-09 18-58-10.mp4](..%2FDocumentation%2FHappyTummyFrontend%20-%20Google%20Chrome%202023-04-09%2018-58-10.mp4)
+
+[add recipe](https://www.youtube.com/watch?v=KZ9ZsKKsiXE)
 
 #### 5. Recipe Recommendation:
 Guests and users can receive recipe recommendations based on their selected ingredients or meal preferences (veg, vegan, non-veg). This feature helps users discover new recipes tailored to their preferences, making it easier to find suitable recipes for their dietary needs.
-[HappyTummyFrontend - Google Chrome 2023-04-09 18-37-17.mp4](..%2FDocumentation%2FHappyTummyFrontend%20-%20Google%20Chrome%202023-04-09%2018-37-17.mp4)
+
+[recommendation](https://www.youtube.com/watch?v=S-C9Owz0s6c)
 
 #### 6. Recipe View:
 When users or guests click on a recipe, they can view detailed information about the recipe, including ingredients, quantity, servings, preparation time, cooking time, difficulty level, nutritional information, and tips. This comprehensive overview allows users to fully understand the recipe before attempting it.
-[HappyTummyFrontend - Google Chrome 2023-04-09 18-50-09.mp4](..%2FDocumentation%2FHappyTummyFrontend%20-%20Google%20Chrome%202023-04-09%2018-50-09.mp4)
+
+[View recipe description](https://www.youtube.com/watch?v=poEAPFI6N_E)
 
 #### 7. YouTube Video Link:
 Each recipe in Happy Tummy includes a YouTube video link, allowing users and guests to watch and follow the cooking process if they prefer not to read the instructions. This feature adds an interactive and engaging element to the recipe learning experience.
-[HappyTummyFrontend - Google Chrome 2023-04-09 19-44-36.mp4](..%2FDocumentation%2FHappyTummyFrontend%20-%20Google%20Chrome%202023-04-09%2019-44-36.mp4)appyTummyFrontend - Google Chrome 2023-04-09 19-44-36.mp4
+
+[Watch on youtube](https://www.youtube.com/watch?v=DqHVG6DfvuA)
 
 #### 8. Ingredient Filter, Search Bar, and Ingredient Selector:
 These features enable users and guests to find recipes based on specific ingredients or combinations of ingredients. Users can type in the search bar, filter by meal preferences, or use the drag-and-drop ingredient selector to find recipes that match their selected ingredients.
-[HappyTummyFrontend - Google Chrome 2023-04-09 18-39-03.mp4](..%2FDocumentation%2FHappyTummyFrontend%20-%20Google%20Chrome%202023-04-09%2018-39-03.mp4)
-[HappyTummyFrontend - Google Chrome 2023-04-09 18-35-56.mp4](..%2FDocumentation%2FHappyTummyFrontend%20-%20Google%20Chrome%202023-04-09%2018-35-56.mp4)
+
+[Search bar, selector](https://www.youtube.com/watch?v=eEdn1dZfEvE)
+
+[filters](https://www.youtube.com/watch?v=i9otJMRrPIA)
 
 #### 9. Like, Rate, Review, and Upload Images:
 Registered users can interact with recipes by liking, rating, writing reviews, and uploading images of their version of the recipe. This feature encourages engagement and feedback among users, helping recipe creators improve and refine their recipes.
-[HappyTummyFrontend - Google Chrome 2023-04-09 18-51-28.mp4](..%2FDocumentation%2FHappyTummyFrontend%20-%20Google%20Chrome%202023-04-09%2018-51-28.mp4)
+
+[like, rate, review, upload picture](https://www.youtube.com/watch?v=o_1J8i5vdVw)
 
 #### 10. Nearby Grocery Stores:
 The application includes a built-in maps feature that helps users and guests find nearby grocery stores based on their current location. This feature makes it easy for users to purchase missing ingredients needed for a recipe, ensuring a seamless cooking experience.
-[HappyTummyFrontend - Google Chrome 2023-04-09 19-00-34.mp4](..%2FDocumentation%2FHappyTummyFrontend%20-%20Google%20Chrome%202023-04-09%2019-00-34.mp4)
+
+[grocery store](https://www.youtube.com/watch?v=YsaEIEXq35k)
 
 By providing these features, Happy Tummy offers a comprehensive and user-centric platform that caters to the needs of novice cooks and busy individuals, making cooking enjoyable and accessible for everyone.
 
